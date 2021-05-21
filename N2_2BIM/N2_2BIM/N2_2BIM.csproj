@@ -12,6 +12,10 @@
 
   <ItemGroup>
     <Folder Include="Views\Login\" />
+    <Folder Include="Views\Exercicios\" />
+    <Folder Include="Views\Avaliacoes\" />
+    <Folder Include="Views\Alunos\" />
+    <Folder Include="Views\Aula\" />
   </ItemGroup>
 
 </Project>

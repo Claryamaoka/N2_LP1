@@ -5,10 +5,7 @@ using System.Threading.Tasks;
 
 namespace N2_2BIM.Models
 {
-    public class PadraoViewModel
+    public class RiscoCardiacoViewModel
     {
-        public int? Id { get; set; }
-
-        public int? CPF { get; set; }
     }
 }
