@@ -8,6 +8,7 @@ namespace N2_2BIM.Models
 {
     public class InstrutorViewModel : PadraoViewModel
     {
+        public string CPF { get; set; }
         public string Nome { get; set; }
         public DateTime dtNascimento { get; set; }
         public string Endereco { get; set; }

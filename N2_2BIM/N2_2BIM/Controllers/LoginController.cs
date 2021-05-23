@@ -11,6 +11,7 @@ namespace N2_2BIM.Controllers
 {
     public class LoginController : Controller
     {
+        
         public IActionResult Index()
         {
             return View();
@@ -29,7 +30,7 @@ namespace N2_2BIM.Controllers
 
             //consultar na sua tabela de usuários
             //se existe esse usuário e senha
-            if (login.CPF == usuario && login.senha == senha)
+            if (login.Id == usuario && login.senha == senha)
             {
                 HttpContext.Session.SetString("Logado", "true");
 

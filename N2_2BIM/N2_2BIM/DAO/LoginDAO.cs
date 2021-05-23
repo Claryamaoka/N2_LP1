@@ -17,8 +17,7 @@ namespace N2_2BIM.DAO
                 new SqlParameter("CPF", model.CPF),
                 new SqlParameter("senha", model.senha),
                 new SqlParameter("Tipo", model.Tipo),
-                
-
+                new SqlParameter("Id", model.Id)
             };
 
             return parametros;
@@ -28,7 +27,8 @@ namespace N2_2BIM.DAO
         {
             var c = new LoginViewModel()
             {
-                CPF = Convert.ToInt32(registro["CPF"]),
+                Id = Convert.ToInt32(registro["Id"]),
+                CPF = registro["CPF"].ToString(),
                 senha = registro["senha"].ToString(),
                 Tipo  = Convert.ToChar(registro["Tipo"])
             };

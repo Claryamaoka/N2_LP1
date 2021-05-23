@@ -19,6 +19,7 @@ namespace N2_2BIM.DAO
             SqlParameter[] parametros =
             {
                 new SqlParameter("CPF", model.CPF),
+                new SqlParameter("Id", model.Id),
                 new SqlParameter("Nome", model.Nome),
                 new SqlParameter("Foto", imgByte),
                 new SqlParameter("dtNascimento", model.dtNascimento),
@@ -35,7 +36,8 @@ namespace N2_2BIM.DAO
         {
             var c = new AlunoViewModel()
             {
-                CPF = Convert.ToInt32(registro["CPF"]),
+                Id = Convert.ToInt32(registro["Id"]),
+                CPF = registro["CPF"].ToString(),
                 Nome = registro["Nome"].ToString(),
                 dtNascimento = Convert.ToDateTime(registro["dtNascimento"]),
                 Endereco = registro["Endereco"].ToString(),
