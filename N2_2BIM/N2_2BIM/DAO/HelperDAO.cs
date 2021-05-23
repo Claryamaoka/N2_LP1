@@ -72,6 +72,8 @@ namespace N2_2BIM.DAO
                     if (parametros != null)
                         comando.Parameters.AddRange(parametros);
                     comando.ExecuteNonQuery();
+
+                    //retornar o último id inserido em campos identity
                     if (consultaUltimoIdentity)
                     {
                         string sql = "select isnull(@@IDENTITY,0)";

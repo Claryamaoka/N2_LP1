@@ -23,6 +23,7 @@ namespace N2_2BIM.DAO
         protected abstract void SetTabela();
         protected bool ChaveIdentity { get; set; } = false;
 
+        //retorna ultimo id inserido
         public virtual int Insert(T model)
         {
             int ultimoId = HelperDAO.ExecutaProc("spInsert_" + Tabela, CriaParametros(model), ChaveIdentity);

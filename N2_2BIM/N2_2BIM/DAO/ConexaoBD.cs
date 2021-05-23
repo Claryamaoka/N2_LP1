@@ -10,7 +10,7 @@ namespace N2_2BIM.DAO
     {
         public static SqlConnection GetConexao()
         {
-            string strCon = "Data Source=LOCALHOST\\sql_2019;Initial Catalog=N2_LP;integrated security=true";
+            string strCon = "Data Source=LOCALHOST\\sql_2019;Initial Catalog=MoveUp;integrated security=true";
             SqlConnection conexao = new SqlConnection(strCon);
             conexao.Open();
             return conexao;

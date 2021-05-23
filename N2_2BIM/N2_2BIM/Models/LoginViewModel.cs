@@ -7,6 +7,7 @@ namespace N2_2BIM.Models
 {
     public class LoginViewModel: PadraoViewModel
     {
-        
+        public string senha { get; set; }
+        public char Tipo { get; set; }
     }
 }
