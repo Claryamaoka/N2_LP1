@@ -30,12 +30,12 @@ namespace N2_2BIM.DAO
             return ultimoId;
         }
 
-
         public virtual void Update(T model)
         {
             HelperDAO.ExecutaProc("spUpdate_" + Tabela, CriaParametros(model));
         }
 
+        //o campo Tipo vai indicar se o ID é um CPF ou apenas um ID identity
         public virtual void Delete(int id)
         {
             var p = new SqlParameter[]
@@ -46,6 +46,8 @@ namespace N2_2BIM.DAO
             HelperDAO.ExecutaProc("spDelete", p);
         }
 
+        //Consulta com SP
+        //o campo Tipo vai indicar se o ID é um CPF ou apenas um ID identity
         public virtual T Consulta(int id)
         {
             var p = new SqlParameter[]

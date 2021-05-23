@@ -18,7 +18,7 @@ namespace N2_2BIM.DAO
 
             SqlParameter[] parametros =
             {
-                new SqlParameter("CPF", model.Id),
+                new SqlParameter("CPF", model.CPF),
                 new SqlParameter("Nome", model.Nome),
                 new SqlParameter("Foto", imgByte),
                 new SqlParameter("dtNascimento", model.dtNascimento),
