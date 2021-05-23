@@ -7,8 +7,8 @@ namespace N2_2BIM.Models
 {
     public class AnamneseViewModel : PadraoViewModel
     {
-        public float Peso { get; set; }
-        public float Altura { get; set; }
+        public double Peso { get; set; }
+        public double Altura { get; set; }
         public string Elasticidade { get; set; }
         public int CPFInstrutor { get; set; }
         public int CPFAluno { get; set; }

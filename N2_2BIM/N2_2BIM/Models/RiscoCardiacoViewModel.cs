@@ -7,9 +7,9 @@ namespace N2_2BIM.Models
 {
     public class RiscoCardiacoViewModel: PadraoViewModel
     {
-        public float Peso { get; set; }
-        public float Pressao { get; set; }
-        public float Colesterol { get; set; }
+        public double Peso { get; set; }
+        public double Pressao { get; set; }
+        public double Colesterol { get; set; }
         public string Atividade { get; set; }//Frequencia de atividade física
         public string Fumo { get; set; } //fuma ou não? Em que quantidade
         public string DoencaFamilia { get; set; } //Possui historico de doenças na família? Quantos casos

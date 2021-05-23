@@ -12,12 +12,32 @@ namespace N2_2BIM.DAO
     {
         protected override SqlParameter[] CriaParametros(AnamneseViewModel model)
         {
-            throw new NotImplementedException();
+            SqlParameter[] parametros =
+           {
+                new SqlParameter("CPF", model.CPFInstrutor),
+                new SqlParameter("CPF", model.CPFAluno),
+                new SqlParameter("Peso", model.Peso),
+                new SqlParameter("Altura", model.Altura),
+                new SqlParameter("Elasticidade", model.Elasticidade)
+               
+            };
+
+            return parametros;
         }
 
         protected override AnamneseViewModel MontaModel(DataRow registro)
         {
-            throw new NotImplementedException();
+            var c = new AnamneseViewModel()
+            {
+                CPFInstrutor = Convert.ToInt32(registro["CPF"]),
+                CPFAluno = Convert.ToInt32(registro["CPF"]),
+                Peso = Convert.ToDouble(registro["Peso"]),
+                Altura = Convert.ToDouble(registro["Altura"]),
+                Elasticidade = registro["Elasticidade"].ToString()
+
+            };
+            
+            return c;
         }
 
         protected override void SetTabela()

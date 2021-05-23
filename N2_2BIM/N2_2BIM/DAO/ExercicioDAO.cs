@@ -12,12 +12,26 @@ namespace N2_2BIM.DAO
     {
         protected override SqlParameter[] CriaParametros(ExercicioViewModel model)
         {
-            throw new NotImplementedException();
+            SqlParameter[] parametros =
+        {
+                new SqlParameter("Nome", model.Nome),
+                new SqlParameter("Descricao", model.Descricao)               
+
+            };
+
+            return parametros;
         }
 
         protected override ExercicioViewModel MontaModel(DataRow registro)
         {
-            throw new NotImplementedException();
+            var c = new ExercicioViewModel()
+            {
+                Nome = registro["Nome"].ToString(),
+                Descricao = registro["Descricao"].ToString()
+
+            };
+
+            return c;
         }
 
         protected override void SetTabela()

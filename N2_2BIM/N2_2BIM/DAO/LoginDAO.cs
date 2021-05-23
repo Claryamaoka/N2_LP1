@@ -12,7 +12,16 @@ namespace N2_2BIM.DAO
     {
         protected override SqlParameter[] CriaParametros(LoginViewModel model)
         {
-            throw new NotImplementedException();
+            SqlParameter[] parametros =
+        {
+                new SqlParameter("CPF", model.CPF),
+                new SqlParameter("senha", model.senha),
+                new SqlParameter("Tipo", model.Tipo),
+                
+
+            };
+
+            return parametros;
         }
 
         protected override LoginViewModel MontaModel(DataRow registro)
