@@ -11,3 +11,6 @@ namespace N2_2BIM.Models
         public char Tipo { get; set; }
     }
 }
+/** CPF int primary key NOT NULL,
+    senha varchar(50) NOT NULL,
+	Tipo char(1)/

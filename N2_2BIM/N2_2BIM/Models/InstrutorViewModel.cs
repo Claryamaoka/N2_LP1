@@ -39,4 +39,11 @@ namespace N2_2BIM.Models
         }
     }
 }
+/*CPF int primary key NOT NULL,
+    Nome varchar(50), 
+    dtNascimento smalldatetime, 
+    Endereco varchar(50),
+    Telefone varchar(50),
+    Sexo char(1),
+    Foto varbinary(50)*/
 
