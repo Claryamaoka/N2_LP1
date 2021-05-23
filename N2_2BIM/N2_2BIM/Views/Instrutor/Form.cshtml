@@ -1,14 +1,13 @@
-﻿@model AlunoViewModel
+﻿@model InstrutorViewModel
 @{
     ViewData["Title"] = "Form";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-<h1>Cadastro de Alunos</h1>
+<h1>Cadastro de Instrutor</h1>
 <hr />
 
-<form action="/Aluno/Salvar" method="post">
+<form action="/Instrutor/Salvar" method="post">
 
     <div asp-validation-summary="All" class="text-danger"></div>
     <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
@@ -26,11 +25,7 @@
     }
 
     <br />
-    <label for="CPFInstrutor" class="control-label">CPFInstrutor</label>
-    <input asp-for="CPFInstrutor" class="form-control" readonly />
-
-    <br />
-    <label for="Nome" class="control-label">Nome do Aluno</label>
+    <label for="Nome" class="control-label">Nome</label>
     <input asp-for="Nome" class="form-control" />
     <span asp-validation-for="Nome" class="text-danger"></span>
 
@@ -67,7 +62,7 @@
     <br />
     <input type="submit" value="Salvar dados" class="btn btn-success" />
     &nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="/Aluno/Index" class="btn btn-secondary">Voltar</a>
+    <a href="/Login/Index" class="btn btn-secondary">Voltar</a>
 
 
     <br />
@@ -75,3 +70,4 @@
     <span class="text-danger">@ViewBag.Erro</span>
 
 </form>
+

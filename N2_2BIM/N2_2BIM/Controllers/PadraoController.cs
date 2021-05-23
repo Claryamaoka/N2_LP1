@@ -110,5 +110,10 @@ namespace N2_2BIM.Controllers
                 return RedirectToAction(ViewParaListagem);
             }
         }
+
+        public bool ValidaCPF(string CPF)
+        {
+            return true;
+        }
     }
 }

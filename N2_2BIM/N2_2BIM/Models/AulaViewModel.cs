@@ -14,6 +14,7 @@ namespace N2_2BIM.Models
         public int Ex1 { get; set; }
         public int Ex2 { get; set; }
         public int Ex3 { get; set; }
+        public DateTime dataAula { get; set; }
     }
 }
 /*Id int primary key not null IDENTITY(1,1),

@@ -1,0 +1,45 @@
+﻿@model List<AulaViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*TELA DE LISTAGEM DE AULAS*@
+
+<h1>Listagem de Exercicios</h1>
+
+<a href="/Aula/create">Nova Aula</a>
+<br />
+
+@*Opção de filtro de data e aluno *@
+
+<table class="table table-responsive table-striped">
+    <tr>
+        <td>Ações</td>
+        <td>Código</td>
+        <td>Data da Aula</td>
+        <td>Aluno</td>
+        <td>Exercício 1</td>
+        <td>Exercício 2</td>
+        <td>Exercício 3</td>
+
+    </tr>
+
+    @foreach (var ex in Model)
+    {
+        <tr>
+            <td>
+                <a href="/Exercicio/Edit?id=@ex.Id">Editar</a> &nbsp;&nbsp;
+                <a href="javascript:apagar(@ex.Id, 'Exercicio')">Apagar</a>
+            </td>
+            <td>@ex.Id</td>
+            <td>@ex.dataAula</td>
+            <td>@ex.CPFAluno</td>
+            <td>@ex.Ex1</td>
+            <td>@ex.Ex2</td>
+            <td>@ex.Ex3</td>
+
+        </tr>
+    }
+
+</table>

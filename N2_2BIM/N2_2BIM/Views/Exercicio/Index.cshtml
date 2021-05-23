@@ -1,0 +1,38 @@
+﻿@model List<ExercicioViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*TELA INICIAL DE EXERCICIOS - LISTAGEM DE TODOS OS EXERCICIOS EXISTENTES*@
+
+<h1>Listagem de Exercicios</h1>
+
+<a href="/Exercicio/create">Novo Exercício</a>
+<br />
+
+@*Opção de filtro de *@
+
+<table class="table table-responsive table-striped">
+    <tr>
+        <td>Ações</td>
+        <td>Código</td>
+        <td>Nome</td>
+        <td>Descrição</td>
+        
+    </tr>
+
+    @foreach (var ex in Model)
+    {
+        <tr>
+            <td>
+                <a href="/Exercicio/Edit?id=@ex.Id">Editar</a> &nbsp;&nbsp;
+                <a href="javascript:apagar(@ex.Id, 'Exercicio')">Apagar</a>
+            </td>
+            <td>@ex.Id</td>
+            <td>@ex.Nome</td>
+            <td>@ex.Descricao</td>
+            
+        </tr>
+    }
+
+</table>

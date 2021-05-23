@@ -21,7 +21,9 @@ namespace N2_2BIM.Controllers
             base.ValidaDados(model, operacao);
             if (model.Ex1 <= 0)
                 ModelState.AddModelError("Ex1", "Preencha este campo");
-            
+            if (model.dataAula < DateTime.Now || model.dataAula == null)
+                ModelState.AddModelError("dataAula", "Preencha este campo com uma data válida");
+
         }
     }
 }

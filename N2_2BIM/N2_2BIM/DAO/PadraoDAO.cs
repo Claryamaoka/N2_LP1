@@ -21,7 +21,7 @@ namespace N2_2BIM.DAO
         protected abstract SqlParameter[] CriaParametros(T model);
         protected abstract T MontaModel(DataRow registro);
         protected abstract void SetTabela();
-        protected bool ChaveIdentity { get; set; } = false;
+        protected bool ChaveIdentity { get; set; } = true;
 
         //retorna ultimo id inserido
         public virtual int Insert(T model)
@@ -58,6 +58,11 @@ namespace N2_2BIM.DAO
                 return null;
             else
                 return MontaModel(tabela.Rows[0]);
+        }
+
+        public virtual T Consulta(string id)
+        {
+            return null;
         }
 
         public virtual int ProximoId()

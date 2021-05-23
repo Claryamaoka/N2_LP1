@@ -16,7 +16,6 @@
   <ItemGroup>
     <Folder Include="Views\Avaliacoes\Anamnese\" />
     <Folder Include="Views\Avaliacoes\RiscoCardiaco\" />
-    <Folder Include="Views\Instrutor\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 

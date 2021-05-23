@@ -18,7 +18,8 @@ namespace N2_2BIM.DAO
                 new SqlParameter("CPF", model.CPFAluno),
                 new SqlParameter("Ex1", model.Ex1),
                 new SqlParameter("Ex2", model.Ex2),
-                new SqlParameter("Ex3", model.Ex3)
+                new SqlParameter("Ex3", model.Ex3),
+                new SqlParameter("dataAula", model.dataAula)
 
             };
 
@@ -34,6 +35,7 @@ namespace N2_2BIM.DAO
                 Ex1 = Convert.ToInt32(registro["Ex1"]),
                 Ex2 = Convert.ToInt32(registro["Ex2"]),
                 Ex3 = Convert.ToInt32(registro["Ex3"]),
+                dataAula = Convert.ToDateTime(registro["dataAula"])
             };
 
             return c;

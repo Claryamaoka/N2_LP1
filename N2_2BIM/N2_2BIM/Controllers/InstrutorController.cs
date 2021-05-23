@@ -8,15 +8,15 @@ using N2_2BIM.Models;
 
 namespace N2_2BIM.Controllers
 {
-    public class AlunoController : PadraoController<AlunoViewModel>
+    public class InstrutorController : PadraoController<InstrutorViewModel>
     {
-        public AlunoController()
+        public InstrutorController()
         {
-            DAO = new AlunoDAO();
+            DAO = new InstrutorDAO();
             SugereProximoId = true;
         }
 
-        protected override void ValidaDados(AlunoViewModel model, string operacao)
+        protected override void ValidaDados(InstrutorViewModel model, string operacao)
         {
             base.ValidaDados(model, operacao);
             if (!base.ValidaCPF(model.CPF))
@@ -46,7 +46,7 @@ namespace N2_2BIM.Controllers
                 //na alteração, se não foi informada a imagem, iremos manter a que já estava salva.
                 if (operacao == "A" && model.Imagem == null)
                 {
-                    AlunoViewModel alu = DAO.Consulta(model.Id);
+                    InstrutorViewModel alu = DAO.Consulta(model.Id);
                     model.ImagemEmByte = alu.ImagemEmByte;
                 }
                 else

@@ -1,4 +1,25 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿function apagar(id, controller) {
+    swal({
+        title: "Tem certeza?",
+        text: "Este registro será removido para sempre!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonClass: "btn-danger",
+        confirmButtonText: "Sim!",
+        cancelButtonText: "Não!",
+        closeOnConfirm: false
+    },
+        function () {
+            location.href = '/' + controller + '/Delete?id=' + id;
+        });
+}
 
-// Write your JavaScript code.
+
+
+function exibirImagem() {
+    var oFReader = new FileReader();
+    oFReader.readAsDataURL(document.getElementById("Imagem").files[0]);
+    oFReader.onload = function (oFREvent) {
+        document.getElementById("imgPreview").src = oFREvent.target.result;
+    };
+}
