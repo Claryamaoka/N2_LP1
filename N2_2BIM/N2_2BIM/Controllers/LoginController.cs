@@ -25,20 +25,28 @@ namespace N2_2BIM.Controllers
         public IActionResult FazLogin(LoginViewModel l)
         {
             LoginDAO dao = new LoginDAO();
-            LoginViewModel login = dao.Consulta(l.CPF);
+            LoginViewModel login = dao.Consulta(l.Id);
 
             //consultar na sua tabela de usuários
             //se existe esse usuário e senha
-            if (login.CPF == l.CPF && login.senha == l.senha)
+            if (login.Id == l.Id && login.senha == l.senha)
             {
                 HttpContext.Session.SetString("Logado", "true");
 
                 if(login.Tipo =='I') //o logado é um instrutor
                 {
+                    ViewBag.AlunoInstrutor = "I";
+                    InstrutorDAO instrutorDAO = new InstrutorDAO();
+                    instrutorDAO.Consulta(l.Id);
+                    //salvar esse usuario em algum local que possa ser acessado ao longo de todo site
                     return RedirectToAction("index", "Home");
                 }
                 else //o logado é um aluno
                 {
+                    ViewBag.AlunoInstrutor = "A";
+                    AlunoDAO alunoDAO = new AlunoDAO();
+                    alunoDAO.Consulta(l.Id);
+                    //salvar esse usuario em algum local que possa ser acessado ao longo de todo site
                     return RedirectToAction("index", "Home");
                 }
                 

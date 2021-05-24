@@ -1,7 +1,6 @@
 ﻿@model LoginViewModel
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @*TELA INICIAL DE LOGAR*@
 
@@ -11,10 +10,13 @@
         <form action="/login/Fazlogin" method="post">
 
             @*SELECT TIPO == INSTRUTOR OU ALUNO*@
+            <br />
+            <select asp-for="Tipo" asp-items="@ViewBag.AlunoInstrutor" class="form-control"></select>
+            <span asp-validation-for="Tipo" class="text-danger"></span>
 
-            <label for="CPF" class="control-label">Usuário</label>
-            <input asp-for="CPF" type="text" name="Usuario" class="form-control" required placeholder='Usuário/CPF...' />
-            <span asp-validation-for="CPF" class="text-danger"></span>
+            <label for="Id" class="control-label">Usuário</label>
+            <input asp-for="Id" type="text" name="Usuario" class="form-control" required placeholder='Usuário/RA...' />
+            <span asp-validation-for="Id" class="text-danger"></span>
             <br />
 
             <label for="senha" class="control-label">Senha</label>

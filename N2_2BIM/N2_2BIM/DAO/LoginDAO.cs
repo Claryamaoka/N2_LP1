@@ -14,7 +14,7 @@ namespace N2_2BIM.DAO
         {
             SqlParameter[] parametros =
         {
-                new SqlParameter("CPF", model.CPF),
+                new SqlParameter("Id", model.Id),
                 new SqlParameter("senha", model.senha),
                 new SqlParameter("Tipo", model.Tipo)
             };
@@ -26,7 +26,7 @@ namespace N2_2BIM.DAO
         {
             var c = new LoginViewModel()
             {
-                CPF = registro["CPF"].ToString(),
+                Id = Convert.ToInt32(registro["Id"]),
                 senha = registro["senha"].ToString(),
                 Tipo  = Convert.ToChar(registro["Tipo"])
             };
@@ -37,7 +37,7 @@ namespace N2_2BIM.DAO
         {
             var p = new SqlParameter[]
             {
-                new SqlParameter("CPF", id),
+                new SqlParameter("Id", id),
                 new SqlParameter("tabela", Tabela)
             };
             var tabela = HelperDAO.ExecutaProcSelect("spConsulta", p);
