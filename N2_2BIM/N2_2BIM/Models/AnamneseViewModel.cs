@@ -10,8 +10,8 @@ namespace N2_2BIM.Models
         public double Peso { get; set; }
         public double Altura { get; set; }
         public string Elasticidade { get; set; }
-        public int CPFInstrutor { get; set; }
-        public int CPFAluno { get; set; }
+        public int IdInstrutor { get; set; }
+        public int IdAluno { get; set; }
 
     }
 }
