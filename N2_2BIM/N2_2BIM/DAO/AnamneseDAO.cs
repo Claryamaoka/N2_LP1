@@ -14,8 +14,8 @@ namespace N2_2BIM.DAO
         {
             SqlParameter[] parametros =
            {
-                new SqlParameter("CPF", model.CPFInstrutor),
-                new SqlParameter("CPF", model.CPFAluno),
+                new SqlParameter("CPF", model.IdInstrutor),
+                new SqlParameter("CPF", model.IdAluno),
                 new SqlParameter("Peso", model.Peso),
                 new SqlParameter("Altura", model.Altura),
                 new SqlParameter("Elasticidade", model.Elasticidade)
@@ -29,8 +29,8 @@ namespace N2_2BIM.DAO
         {
             var c = new AnamneseViewModel()
             {
-                CPFInstrutor = Convert.ToInt32(registro["CPF"]),
-                CPFAluno = Convert.ToInt32(registro["CPF"]),
+                IdInstrutor = Convert.ToInt32(registro["CPF"]),
+                IdAluno = Convert.ToInt32(registro["CPF"]),
                 Peso = Convert.ToDouble(registro["Peso"]),
                 Altura = Convert.ToDouble(registro["Altura"]),
                 Elasticidade = registro["Elasticidade"].ToString()
