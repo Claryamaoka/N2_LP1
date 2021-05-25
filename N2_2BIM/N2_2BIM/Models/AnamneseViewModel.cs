@@ -12,6 +12,7 @@ namespace N2_2BIM.Models
         public string Elasticidade { get; set; }
         public int IdInstrutor { get; set; }
         public int IdAluno { get; set; }
+        public DateTime Data { get; set; }
 
     }
 }

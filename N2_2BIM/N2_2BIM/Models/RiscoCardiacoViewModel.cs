@@ -13,8 +13,8 @@ namespace N2_2BIM.Models
         public string Atividade { get; set; }//Frequencia de atividade física
         public string Fumo { get; set; } //fuma ou não? Em que quantidade
         public string DoencaFamilia { get; set; } //Possui historico de doenças na família? Quantos casos
-        public int CPFInstrutor { get; set; }
-        public int CPFAluno { get; set; }
+        public int IdInstrutor { get; set; }
+        public int IdAluno { get; set; }
     }
 }
 /*Id int NOT NULL primary key identity (1,1),

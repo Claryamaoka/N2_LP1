@@ -24,7 +24,7 @@
             <td>
                 <a href="/Aluno/Edit?id=@aluno.Id">Editar</a> &nbsp;&nbsp;
                 <a href="javascript:apagar(@aluno.Id, 'Aluno')">Apagar</a>
-                <a href="/Aluno/Edit?id=@aluno.Id">Realizar Anamnese</a> &nbsp;&nbsp;
+                <a href="/Anamnese/Create?id=@aluno.Id">Realizar Anamnese</a> &nbsp;&nbsp;
                 <a href="/Aluno/Edit?id=@aluno.Id">Realizar Avaliação de Risco Cardiaco</a>
             </td>
             <td>@aluno.Id</td>
@@ -33,6 +33,6 @@
             <td>@aluno.dtNascimento.ToShortDateString()</td>
         </tr>
     }
-
+</table>
 
 

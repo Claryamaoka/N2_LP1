@@ -4,35 +4,39 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<h1>ANAMNESE</h1>
+<form asp-action="Salvar" method="post">
+    <div class="DadosAluno">
+        <h2>Aluno</h2>
 
-        <form asp-action="Salvar" method="post">
-            <div class="DadosAluno">
-                <h2>Aluno</h2>
+        <input class="idAnamnese" type="text" hidden />
 
-                <input class="idAnamnese" type="text" hidden />
+        <label>Id Instrutor</label>
+        <input class="idInstrutor" type="text" asp-for="IdInstrutor" readonly />
 
-                <label>Id Instrutor</label>
-                <input class="idInstrutor" type="text" asp-for="IdInstrutor" readonly />
+        <label>Id Aluno</label>
+        <input class="idAluno" type="text" asp-for="IdAluno" readonly />
 
-                <label>Id Aluno</label>
-                <input class="idAluno" type="text" asp-for="IdAluno" readonly />
+        <label>Data</label>
+        <input class="Data" type="text" asp-for="Data" required />
+        <span asp-validation-for="Data" class="text-danger"></span>
 
-                <label>Peso</label>
-                <input class="Peso" type="text" asp-for="Peso" placeholder="50kg" required />
-                <span asp-validation-for="Peso" class="text-danger"></span>
+        <label>Peso</label>
+        <input class="Peso" type="text" asp-for="Peso" placeholder="50kg" required />
+        <span asp-validation-for="Peso" class="text-danger"></span>
 
-                <label>Altura</label>
-                <input class="Altura" type="text" asp-for="Altura" placeholder="1.80m" required />
-                <span asp-validation-for="Altura" class="text-danger"></span>
+        <label>Altura</label>
+        <input class="Altura" type="text" asp-for="Altura" placeholder="1.80m" required />
+        <span asp-validation-for="Altura" class="text-danger"></span>
 
-                <label>Elasticidade</label>
-                <input class="Elasticidade" type="text" asp-for="Elasticidade" required />
-                <span asp-validation-for="Elasticidade" class="text-danger"></span>
+        <label>Elasticidade</label>
+        <input class="Elasticidade" type="text" asp-for="Elasticidade" required />
+        <span asp-validation-for="Elasticidade" class="text-danger"></span>
 
-                <input type="submit" value="Cadastrar" class="btn btn-success" />
-                <span class="text-danger"> @ViewBag.Erro</span>
-            </div>
-        </form>
+        <input type="submit" value="Cadastrar" class="btn btn-success" />
+        <span class="text-danger"> @ViewBag.Erro</span>
+    </div>
+</form>
 
 
 

@@ -7,8 +7,8 @@ namespace N2_2BIM.Models
 {
     public class AulaViewModel: PadraoViewModel
     {
-        public int CPFInstrutor { get; set; }
-        public int CPFAluno { get; set; }
+        public int IdInstrutor { get; set; }
+        public int IdAluno { get; set; }
 
         //apenas os IDS dos exercicios, não pode haver repetição
         public int Ex1 { get; set; }

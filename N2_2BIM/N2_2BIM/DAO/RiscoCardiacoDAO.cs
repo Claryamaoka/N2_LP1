@@ -14,8 +14,8 @@ namespace N2_2BIM.DAO
         {
             SqlParameter[] parametros =
          {
-                new SqlParameter("CPF", model.CPFInstrutor),
-                new SqlParameter("CPF", model.CPFAluno),
+                new SqlParameter("IdInstrutor", model.IdInstrutor),
+                new SqlParameter("IdAluno", model.IdAluno),
                 new SqlParameter("Peso", model.Peso),
                 new SqlParameter("Pressao", model.Pressao),
                 new SqlParameter("Colesterol", model.Colesterol),
@@ -32,8 +32,8 @@ namespace N2_2BIM.DAO
         {
             var c = new RiscoCardiacoViewModel()
             {
-                CPFInstrutor = Convert.ToInt32(registro["CPF"]),
-                CPFAluno = Convert.ToInt32(registro["CPF"]),
+                IdInstrutor = Convert.ToInt32(registro["IdInstrutor"]),
+                IdAluno = Convert.ToInt32(registro["IdAluno"]),
                 Peso = Convert.ToDouble(registro["Peso"]),
                 Pressao = Convert.ToDouble(registro["Pressao"]),
                 Colesterol = Convert.ToDouble(registro["Colesterol"]),

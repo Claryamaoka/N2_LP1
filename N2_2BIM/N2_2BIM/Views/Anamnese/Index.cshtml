@@ -1,0 +1,38 @@
+﻿@model List<AnamneseViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Listagem de Avaliações - Anamnese</h1>
+
+<a href="/Alunos/Index">Voltar</a>
+<br />
+
+@*Colocar Filtro RA aluno e Data*@
+
+<table class="table table-responsive table-striped">
+    <tr>
+        <td>Ações</td>
+        <td>Código</td>
+        <td>RA do Aluno</td>
+        <td>Peso</td>
+        <td>Altura</td>
+        <td>Elasticidade</td>
+    </tr>
+
+    @foreach (var aluno in Model)
+    {
+        <tr>
+            <td>
+                <a href="/Aluno/Edit?id=@aluno.Id">Imprimir</a> &nbsp;&nbsp;
+            </td>
+            <td>@aluno.Id</td>
+            <td>@aluno.IdAluno</td>
+            <td>@aluno.Peso </td>
+            <td>@aluno.Altura</td>
+            <td>@aluno.Elasticidade</td>
+        </tr>
+    }
+</table>
+

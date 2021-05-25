@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using N2_2BIM.DAO;
 using N2_2BIM.Models;
+using X.PagedList;
 
 namespace N2_2BIM.Controllers
 {
@@ -17,8 +18,11 @@ namespace N2_2BIM.Controllers
         protected string ViewParaListagem { get; set; } = "Index";
         protected string ViewParaCadastro { get; set; } = "Form";
 
-        public virtual IActionResult Index()
+        public virtual IActionResult Index(int? pagina)
         {
+            //const int itensPorPagina = 5;
+            //int numeroPagina = (pagina ?? 1);
+
             var lista = DAO.Listagem();
             return View(ViewParaListagem, lista);
         }
@@ -29,6 +33,11 @@ namespace N2_2BIM.Controllers
             T model = Activator.CreateInstance(typeof(T)) as T;
             PreencheDadosParaView("I", model);
             return View(ViewParaCadastro, model);
+        }
+
+        public virtual IActionResult Create(int x)
+        {
+            return null;
         }
 
         //Apenas no caso de classes que utilizam o campo Id 

@@ -14,8 +14,8 @@ namespace N2_2BIM.DAO
         {
             SqlParameter[] parametros =
          {
-                new SqlParameter("CPF", model.CPFInstrutor),
-                new SqlParameter("CPF", model.CPFAluno),
+                new SqlParameter("IdInstrutor", model.IdInstrutor),
+                new SqlParameter("IdAluno", model.IdAluno),
                 new SqlParameter("Ex1", model.Ex1),
                 new SqlParameter("Ex2", model.Ex2),
                 new SqlParameter("Ex3", model.Ex3),
@@ -30,8 +30,8 @@ namespace N2_2BIM.DAO
         {
             var c = new AulaViewModel()
             {
-                CPFInstrutor = Convert.ToInt32(registro["CPF"]),
-                CPFAluno = Convert.ToInt32(registro["CPF"]),
+                IdInstrutor = Convert.ToInt32(registro["IdInstrutor"]),
+                IdAluno = Convert.ToInt32(registro["IdAluno"]),
                 Ex1 = Convert.ToInt32(registro["Ex1"]),
                 Ex2 = Convert.ToInt32(registro["Ex2"]),
                 Ex3 = Convert.ToInt32(registro["Ex3"]),

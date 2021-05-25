@@ -1,8 +1,73 @@
-﻿
+﻿@model RiscoCardiacoViewModel
 @{
     ViewData["Title"] = "Form";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Form</h1>
+<h1>Risco Cardiaco</h1>
+<hr />
+<form action="/Aula/Salvar" method="post">
 
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
+    <label for="Id" class="control-label">Id</label>
+    @if (ViewBag.Operacao == "I")
+    {
+        <input asp-for="Id" class="form-control" />
+        <span asp-validation-for="Id" class="text-danger"></span>
+    }
+    else
+    {
+        <input asp-for="Id" readonly class="form-control desabilitado" />
+    }
+
+    <br />
+    <label for="IdInstrutor" class="control-label">Id do Instrutor</label>
+    <input asp-for="IdInstrutor" class="form-control" readonly />
+
+    <br />
+    <label for="IdAluno" class="control-label">Id do Aluno</label>
+    <input asp-for="IdAluno" class="form-control" readonly />
+
+    <br />
+
+    <label for="Peso" class="control-label">Peso</label>
+    <input asp-for="Peso" class="form-control" />
+    <span asp-validation-for="Peso" class="text-danger"></span>
+
+    <br />
+
+    <label for="Colesterol" class="control-label">Colesterol</label>
+    <input asp-for="Colesterol" class="form-control" />
+    <span asp-validation-for="Colesterol" class="text-danger"></span>
+
+    <br />
+
+    <label for="Pressao" class="control-label">Pressão</label>
+    <input asp-for="Pressao" class="form-control" />
+    <span asp-validation-for="Pressao" class="text-danger"></span>
+
+    <br />
+    <label for="Atividade" class="control-label">Frequência de Atividade Física</label>
+    <select asp-for="Atividade" asp-items="@ViewBag.Atividade" class="form-control"></select>
+    <span asp-validation-for="Atividade" class="text-danger"></span>
+
+    <br />
+    <label for="Fumo" class="control-label">Fumo</label>
+    <select asp-for="Fumo" asp-items="@ViewBag.Fumo" class="form-control"></select>
+    <span asp-validation-for="Fumo" class="text-danger"></span>
+
+    <br />
+    <label for="DoencaFamilia" class="control-label">Doenças na Família</label>
+    <select asp-for="DoencaFamilia" asp-items="@ViewBag.DoencaFamilia" class="form-control"></select>
+    <span asp-validation-for="DoencaFamilia" class="text-danger"></span>
+
+    <br />
+    <br />
+    <input type="submit" value="Salvar dados" class="btn btn-success" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="/Aluno/Index" class="btn btn-secondary">Voltar</a>
+    <br />
+    <span class="text-danger">@ViewBag.Erro</span>
+
+</form>

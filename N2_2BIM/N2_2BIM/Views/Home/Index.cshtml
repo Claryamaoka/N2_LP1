@@ -2,3 +2,14 @@
     ViewData["Title"] = "Home Page";
 }
 @*TELA INICIAL*@
+
+@if (ViewBag.Operacao == "I")
+{
+    <a href="/Aluno/Create" class="btn btn-secondary">Cadastrar Aluno</a>
+    <a href="/Exercicio/Create" class="btn btn-secondary">Cadastrar Exercicio</a>
+    <a href="/Aula/Create" class="btn btn-secondary">Cadastrar Aula</a>
+}
+else
+{
+
+}

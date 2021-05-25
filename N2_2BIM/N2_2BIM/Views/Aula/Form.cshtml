@@ -6,3 +6,61 @@
 
 @*TELA DE CADASTRO DE AULAS*@
 
+<h1>Cadastro de Aulas</h1>
+<hr />
+<form action="/Aula/Salvar" method="post">
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
+
+    <label for="Id" class="control-label">Id</label>
+
+    @if (ViewBag.Operacao == "I")
+    {
+        <input asp-for="Id" class="form-control" />
+        <span asp-validation-for="Id" class="text-danger"></span>
+    }
+    else
+    {
+        <input asp-for="Id" readonly class="form-control desabilitado" />
+    }
+
+    <br />
+    <label for="IdInstrutor" class="control-label">Id do Instrutor</label>
+    <input asp-for="IdInstrutor" class="form-control" readonly />
+
+    <br />
+    <label for="IdAluno" class="control-label">Id do Aluno</label>
+    <select asp-for="IdAluno" asp-items="@ViewBag.Alunos" class="form-control"></select>
+    <span asp-validation-for="IdAluno" class="text-danger"></span>
+
+    <br />
+
+    <label for="dataAula" class="control-label">Data da Aula</label>
+    <input asp-for="dataAula" class="form-control" type="date"/>
+    <span asp-validation-for="dataAula" class="text-danger"></span>
+
+    <br />
+    <label for="Ex1" class="control-label">Exercício 1</label>
+    <select asp-for="Ex1" asp-items="@ViewBag.Exercicios" class="form-control"></select>
+    <span asp-validation-for="Ex1" class="text-danger"></span>
+
+    <br />
+    <label for="Ex2" class="control-label">Exercicio 2</label>
+    <select asp-for="Ex2" asp-items="@ViewBag.Exercicios" class="form-control"></select>
+    <span asp-validation-for="Ex2" class="text-danger"></span>
+
+    <br />
+    <label for="Ex3" class="control-label">Exercicio 3</label>
+    <select asp-for="Ex3" asp-items="@ViewBag.Exercicios" class="form-control"></select>
+    <span asp-validation-for="Ex3" class="text-danger"></span>
+
+    <br />
+    <br />
+    <input type="submit" value="Salvar dados" class="btn btn-success" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="/Aula/Index" class="btn btn-secondary">Voltar</a>
+    <br />
+    <span class="text-danger">@ViewBag.Erro</span>
+
+</form>

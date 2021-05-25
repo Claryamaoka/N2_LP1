@@ -18,8 +18,9 @@ namespace N2_2BIM.DAO
                 new SqlParameter("CPF", model.IdAluno),
                 new SqlParameter("Peso", model.Peso),
                 new SqlParameter("Altura", model.Altura),
-                new SqlParameter("Elasticidade", model.Elasticidade)
-               
+                new SqlParameter("Elasticidade", model.Elasticidade),
+                new SqlParameter("Data", model.Data)
+
             };
 
             return parametros;
@@ -33,8 +34,8 @@ namespace N2_2BIM.DAO
                 IdAluno = Convert.ToInt32(registro["CPF"]),
                 Peso = Convert.ToDouble(registro["Peso"]),
                 Altura = Convert.ToDouble(registro["Altura"]),
-                Elasticidade = registro["Elasticidade"].ToString()
-
+                Elasticidade = registro["Elasticidade"].ToString(),
+                Data = Convert.ToDateTime(registro["Data"])
             };
             
             return c;
