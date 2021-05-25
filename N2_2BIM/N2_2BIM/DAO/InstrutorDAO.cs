@@ -23,7 +23,10 @@ namespace N2_2BIM.DAO
                 new SqlParameter("Nome", model.Nome),
                 new SqlParameter("Foto", imgByte),
                 new SqlParameter("dtNascimento", model.dtNascimento),
-                new SqlParameter("Endereco", model.Endereco),
+                new SqlParameter("CEP", model.CEP),
+                new SqlParameter("Rua", model.Rua),
+                new SqlParameter("Bairro", model.Bairro),
+                new SqlParameter("Complemento", model.Complemento),
                 new SqlParameter("Telefone", model.Telefone),
                 new SqlParameter("Sexo", model.Sexo),                
             };
@@ -39,7 +42,10 @@ namespace N2_2BIM.DAO
                 CPF = registro["CPF"].ToString(),
                 Nome = registro["Nome"].ToString(),
                 dtNascimento = Convert.ToDateTime(registro["dtNascimento"]),
-                Endereco = registro["Endereco"].ToString(),
+                CEP = registro["CEP"].ToString(),
+                Rua = registro["Rua"].ToString(),
+                Bairro = registro["Bairro"].ToString(),
+                Complemento = registro["Complemento"].ToString(),
                 Telefone = registro["Telefone"].ToString(),
                 Sexo = Convert.ToChar(registro["Sexo"])                
             };

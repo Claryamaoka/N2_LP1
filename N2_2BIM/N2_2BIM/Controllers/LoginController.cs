@@ -9,7 +9,7 @@ using N2_2BIM.Models;
 
 namespace N2_2BIM.Controllers
 {
-    public class LoginController : PadraoController<LoginViewModel>
+    public class LoginController : Controller
     {
         public IActionResult Index()
         {

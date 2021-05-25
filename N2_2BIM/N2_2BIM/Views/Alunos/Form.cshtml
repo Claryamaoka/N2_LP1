@@ -26,8 +26,8 @@
     }
 
     <br />
-    <label for="CPFInstrutor" class="control-label">CPFInstrutor</label>
-    <input asp-for="CPFInstrutor" class="form-control" readonly />
+    <label for="IdInstrutor" class="control-label">Id do Instrutor</label>
+    <input asp-for="IdInstrutor" class="form-control" readonly />
 
     <br />
     <label for="Nome" class="control-label">Nome do Aluno</label>
@@ -46,14 +46,18 @@
     <span asp-validation-for="Telefone" class="text-danger"></span>
 
     <br />
-    <label for="Endereco" class="control-label">Endereço</label>
-    <input asp-for="Endereco" class="form-control" />
-    <span asp-validation-for="Endereco" class="text-danger"></span>
+    <label for="CEP" class="control-label">Endereço</label>
+    <input asp-for="CEP" class="form-control" />
+    <span asp-validation-for="CEP" class="text-danger"></span>
 
     <br />
     <label for="Sexo" class="control-label">Sexo</label>
     <select asp-for="Sexo" asp-items="@ViewBag.sexo" class="form-control"></select>
     <span asp-validation-for="Sexo" class="text-danger"></span>
+
+    <br />
+    <label for="Senha" class="control-label">Senha</label>
+    <input asp-for="Senha" class="form-control" readonly />
 
     <div class="form-group">
         <br />

@@ -14,12 +14,24 @@ namespace N2_2BIM.Controllers
         {
             DAO = new InstrutorDAO();
             SugereProximoId = true;
+            
+        }
+
+        public override IActionResult Index()
+        {
+            return RedirectToAction("Index", "Login");
+        }
+
+        protected override void PreencheDadosParaView(string Operacao, InstrutorViewModel model)
+        {
+            base.PreencheDadosParaView(Operacao, model);
+            PreencheComboSexo();
         }
 
         protected override void ValidaDados(InstrutorViewModel model, string operacao)
         {
             base.ValidaDados(model, operacao);
-            if (!base.ValidaCPF(model.CPF))
+            if (!ValidaCPF(model.CPF))
                 ModelState.AddModelError("CPF", "Preencha este campo com um valor válido");
 
             //fazer consulta para ver se o CPF já foi cadastrado
@@ -28,8 +40,7 @@ namespace N2_2BIM.Controllers
                 ModelState.AddModelError("Nome", "Preencha este campo");
             if (string.IsNullOrEmpty(model.Telefone))
                 ModelState.AddModelError("Telefone", "Preencha este campo");
-            if (string.IsNullOrEmpty(model.Endereco))
-                ModelState.AddModelError("Endereco", "Preencha este campo");
+
             if (model.dtNascimento < DateTime.Now)
                 ModelState.AddModelError("dtNascimento", "Preencha este campo");
             if (char.IsWhiteSpace(model.Sexo))

@@ -11,7 +11,10 @@ namespace N2_2BIM.Models
         public string CPF { get; set; }
         public string Nome { get; set; }
         public DateTime dtNascimento { get; set; }
-        public string Endereco { get; set; }
+        public string CEP { get; set; }
+        public string Bairro { get; set; }
+        public string Rua { get; set; }
+        public string Complemento { get; set; }
         public string Telefone { get; set; }
         public char Sexo { get; set; }
 

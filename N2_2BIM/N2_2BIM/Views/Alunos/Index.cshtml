@@ -1,0 +1,38 @@
+﻿@model List<AlunoViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Listagem de alunos</h1>
+
+<a href="/aluno/create">Novo Registro</a>
+<br />
+
+<table class="table table-responsive table-striped">
+    <tr>
+        <td>Ações</td>
+        <td>Código</td>
+        <td>Nome</td>
+        <td>Telefone</td>
+        <td>Data de nascimento</td>
+    </tr>
+
+    @foreach (var aluno in Model)
+    {
+        <tr>
+            <td>
+                <a href="/Aluno/Edit?id=@aluno.Id">Editar</a> &nbsp;&nbsp;
+                <a href="javascript:apagar(@aluno.Id, 'Aluno')">Apagar</a>
+                <a href="/Aluno/Edit?id=@aluno.Id">Realizar Anamnese</a> &nbsp;&nbsp;
+                <a href="/Aluno/Edit?id=@aluno.Id">Realizar Avaliação de Risco Cardiaco</a>
+            </td>
+            <td>@aluno.Id</td>
+            <td>@aluno.Nome</td>
+            <td>@aluno.Telefone </td>
+            <td>@aluno.dtNascimento.ToShortDateString()</td>
+        </tr>
+    }
+
+
+
