@@ -28,7 +28,8 @@ namespace N2_2BIM.DAO
                 new SqlParameter("Bairro", model.Bairro),
                 new SqlParameter("Complemento", model.Complemento),
                 new SqlParameter("Telefone", model.Telefone),
-                new SqlParameter("Sexo", model.Sexo),                
+                new SqlParameter("Sexo", model.Sexo),
+                new SqlParameter("Senha", model.Senha)
             };
 
             return parametros;
@@ -47,6 +48,7 @@ namespace N2_2BIM.DAO
                 Bairro = registro["Bairro"].ToString(),
                 Complemento = registro["Complemento"].ToString(),
                 Telefone = registro["Telefone"].ToString(),
+                Senha = registro["Senha"].ToString(),
                 Sexo = Convert.ToChar(registro["Sexo"])                
             };
 
