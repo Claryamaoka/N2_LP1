@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace N2_2BIM.Enums
 {
-    public class DoencaFamiliaEnum
+    public enum DoencaFamiliaEnum
     {
     }
 }

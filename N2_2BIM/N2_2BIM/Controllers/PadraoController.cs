@@ -20,11 +20,11 @@ namespace N2_2BIM.Controllers
 
         public virtual IActionResult Index(int? pagina)
         {
-            //const int itensPorPagina = 5;
-            //int numeroPagina = (pagina ?? 1);
+            const int itensPorPagina = 5;
+            int numeroPagina = (pagina ?? 1);
 
             var lista = DAO.Listagem();
-            return View(ViewParaListagem, lista);
+            return View(ViewParaListagem, lista.ToPagedListAsync(numeroPagina, itensPorPagina));
         }
 
         public virtual IActionResult Create()
