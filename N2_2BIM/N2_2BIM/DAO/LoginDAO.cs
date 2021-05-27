@@ -33,14 +33,15 @@ namespace N2_2BIM.DAO
             return c;
         }
 
-        public override LoginViewModel Consulta(string id)
+        public LoginViewModel Consulta(int id, string senha, string tipo)
         {
             var p = new SqlParameter[]
             {
                 new SqlParameter("Id", id),
                 new SqlParameter("tabela", Tabela)
             };
-            var tabela = HelperDAO.ExecutaProcSelect("spConsulta", p);
+            var sql = "select * from fnc_ConsultaLogin(" + id + ',' + senha + ','+ tipo + ')';
+            var tabela = HelperDAO.ExecutaSelect(sql, null);
             if (tabela.Rows.Count == 0)
                 return null;
             else
