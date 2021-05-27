@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using N2_2BIM.DAO;
 using N2_2BIM.Models;
 
@@ -17,7 +18,18 @@ namespace N2_2BIM.Controllers
             
         }
 
-        public override IActionResult Index()
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            if (!HelperController.VerificaUserLogado(HttpContext.Session))
+                context.Result = RedirectToAction("Index", "Login");
+            else
+            {
+                ViewBag.Logado = true;
+                base.OnActionExecuting(context);
+            }
+        }
+
+        public override IActionResult Index(int? pagina)
         {
             return RedirectToAction("Index", "Login");
         }

@@ -13,7 +13,6 @@
     <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
 
     <label for="Id" class="control-label">RA</label>
-
     @if (ViewBag.Operacao == "I")
     {
         <input asp-for="Id" class="form-control" />
@@ -26,14 +25,52 @@
 
     <br />
     <label for="Nome" class="control-label">Nome</label>
-    <input asp-for="Nome" class="form-control" />
-    <span asp-validation-for="Nome" class="text-danger"></span>
+    @if (ViewBag.Operacao == "I")
+    {
+        <input asp-for="Nome" class="form-control" />
+        <span asp-validation-for="Nome" class="text-danger"></span>
+    }
+    else
+    {
+        <input asp-for="Nome" readonly class="form-control desabilitado" />
+    }
 
     <br />
+    <label for="CPF" class="control-label">CPF</label>
+    @if (ViewBag.Operacao == "I")
+    {
+        <input asp-for="CPF" class="form-control" />
+        <span asp-validation-for="CPF" class="text-danger"></span>
+    }
+    else
+    {
+        <input asp-for="CPF" readonly class="form-control desabilitado" />
+    }
 
+    <br />
     <label for="dtNascimento" class="control-label">Data de Nascimento</label>
-    <input asp-for="dtNascimento" class="form-control" type="date" />
-    <span asp-validation-for="dtNascimento" class="text-danger"></span>
+    @if (ViewBag.Operacao == "I")
+    {
+        <input asp-for="dtNascimento" class="form-control" type="date" />
+        <span asp-validation-for="dtNascimento" class="text-danger"></span>
+    }
+    else
+    {
+        <input asp-for="dtNascimento" class="form-control" type="date" readonly />
+    }
+
+    <br />
+    <label for="Sexo" class="control-label">Sexo</label>
+    @if (ViewBag.Operacao == "I")
+    {
+        <select asp-for="Sexo" asp-items="@ViewBag.Sexo" class="form-control"></select>
+        <span asp-validation-for="Sexo" class="text-danger"></span>
+    }
+    else
+    {
+        <input asp-for="Sexo" class="form-control" type="date" readonly/>
+    }
+
 
     <br />
     <label for="Telefone" class="control-label">Telefone para contato</label>
@@ -45,10 +82,7 @@
     <input asp-for="CEP" class="form-control" />
     <span asp-validation-for="CEP" class="text-danger"></span>
 
-    <br />
-    <label for="Sexo" class="control-label">Sexo</label>
-    <select asp-for="Sexo" asp-items="@ViewBag.Sexo" class="form-control"></select>
-    <span asp-validation-for="Sexo" class="text-danger"></span>
+
 
     <div class="form-group">
         <br />
