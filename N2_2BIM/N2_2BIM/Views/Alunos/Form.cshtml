@@ -73,9 +73,34 @@
     <span asp-validation-for="Telefone" class="text-danger"></span>
 
     <br />
-    <label for="CEP" class="control-label">Endereço</label>
-    <input asp-for="CEP" class="form-control" />
+    <label for="CEP" class="control-label">CEP</label>
+    <input id="CEP" asp-for="CEP" class="form-control" />
     <span asp-validation-for="CEP" class="text-danger"></span>
+
+    <br />
+    <label for="Bairro" class="control-label">Bairro</label>
+    <input id="Bairro" asp-for="Bairro" class="form-control" />
+    <span asp-validation-for="Bairro" class="text-danger"></span>
+
+    <br />
+    <label for="Rua" class="control-label">Rua</label>
+    <input id="Rua" asp-for="Rua" class="form-control" />
+    <span asp-validation-for="Rua" class="text-danger"></span>
+
+    <br />
+    <label for="Numero" class="control-label">Número</label>
+    <input id="Numero" asp-for="Numero" class="form-control" />
+    <span asp-validation-for="Numero" class="text-danger"></span>
+
+    <br />
+    <label for="Complemento" class="control-label">Complemento</label>
+    <input id="Complemento" asp-for="Complemento" class="form-control" />
+    <span asp-validation-for="Complemento" class="text-danger"></span>
+
+
+
+
+
 
     <br />
     <label for="Senha" class="control-label">Senha</label>
@@ -85,7 +110,7 @@
     }
     else
     {
-        <input asp-for="Senha" class="form-control"/>
+        <input asp-for="Senha" class="form-control" />
         <span asp-validation-for="Senha" class="text-danger"></span>
     }
 
@@ -109,3 +134,25 @@
     <span class="text-danger">@ViewBag.Erro</span>
 
 </form>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+<script type="text/javascript">
+    // Método para consultar o CEP
+    $('#CEP').on('blur', function () {
+
+        if ($.trim($("#CEP").val()) != "") {
+
+
+            $.getScript("http://cep.republicavirtual.com.br/web_cep.php?formato=javascript&cep=" + $("#cep").val(), function () {
+
+                if (resultadoCEP["resultado"]) {
+                    $("#Rua").val(unescape(resultadoCEP["tipo_logradouro"]) + " " + unescape(resultadoCEP["logradouro"]));
+                    $("#Bairro").val(unescape(resultadoCEP["bairro"]));
+                    $("#Numero").focus();
+                }
+            });
+        }
+    });
+</script>
