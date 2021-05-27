@@ -33,14 +33,14 @@ namespace N2_2BIM.DAO
             return c;
         }
 
-        public LoginViewModel Consulta(int id, string senha, string tipo)
+        public LoginViewModel Consulta(int id, string senha, char tipo)
         {
             var p = new SqlParameter[]
             {
                 new SqlParameter("Id", id),
                 new SqlParameter("tabela", Tabela)
             };
-            var sql = "select * from fnc_ConsultaLogin(" + id + ',' + senha + ','+ tipo + ')';
+            var sql = "select * from fnc_ConsultaLogin("+id+",'"+senha+"','"+tipo+"')";
             var tabela = HelperDAO.ExecutaSelect(sql, null);
             if (tabela.Rows.Count == 0)
                 return null;

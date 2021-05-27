@@ -43,7 +43,7 @@ namespace N2_2BIM.Controllers
             if (string.IsNullOrEmpty(model.Telefone))
                 ModelState.AddModelError("Telefone", "Preencha este campo");
 
-            if (model.dtNascimento < DateTime.Now)
+            if (model.dtNascimento > DateTime.Now)
                 ModelState.AddModelError("dtNascimento", "Preencha este campo");
             if (char.IsWhiteSpace(model.Sexo))
                 ModelState.AddModelError("Sexo", "Preencha este campo");

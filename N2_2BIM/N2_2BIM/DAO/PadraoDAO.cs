@@ -60,11 +60,6 @@ namespace N2_2BIM.DAO
                 return MontaModel(tabela.Rows[0]);
         }
 
-        public virtual T Consulta(string id)
-        {
-            return null;
-        }
-
         public virtual int ProximoId()
         {
             var p = new SqlParameter[]

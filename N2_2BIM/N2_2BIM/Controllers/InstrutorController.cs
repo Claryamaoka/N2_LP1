@@ -18,15 +18,10 @@ namespace N2_2BIM.Controllers
             
         }
 
+        //SOBREESCREVER - Não pode validar o login se a pessoa estiver apenas cadastrando 
         public override void OnActionExecuting(ActionExecutingContext context)
-        {
-            if (!HelperController.VerificaUserLogado(HttpContext.Session))
-                context.Result = RedirectToAction("Index", "Login");
-            else
-            {
-                ViewBag.Logado = true;
-                base.OnActionExecuting(context);
-            }
+        {   
+            ViewBag.Logado = true;
         }
 
         public override IActionResult Index(int? pagina)
@@ -53,9 +48,9 @@ namespace N2_2BIM.Controllers
             if (string.IsNullOrEmpty(model.Telefone))
                 ModelState.AddModelError("Telefone", "Preencha este campo");
 
-            if (model.dtNascimento < DateTime.Now)
+            if (model.dtNascimento > DateTime.Now)
                 ModelState.AddModelError("dtNascimento", "Preencha este campo");
-            if (char.IsWhiteSpace(model.Sexo))
+            if (char.IsWhiteSpace(model.Sexo)||model.Sexo == '0')
                 ModelState.AddModelError("Sexo", "Preencha este campo");
 
             //Imagem será obrigario apenas na inclusão.

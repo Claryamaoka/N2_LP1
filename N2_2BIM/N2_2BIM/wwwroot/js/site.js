@@ -14,8 +14,6 @@
         });
 }
 
-
-
 function exibirImagem() {
     var oFReader = new FileReader();
     oFReader.readAsDataURL(document.getElementById("Imagem").files[0]);

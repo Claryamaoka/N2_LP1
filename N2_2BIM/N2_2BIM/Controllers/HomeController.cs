@@ -23,9 +23,18 @@ namespace N2_2BIM.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult EditaUsuario()
         {
-            return View();
+            ViewBag.Operacao = "A";
+            if (ViewBag.AlunoInstrutor == "I")
+            {
+                return RedirectToAction("Edit", "Instrutor");
+            }
+            else
+            {
+                return RedirectToAction("index", "Home");
+            }
+                
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

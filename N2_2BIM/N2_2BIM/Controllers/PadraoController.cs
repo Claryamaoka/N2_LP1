@@ -35,11 +35,6 @@ namespace N2_2BIM.Controllers
             return View(ViewParaCadastro, model);
         }
 
-        public virtual IActionResult Create(int x)
-        {
-            return null;
-        }
-
         //Apenas no caso de classes que utilizam o campo Id 
         //caso contrário pode ser reescrito 
         protected virtual void PreencheDadosParaView(string Operacao, T model)

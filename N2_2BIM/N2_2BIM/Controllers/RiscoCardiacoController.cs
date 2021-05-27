@@ -17,7 +17,7 @@ namespace N2_2BIM.Controllers
             SugereProximoId = true;
         }
 
-        public override IActionResult Create(int id)
+        public IActionResult Create(int id)
         {
             ViewBag.Operacao = "I";
             _alunoId = id;

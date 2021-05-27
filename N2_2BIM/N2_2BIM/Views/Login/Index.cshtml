@@ -13,9 +13,11 @@
             <br />
             <select asp-for="Tipo" asp-items="@ViewBag.AlunoInstrutor" class="form-control" required></select>
             <span asp-validation-for="Tipo" class="text-danger"></span>
+            <br />
+            <br />
 
             <label for="Id" class="control-label">Usuário/RA</label>
-            <input asp-for="Id" type="text" name="Usuario" class="form-control" required placeholder='Usuário/RA...' />
+            <input asp-for="Id" type="text" name="Id" class="form-control" required placeholder='Usuário/RA...' />
             <span asp-validation-for="Id" class="text-danger"></span>
             <br />
 
@@ -32,5 +34,5 @@
 </div>
 
 <div>
-    <a asp-area="" asp-controller="Instrutor" asp-action="Create">Se você é um instrutor, cadastre-se aqui</a>
+    <a href="/Instrutor/Create">Se você é um instrutor, cadastre-se aqui</a>
 </div>

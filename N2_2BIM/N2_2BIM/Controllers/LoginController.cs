@@ -25,7 +25,6 @@ namespace N2_2BIM.Controllers
             ViewBag.AlunoInstrutor.Add(new SelectListItem("Instrutor", "I"));
         }
 
-
         public IActionResult LogOff()
         {
             HttpContext.Session.Clear();
@@ -35,40 +34,34 @@ namespace N2_2BIM.Controllers
         public IActionResult FazLogin(LoginViewModel l)
         {
             VerificaLogin(l);
-            if (ModelState.IsValid == false)
+            if (ModelState.IsValid == false)//caso exista algum erro no preenchimento 
             {
-                return View("Index", l);
+                return RedirectToAction("Index", l);
             }
             else
             {
                 LoginDAO dao = new LoginDAO();
 
                 //Consulta por meio de Function
-                LoginViewModel login = dao.Consulta(l.Id);
+                LoginViewModel login = dao.Consulta(l.Id,l.senha,l.Tipo);
 
-                //consultar na sua tabela de usuários
-                //se existe esse usuário e senha
+                //verifica se existe esse usuário e senha
                 if (login.Id == l.Id && login.senha == l.senha)
                 {
                     HttpContext.Session.SetString("Logado", "true");
 
+                    //salva o Id do usuário necessário para o resto da navegação
+                    HttpContext.Session.SetInt32("IdUsuario", l.Id);
+
                     if (login.Tipo == 'I') //o logado é um instrutor
                     {
                         ViewBag.AlunoInstrutor = "I";
-                        InstrutorDAO instrutorDAO = new InstrutorDAO();
-                        instrutorDAO.Consulta(l.Id);
-
-                        //salvar esse usuario em algum local que possa ser acessado ao longo de todo site
 
                         return RedirectToAction("index", "Home");
                     }
                     else //o logado é um aluno
                     {
                         ViewBag.AlunoInstrutor = "A";
-                        AlunoDAO alunoDAO = new AlunoDAO();
-                        alunoDAO.Consulta(l.Id);
-
-                        //salvar esse usuario em algum local que possa ser acessado ao longo de todo site
 
                         return RedirectToAction("index", "Home");
                     }
@@ -85,7 +78,7 @@ namespace N2_2BIM.Controllers
         {
             if (model.Id <= 0)
                 ModelState.AddModelError("Id", "Id inválido!");
-            if(string.IsNullOrEmpty(model.senha))
+            if (string.IsNullOrEmpty(model.senha))
                 ModelState.AddModelError("senha", "Preencha a senha!");
             if (char.IsWhiteSpace(model.Tipo))
                 ModelState.AddModelError("Tipo", "Selecione!");

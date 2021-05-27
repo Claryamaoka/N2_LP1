@@ -19,13 +19,14 @@ namespace N2_2BIM.DAO
             SqlParameter[] parametros =
             {
                 new SqlParameter("CPF", model.CPF),
-                new SqlParameter("Id", model.Id),
+                //new SqlParameter("Id", model.Id),
                 new SqlParameter("Nome", model.Nome),
                 new SqlParameter("Foto", imgByte),
                 new SqlParameter("dtNascimento", model.dtNascimento),
                 new SqlParameter("CEP", model.CEP),
                 new SqlParameter("Rua", model.Rua),
                 new SqlParameter("Bairro", model.Bairro),
+                new SqlParameter("Numero", model.Numero),
                 new SqlParameter("Complemento", model.Complemento),
                 new SqlParameter("Telefone", model.Telefone),
                 new SqlParameter("Sexo", model.Sexo),
@@ -47,6 +48,7 @@ namespace N2_2BIM.DAO
                 Rua = registro["Rua"].ToString(),
                 Bairro = registro["Bairro"].ToString(),
                 Complemento = registro["Complemento"].ToString(),
+                Numero = Convert.ToInt32(registro["Numero"]),
                 Telefone = registro["Telefone"].ToString(),
                 Senha = registro["Senha"].ToString(),
                 Sexo = Convert.ToChar(registro["Sexo"])                
