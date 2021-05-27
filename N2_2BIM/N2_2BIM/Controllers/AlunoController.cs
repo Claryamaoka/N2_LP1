@@ -68,6 +68,8 @@ namespace N2_2BIM.Controllers
                 }
             }
 
+            if(operacao == "A" && string.IsNullOrEmpty(model.Senha))
+                ModelState.AddModelError("Senha", "Preencha este campo");
         }
     }
 }

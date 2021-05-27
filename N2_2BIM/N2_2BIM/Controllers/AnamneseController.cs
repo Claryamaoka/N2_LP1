@@ -34,7 +34,7 @@ namespace N2_2BIM.Controllers
             {
                 model.IdInstrutor = 123;
                 model.IdAluno = _alunoId;
-                model.Data = DateTime.Now;
+                model.DataAvaliacao = DateTime.Now;
             }
 
         }
