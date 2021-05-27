@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using N2_2BIM.DAO;
 using N2_2BIM.Models;
 
@@ -24,7 +25,7 @@ namespace N2_2BIM.Controllers
 
             if (Operacao == "I")
             {
-                model.IdInstrutor = 123;
+                model.IdInstrutor = (int)HttpContext.Session.GetInt32("IdUsuario");
                 model.Senha = "senha123";
             }
 
