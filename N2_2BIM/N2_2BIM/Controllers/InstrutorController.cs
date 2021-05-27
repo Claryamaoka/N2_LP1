@@ -50,7 +50,7 @@ namespace N2_2BIM.Controllers
 
             if (model.dtNascimento > DateTime.Now)
                 ModelState.AddModelError("dtNascimento", "Preencha este campo");
-            if (char.IsWhiteSpace(model.Sexo)||model.Sexo == '0')
+            if (char.IsWhiteSpace(model.Sexo) || model.Sexo == '0')
                 ModelState.AddModelError("Sexo", "Preencha este campo");
 
             //Imagem será obrigario apenas na inclusão.
