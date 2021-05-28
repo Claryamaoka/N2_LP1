@@ -4,35 +4,48 @@
 }
 @*TELA INICIAL DE LOGAR*@
 
-<h2>Login</h2>
-<div class="row">
-    <div class="col-lg-3">
-        <form action="/login/Fazlogin" method="post">
+<head>
+    <link rel="stylesheet" href="~/css/Login.css" />
+</head>
 
-            @*SELECT TIPO == INSTRUTOR OU ALUNO*@
-            <br />
-            <select asp-for="Tipo" asp-items="@ViewBag.AlunoInstrutor" class="form-control" required></select>
-            <span asp-validation-for="Tipo" class="text-danger"></span>
-            <br />
-            <br />
+<body>
+    <div id="login">
+        <h2>Login</h2>
+        <div class="row">
+            <div class="col-lg-3">
+                <form action="/login/Fazlogin" method="post">
 
-            <label for="Id" class="control-label">Usuário/RA</label>
-            <input asp-for="Id" type="text" name="Id" class="form-control" required placeholder='Usuário/RA...' />
-            <span asp-validation-for="Id" class="text-danger"></span>
-            <br />
+                    @*SELECT TIPO == INSTRUTOR OU ALUNO*@
+                    <br />
+                    <select asp-for="Tipo" asp-items="@ViewBag.AlunoInstrutor" class="form-control" required></select>
+                    <span asp-validation-for="Tipo" class="text-danger"></span>
+                    <br />
+                    
 
-            <label for="senha" class="control-label">Senha</label>
-            <input type="password" asp-for="senha" name="senha" class="form-control" required placeholder='Senha...' />
-            <span asp-validation-for="senha" class="text-danger"></span>
-            <br />
+                    <label for="Id" class="control-label">Usuário/RA</label>
+                    <input asp-for="Id" type="text" name="Id" class="form-control" required placeholder='Usuário/RA...' />
+                    <span asp-validation-for="Id" class="text-danger"></span>
+                    <br />
 
-            <input type="submit" value="Login" class="btn btn-success" />
+                    <label for="senha" class="control-label">Senha</label>
+                    <input type="password" asp-for="senha" name="senha" class="form-control" required placeholder='Senha...' />
+                    <span asp-validation-for="senha" class="text-danger"></span>
+                    <br />
+
+                    <br />
+                    <input type="submit" value="Login" class="btn btn-success" id="btnLogin" />
+                    <br />
+                    <span class="text-danger"> @ViewBag.Erro</span>
+                </form>
+            </div>
+        </div>
+
+        <div>
             <br />
-            <span class="text-danger"> @ViewBag.Erro</span>
-        </form>
+            <a href="/Instrutor/Create">Se você é um instrutor, cadastre-se aqui</a>
+            <br />
+            <br />
+        </div>
     </div>
-</div>
 
-<div>
-    <a href="/Instrutor/Create">Se você é um instrutor, cadastre-se aqui</a>
-</div>
+</body>

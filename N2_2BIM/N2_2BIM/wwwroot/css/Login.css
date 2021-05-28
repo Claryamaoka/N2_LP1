@@ -1,0 +1,52 @@
+﻿:root{
+    --colorBG : grey;
+}
+
+body {
+    background-color: var(--colorBG);
+    background-image: url(/images/academia.jpg);
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size: auto;
+   
+}
+
+#login {
+    width: 40%;
+    margin-top: 18%;
+    margin-bottom: 15%;
+    margin-left: 40%;
+    float:right;
+    border: 7px solid white;
+    border-radius: 30px;
+    background-color:white;
+}
+
+.form-control, .control-label, #btnLogin {
+    width: 300%;
+    margin-left: 80px;
+    font-size: 20px;
+    font-weight: 300;
+    color: black;
+}
+
+h2{
+    margin:20px;
+    font-size:50px;
+    font-weight:300;
+    margin-left:140px;
+
+}
+
+a {
+    margin: 40px;
+    font-size: 20px;
+    font-weight: 300;
+    color: black;
+}
+
+#btnLogin {
+    background-color: var(--colorBG);
+    border-radius: 10px;
+    border-color: transparent;
+}
