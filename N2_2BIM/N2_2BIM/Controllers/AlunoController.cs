@@ -31,6 +31,13 @@ namespace N2_2BIM.Controllers
 
         }
 
+        public override IActionResult Index(int? pagina = null)
+        {
+            int id = (int)HttpContext.Session.GetInt32("IdUsuario");
+            var lista = DAO.Consulta(id);
+            return View(ViewParaListagem, lista);
+        }
+
         protected override void ValidaDados(AlunoViewModel model, string operacao)
         {
             base.ValidaDados(model, operacao);

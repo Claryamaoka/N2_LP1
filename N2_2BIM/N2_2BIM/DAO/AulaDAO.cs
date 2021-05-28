@@ -10,7 +10,7 @@ namespace N2_2BIM.DAO
 {
     public class AulaDAO : PadraoDAO<AulaViewModel>
     {
-        protected override SqlParameter[] CriaParametros(AulaViewModel model)
+        protected override SqlParameter[] CriaParametros(AulaViewModel model, string operacao)
         {
             SqlParameter[] parametros =
          {
@@ -22,6 +22,9 @@ namespace N2_2BIM.DAO
                 new SqlParameter("dataAula", model.dataAula)
 
             };
+
+            if (operacao == "A")
+                parametros[6] = new SqlParameter("Id", model.Id);
 
             return parametros;
         }

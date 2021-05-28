@@ -10,7 +10,7 @@ namespace N2_2BIM.DAO
 {
     public class ExercicioDAO : PadraoDAO<ExercicioViewModel>
     {
-        protected override SqlParameter[] CriaParametros(ExercicioViewModel model)
+        protected override SqlParameter[] CriaParametros(ExercicioViewModel model, string operacao)
         {
             SqlParameter[] parametros =
         {
@@ -18,6 +18,9 @@ namespace N2_2BIM.DAO
                 new SqlParameter("Descricao", model.Descricao)               
 
             };
+
+            if (operacao == "A")
+                parametros[2] = new SqlParameter("Id", model.Id);
 
             return parametros;
         }
@@ -27,8 +30,8 @@ namespace N2_2BIM.DAO
             var c = new ExercicioViewModel()
             {
                 Nome = registro["Nome"].ToString(),
-                Descricao = registro["Descricao"].ToString()
-
+                Descricao = registro["Descricao"].ToString(),
+                Id = Convert.ToInt32(registro["Id"])
             };
 
             return c;
@@ -36,7 +39,7 @@ namespace N2_2BIM.DAO
 
         protected override void SetTabela()
         {
-            Tabela = "Exercicios";
+            Tabela = "Exercicio";
         }
     }
 }

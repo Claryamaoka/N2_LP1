@@ -10,7 +10,7 @@ namespace N2_2BIM.DAO
 {
     public class AnamneseDAO : PadraoDAO<AnamneseViewModel>
     {
-        protected override SqlParameter[] CriaParametros(AnamneseViewModel model)
+        protected override SqlParameter[] CriaParametros(AnamneseViewModel model, string operacao)
         {
             SqlParameter[] parametros =
            {
@@ -22,6 +22,9 @@ namespace N2_2BIM.DAO
                 new SqlParameter("DataAvaliacao", model.DataAvaliacao)
 
             };
+
+            if (operacao == "A")
+                parametros[6] = new SqlParameter("Id", model.Id);
 
             return parametros;
         }

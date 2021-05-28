@@ -18,7 +18,7 @@ namespace N2_2BIM.DAO
         protected string NomeProcedureListagem { get; set; } = "spListagem";
 
         protected string Tabela { get; set; }
-        protected abstract SqlParameter[] CriaParametros(T model);
+        protected abstract SqlParameter[] CriaParametros(T model,string operacao);
         protected abstract T MontaModel(DataRow registro);
         protected abstract void SetTabela();
         protected bool ChaveIdentity { get; set; } = true;
@@ -26,13 +26,15 @@ namespace N2_2BIM.DAO
         //retorna ultimo id inserido
         public virtual int Insert(T model)
         {
-            int ultimoId = HelperDAO.ExecutaProc("spInsert_" + Tabela, CriaParametros(model), ChaveIdentity);
+            string operacao = "I";
+            int ultimoId = HelperDAO.ExecutaProc("spInsert_" + Tabela, CriaParametros(model,operacao), ChaveIdentity);
             return ultimoId;
         }
 
         public virtual void Update(T model)
         {
-            HelperDAO.ExecutaProc("spUpdate_" + Tabela, CriaParametros(model));
+            string operacao = "A";
+            HelperDAO.ExecutaProc("spUpdate_" + Tabela, CriaParametros(model,operacao));
         }
 
 
@@ -74,8 +76,8 @@ namespace N2_2BIM.DAO
         {
             var p = new SqlParameter[]
             {
-                new SqlParameter("tabela", Tabela),
-                new SqlParameter("Ordem", "id")
+                new SqlParameter("tabela", Tabela)
+                //new SqlParameter("Ordem", "id")
             };
             var tabela = HelperDAO.ExecutaProcSelect(NomeProcedureListagem, p);
             List<T> lista = new List<T>();

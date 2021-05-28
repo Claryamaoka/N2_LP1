@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using N2_2BIM.DAO;
@@ -18,13 +20,10 @@ namespace N2_2BIM.Controllers
         protected string ViewParaListagem { get; set; } = "Index";
         protected string ViewParaCadastro { get; set; } = "Form";
 
-        public virtual IActionResult Index(int? pagina)
+        public virtual IActionResult Index(int? pagina = null)
         {
-            const int itensPorPagina = 5;
-            int numeroPagina = (pagina ?? 1);
-
             var lista = DAO.Listagem();
-            return View(ViewParaListagem, lista.ToPagedListAsync(numeroPagina, itensPorPagina));
+            return View(ViewParaListagem, lista);
         }
 
         public virtual IActionResult Create()
@@ -158,6 +157,23 @@ namespace N2_2BIM.Controllers
             ViewBag.Sexo.Add(new SelectListItem("Selecione um sexo...", "0"));
             ViewBag.Sexo.Add(new SelectListItem("Feminino", "F"));
             ViewBag.Sexo.Add(new SelectListItem("Masculino", "M"));
+        }
+
+        /// <summary>
+        /// Converte a imagem recebida no form em um vetor de bytes
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
+        public byte[] ConvertImageToByte(IFormFile file)
+        {
+            if (file != null)
+                using (var ms = new MemoryStream())
+                {
+                    file.CopyTo(ms);
+                    return ms.ToArray();
+                }
+            else
+                return null;
         }
     }
 }

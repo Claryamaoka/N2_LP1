@@ -44,6 +44,21 @@ namespace N2_2BIM.Controllers
 
                 //Consulta por meio de Function
                 LoginViewModel login = dao.Consulta(l.Id,l.senha,l.Tipo);
+                
+                //Verifica se a pessoa preencheu o tipo errado
+                if(login == null)
+                {
+                    if(l.Tipo == 'A')
+                        login = dao.Consulta(l.Id, l.senha, l.Tipo = 'I');
+                    else
+                        login = dao.Consulta(l.Id, l.senha, l.Tipo = 'A');
+
+                    if (login == null)
+                    {
+                        ViewBag.Erro = "Usuário ou senha inválidos!";
+                        return View("Index");
+                    }
+                }
 
                 //verifica se existe esse usuário e senha
                 if (login.Id == l.Id && login.senha == l.senha)

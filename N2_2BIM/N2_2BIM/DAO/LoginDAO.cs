@@ -10,7 +10,7 @@ namespace N2_2BIM.DAO
 {
     public class LoginDAO : PadraoDAO<LoginViewModel>
     {
-        protected override SqlParameter[] CriaParametros(LoginViewModel model)
+        protected override SqlParameter[] CriaParametros(LoginViewModel model,string operacao)
         {
             SqlParameter[] parametros =
         {

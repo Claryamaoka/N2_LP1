@@ -8,7 +8,7 @@
 <h1>Cadastro de Alunos</h1>
 <hr />
 
-<form action="/Aluno/Salvar" method="post">
+<form action="/Aluno/Salvar" method="post" enctype="multipart/form-data">
 
     <div asp-validation-summary="All" class="text-danger"></div>
     <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
@@ -38,6 +38,18 @@
     else
     {
         <input asp-for="Nome" readonly class="form-control desabilitado" />
+    }
+
+    <br />
+    <label for="CPF" class="control-label">CPF do Aluno</label>
+    @if (ViewBag.Operacao == "I")
+    {
+        <input asp-for="CPF" class="form-control" />
+        <span asp-validation-for="CPF" class="text-danger"></span>
+    }
+    else
+    {
+        <input asp-for="CPF" readonly class="form-control desabilitado" />
     }
 
 
