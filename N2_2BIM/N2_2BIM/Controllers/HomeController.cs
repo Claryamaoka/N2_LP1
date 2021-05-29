@@ -23,6 +23,11 @@ namespace N2_2BIM.Controllers
             return View();
         }
 
+        public IActionResult Sobre()
+        {
+            return View();
+        }
+
         public IActionResult EditaUsuario()
         {
             ViewBag.Operacao = "A";

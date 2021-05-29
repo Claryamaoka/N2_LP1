@@ -1,4 +1,4 @@
-﻿function apagar(id, controller) {
+﻿function apagarRegistro(id, controller) {
     swal({
         title: "Tem certeza?",
         text: "Este registro será removido para sempre!",
@@ -20,4 +20,9 @@ function exibirImagem() {
     oFReader.onload = function (oFREvent) {
         document.getElementById("imgPreview").src = oFREvent.target.result;
     };
+}
+
+function apagar(id,controller) {
+    if (confirm('Confirma a exclusão do registro?'))
+        location.href = '/' + controller + '/Delete?id=' + id;
 }

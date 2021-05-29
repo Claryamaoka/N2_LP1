@@ -13,7 +13,7 @@ namespace N2_2BIM.DAO
         protected override SqlParameter[] CriaParametros(LoginViewModel model,string operacao)
         {
             SqlParameter[] parametros =
-        {
+            {
                 new SqlParameter("Id", model.Id),
                 new SqlParameter("senha", model.senha),
                 new SqlParameter("Tipo", model.Tipo)
