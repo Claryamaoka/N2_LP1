@@ -34,6 +34,19 @@ namespace N2_2BIM.DAO
             return c;
         }
 
+        public override ExercicioViewModel Consulta(int id)
+        {
+            var p = new SqlParameter[]
+            {
+                new SqlParameter("id", id)
+            };
+            var tabela = HelperDAO.ExecutaProcSelect("spConsultaExercicio", p);
+            if (tabela.Rows.Count == 0)
+                return null;
+            else
+                return MontaModel(tabela.Rows[0]);
+        }
+
         protected override void SetTabela()
         {
             Tabela = "Exercicio";

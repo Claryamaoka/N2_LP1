@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using N2_2BIM.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace N2_2BIM.Controllers
 {
@@ -20,26 +21,17 @@ namespace N2_2BIM.Controllers
 
         public IActionResult Index()
         {
+            if (HttpContext.Session.GetString("TipoUsuario") == "I")
+                ViewBag.AlunoInstrutor = "I";
+            else
+                ViewBag.AlunoInstrutor = "A";
+
             return View();
         }
 
         public IActionResult Sobre()
         {
             return View();
-        }
-
-        public IActionResult EditaUsuario()
-        {
-            ViewBag.Operacao = "A";
-            if (ViewBag.AlunoInstrutor == "I")
-            {
-                return RedirectToAction("Edit", "Instrutor");
-            }
-            else
-            {
-                return RedirectToAction("index", "Home");
-            }
-                
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

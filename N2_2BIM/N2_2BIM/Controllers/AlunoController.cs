@@ -29,15 +29,26 @@ namespace N2_2BIM.Controllers
                 model.Senha = "senha123";
             }
 
+            //Impede o Instrutor de ver e editar a senha do aluno depois de cadastrado
+            if (HttpContext.Session.GetString("TipoUsuario") == "I" && Operacao == "A")
+                ViewBag.Senha = "Close";
+            else
+                ViewBag.Senha = "Open";
+
         }
 
         //Consultar pelo Id do Instrutor para listar 
-        //public override IActionResult Index(int? pagina = null)
-        //{
-        //    int id = (int)HttpContext.Session.GetInt32("IdUsuario");
-        //    var lista = DAO.Consulta(id);
-        //    return View(ViewParaListagem, lista);
-        //}
+        public override IActionResult Index(int? pagina = null)
+        {
+            //int id = (int)HttpContext.Session.GetInt32("IdUsuario");
+            //var lista = DAO.Consulta(id);
+            var lista = DAO.Listagem();
+
+            if (HttpContext.Session.GetString("TipoUsuario") == "I")
+                return View(ViewParaListagem, lista);
+            else
+                return RedirectToAction("Index", "Home");
+        }
 
         protected override void ValidaDados(AlunoViewModel model, string operacao)
         {
@@ -49,15 +60,15 @@ namespace N2_2BIM.Controllers
 
             if (string.IsNullOrEmpty(model.Nome))
                 ModelState.AddModelError("Nome", "Preencha este campo");
-            if (string.IsNullOrEmpty(model.Telefone))
+            if (string.IsNullOrEmpty(model.Telefone) && !ValidaTelefone(model.Telefone))
                 ModelState.AddModelError("Telefone", "Preencha este campo");
 
             if (model.dtNascimento > DateTime.Now)
                 ModelState.AddModelError("dtNascimento", "Preencha este campo");
-            if (char.IsWhiteSpace(model.Sexo))
+            if (char.IsWhiteSpace(model.Sexo) || model.Sexo == '0')
                 ModelState.AddModelError("Sexo", "Preencha este campo");
 
-            if(string.IsNullOrEmpty(model.CEP))
+            if (string.IsNullOrEmpty(model.CEP))
                 ModelState.AddModelError("CEP", "Preencha este campo");
             if (string.IsNullOrEmpty(model.Rua))
                 ModelState.AddModelError("Rua", "Preencha este campo");

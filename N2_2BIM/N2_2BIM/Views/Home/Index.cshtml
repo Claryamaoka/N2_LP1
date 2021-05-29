@@ -6,11 +6,23 @@
 
 
 @*Validar com viewbag se é aluno ou instrutor*@
-<a href="/Aluno/Create" class="btn btn-secondary">Cadastrar Aluno</a>
-<a href="/Aluno/Index" class="btn btn-secondary">Listar Alunos</a>
-<a href="/Exercicio/Create" class="btn btn-secondary">Cadastrar Exercicio</a>
+
+@if (ViewBag.AlunoInstrutor == "I")
+{
+    <a href="/Aluno/Create" class="btn btn-secondary">Cadastrar Aluno</a>
+    <a href="/Aluno/Index" class="btn btn-secondary">Listar Alunos</a>
+    <a href="/Exercicio/Create" class="btn btn-secondary">Cadastrar Exercicio</a>
+    <a href="/Aula/Create" class="btn btn-secondary">Cadastrar Aula</a>
+    <a href="/Instrutor/Edit" class="btn btn-secondary">Editar Usuário</a>
+}
+else
+{
+    <a href="/Aluno/Edit" class="btn btn-secondary">Editar Usuário</a>
+}
 <a href="/Exercicio/Index" class="btn btn-secondary">Listar Exercicios</a>
-<a href="/Aula/Create" class="btn btn-secondary">Cadastrar Aula</a>
 <a href="/Aula/Index" class="btn btn-secondary">Listar Aulas</a>
 <a href="/Anamnese/Index" class="btn btn-secondary">Listar Anamnese</a>
 <a href="/Home/Sobre" class="btn btn-secondary">Sobre</a>
+
+
+

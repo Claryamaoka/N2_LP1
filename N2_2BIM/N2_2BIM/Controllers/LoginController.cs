@@ -71,12 +71,14 @@ namespace N2_2BIM.Controllers
                     if (login.Tipo == 'I') //o logado é um instrutor
                     {
                         ViewBag.AlunoInstrutor = "I";
+                        HttpContext.Session.SetString("TipoUsuario", "I");
 
                         return RedirectToAction("index", "Home");
                     }
                     else //o logado é um aluno
                     {
                         ViewBag.AlunoInstrutor = "A";
+                        HttpContext.Session.SetString("TipoUsuario", "A");
 
                         return RedirectToAction("index", "Home");
                     }

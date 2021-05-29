@@ -26,7 +26,10 @@ namespace N2_2BIM.Controllers
 
         public override IActionResult Index(int? pagina)
         {
-            return RedirectToAction("Index", "Login");
+            if(ViewBag.Operacao == "A")
+                return RedirectToAction("Index", "Home");
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         protected override void PreencheDadosParaView(string Operacao, InstrutorViewModel model)
@@ -44,7 +47,7 @@ namespace N2_2BIM.Controllers
 
             if (string.IsNullOrEmpty(model.Nome))
                 ModelState.AddModelError("Nome", "Preencha este campo");
-            if (string.IsNullOrEmpty(model.Telefone))
+            if (string.IsNullOrEmpty(model.Telefone) && !ValidaTelefone(model.Telefone))
                 ModelState.AddModelError("Telefone", "Preencha este campo");
 
             if (model.dtNascimento > DateTime.Now)

@@ -151,6 +151,14 @@ namespace N2_2BIM.Controllers
             return cpf.EndsWith(digito);
         }
 
+        public static bool ValidaTelefone(string telefone)
+        {
+            if (telefone.All(char.IsDigit))
+                return true;
+            else
+                return false;
+        }
+
         public void PreencheComboSexo()
         {
             ViewBag.Sexo = new List<SelectListItem>();
