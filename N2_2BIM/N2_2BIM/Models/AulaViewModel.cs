@@ -15,6 +15,13 @@ namespace N2_2BIM.Models
         public int Ex2 { get; set; }
         public int Ex3 { get; set; }
         public DateTime dataAula { get; set; }
+
+        //Nome do aluno para exibição
+        public string NomeAluno { get; set; }
+        //Nome dos Exercicios para exibição
+        public string NomeExercicio1 { get; set; }
+        public string NomeExercicio2 { get; set; }
+        public string NomeExercicio3 { get; set; }
     }
 }
 /*Id int primary key not null IDENTITY(1,1),

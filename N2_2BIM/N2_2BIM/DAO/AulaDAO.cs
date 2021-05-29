@@ -12,19 +12,23 @@ namespace N2_2BIM.DAO
     {
         protected override SqlParameter[] CriaParametros(AulaViewModel model, string operacao)
         {
+            object comp;
+            if (model.Ex3 == null || model.Ex3 == 0)
+                comp = DBNull.Value;
+            else
+                comp = model.Ex3;
+
             SqlParameter[] parametros =
-         {
+            {
+                new SqlParameter("Id", model.Id),
                 new SqlParameter("IdInstrutor", model.IdInstrutor),
                 new SqlParameter("IdAluno", model.IdAluno),
                 new SqlParameter("Ex1", model.Ex1),
                 new SqlParameter("Ex2", model.Ex2),
-                new SqlParameter("Ex3", model.Ex3),
+                new SqlParameter("Ex3", comp),
                 new SqlParameter("dataAula", model.dataAula)
 
             };
-
-            if (operacao == "A")
-                parametros[6] = new SqlParameter("Id", model.Id);
 
             return parametros;
         }
@@ -33,13 +37,18 @@ namespace N2_2BIM.DAO
         {
             var c = new AulaViewModel()
             {
+                Id = Convert.ToInt32(registro["Id"]),
                 IdInstrutor = Convert.ToInt32(registro["IdInstrutor"]),
                 IdAluno = Convert.ToInt32(registro["IdAluno"]),
                 Ex1 = Convert.ToInt32(registro["Ex1"]),
                 Ex2 = Convert.ToInt32(registro["Ex2"]),
-                Ex3 = Convert.ToInt32(registro["Ex3"]),
                 dataAula = Convert.ToDateTime(registro["dataAula"])
             };
+
+            if (registro["Ex3"] != DBNull.Value)
+                c.Ex3 = Convert.ToInt32(registro["Ex3"]);
+            else
+                c.Ex3 = 0;
 
             return c;
         }

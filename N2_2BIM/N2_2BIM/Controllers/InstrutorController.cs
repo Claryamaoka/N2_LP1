@@ -51,6 +51,7 @@ namespace N2_2BIM.Controllers
                 ModelState.AddModelError("dtNascimento", "Preencha este campo");
             if (char.IsWhiteSpace(model.Sexo) || model.Sexo == '0')
                 ModelState.AddModelError("Sexo", "Preencha este campo");
+
             if(string.IsNullOrEmpty(model.CEP))
                 ModelState.AddModelError("CEP", "Preencha este campo");
             if (string.IsNullOrEmpty(model.Rua))

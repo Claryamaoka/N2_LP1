@@ -15,6 +15,7 @@ namespace N2_2BIM.Models
         public string DoencaFamilia { get; set; } //Possui historico de doenças na família? Quantos casos
         public int IdInstrutor { get; set; }
         public int IdAluno { get; set; }
+        public int IdadeAluno { get; set; }
     }
 }
 /*Id int NOT NULL primary key identity (1,1),

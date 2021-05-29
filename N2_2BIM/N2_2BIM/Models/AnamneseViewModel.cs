@@ -13,6 +13,7 @@ namespace N2_2BIM.Models
         public int IdInstrutor { get; set; }
         public int IdAluno { get; set; }
         public DateTime DataAvaliacao { get; set; }
+        public string NomeAluno { get; set; }
 
     }
 }

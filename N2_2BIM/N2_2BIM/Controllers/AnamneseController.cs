@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using N2_2BIM.DAO;
 using N2_2BIM.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace N2_2BIM.Controllers
 {
@@ -17,11 +18,32 @@ namespace N2_2BIM.Controllers
             SugereProximoId = true;
         }
 
-        public IActionResult Create(int id)
+        public override IActionResult Index(int? pagina = null)
+        {
+            var lista = DAO.Listagem();
+            lista = PreparaNomeAlunoLista(lista);
+            return View(ViewParaListagem, lista);
+        }
+
+        public List<AnamneseViewModel> PreparaNomeAlunoLista (List<AnamneseViewModel> lista)
+        {
+            AlunoDAO a = new AlunoDAO();
+            AlunoViewModel aluno = new AlunoViewModel();
+
+            foreach(AnamneseViewModel item in lista)
+            {
+                aluno = a.Consulta(item.IdAluno);
+                item.NomeAluno = aluno.Nome;
+            }
+
+            return lista; 
+        }
+
+        public override IActionResult Create(int? id = null)
         {
             ViewBag.Operacao = "I";
-            _alunoId = id;
             AnamneseViewModel model = Activator.CreateInstance(typeof(AnamneseViewModel)) as AnamneseViewModel;
+            _alunoId = (int)id;
             PreencheDadosParaView("I", model);
             return View(ViewParaCadastro, model);
         }
@@ -32,7 +54,7 @@ namespace N2_2BIM.Controllers
             //pegar o Id do instrutor que está logado 
             if (Operacao == "I")
             {
-                model.IdInstrutor = 123;
+                model.IdInstrutor = (int)HttpContext.Session.GetInt32("IdUsuario");
                 model.IdAluno = _alunoId;
                 model.DataAvaliacao = DateTime.Now;
             }

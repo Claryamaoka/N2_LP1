@@ -12,6 +12,8 @@
 <table class="table table-responsive table-striped">
     <tr>
         <td>Ações</td>
+        <td>Anamnese</td>
+        <td>Risco Cardiaco</td>
         <td>Código</td>
         <td>Nome</td>
         <td>Telefone</td>
@@ -24,9 +26,9 @@
             <td>
                 <a href="/Aluno/Edit?id=@aluno.Id">Editar</a> &nbsp;&nbsp;
                 <a href="javascript:apagar(@aluno.Id, 'Aluno')">Apagar</a>
-                <a href="/Anamnese/Create?id=@aluno.Id">Realizar Anamnese</a> &nbsp;&nbsp;
-                <a href="/Aluno/Edit?id=@aluno.Id">Realizar Avaliação de Risco Cardiaco</a>
             </td>
+            <td><a href="/Anamnese/Create?id=@aluno.Id">Avaliar</a> &nbsp;&nbsp;</td>
+            <td><a href="/RiscoCardiaco/Create?id=@aluno.Id">Avaliar</a></td>
             <td>@aluno.Id</td>
             <td>@aluno.Nome</td>
             <td>@aluno.Telefone </td>

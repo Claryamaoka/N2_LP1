@@ -6,7 +6,7 @@
 
 @*TELA DE LISTAGEM DE AULAS*@
 
-<h1>Listagem de Exercicios</h1>
+<h1>Listagem de Aulas</h1>
 
 <a href="/Aula/create">Nova Aula</a>
 <br />
@@ -29,15 +29,15 @@
     {
         <tr>
             <td>
-                <a href="/Exercicio/Edit?id=@ex.Id">Editar</a> &nbsp;&nbsp;
-                <a href="javascript:apagar(@ex.Id, 'Exercicio')">Apagar</a>
+                <a href="/Aula/Edit?id=@ex.Id">Editar</a> &nbsp;&nbsp;
+                <a href="javascript:apagar(@ex.Id, 'Aula')">Apagar</a>
             </td>
             <td>@ex.Id</td>
-            <td>@ex.dataAula</td>
-            <td>@ex.IdAluno</td>
-            <td>@ex.Ex1</td>
-            <td>@ex.Ex2</td>
-            <td>@ex.Ex3</td>
+            <td>@ex.dataAula.ToShortDateString()</td>
+            <td>@ex.IdAluno - @ex.NomeAluno</td>
+            <td>@ex.Ex1 - @ex.NomeExercicio1</td>
+            <td>@ex.Ex2 - @ex.NomeExercicio2</td>
+            <td>@ex.Ex3 - @ex.NomeExercicio3</td>
 
         </tr>
     }

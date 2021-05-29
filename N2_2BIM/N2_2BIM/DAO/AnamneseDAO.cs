@@ -13,7 +13,8 @@ namespace N2_2BIM.DAO
         protected override SqlParameter[] CriaParametros(AnamneseViewModel model, string operacao)
         {
             SqlParameter[] parametros =
-           {
+            {
+                new SqlParameter("Id", model.Id),
                 new SqlParameter("IdInstrutor", model.IdInstrutor),
                 new SqlParameter("IdAluno", model.IdAluno),
                 new SqlParameter("Peso", model.Peso),
@@ -23,9 +24,6 @@ namespace N2_2BIM.DAO
 
             };
 
-            if (operacao == "A")
-                parametros[6] = new SqlParameter("Id", model.Id);
-
             return parametros;
         }
 
@@ -33,6 +31,7 @@ namespace N2_2BIM.DAO
         {
             var c = new AnamneseViewModel()
             {
+                Id = Convert.ToInt32(registro["Id"]),
                 IdInstrutor = Convert.ToInt32(registro["IdInstrutor"]),
                 IdAluno = Convert.ToInt32(registro["IdAluno"]),
                 Peso = Convert.ToDouble(registro["Peso"]),

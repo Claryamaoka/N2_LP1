@@ -6,7 +6,7 @@
 
 <h1>Listagem de Avaliações - Anamnese</h1>
 
-<a href="/Alunos/Index">Voltar</a>
+<a href="/Home/Index">Voltar</a>
 <br />
 
 @*Colocar Filtro RA aluno e Data*@
@@ -15,7 +15,8 @@
     <tr>
         <td>Ações</td>
         <td>Código</td>
-        <td>RA do Aluno</td>
+        <td>Aluno</td>
+        <td>Data</td>
         <td>Peso</td>
         <td>Altura</td>
         <td>Elasticidade</td>
@@ -28,9 +29,10 @@
                 <a href="/Aluno/Edit?id=@aluno.Id">Imprimir</a> &nbsp;&nbsp;
             </td>
             <td>@aluno.Id</td>
-            <td>@aluno.IdAluno</td>
-            <td>@aluno.Peso </td>
-            <td>@aluno.Altura</td>
+            <td>@aluno.IdAluno - @aluno.NomeAluno</td>
+            <td>@aluno.DataAvaliacao.ToShortDateString()</td>
+            <td>@aluno.Peso kg</td>
+            <td>@aluno.Altura m</td>
             <td>@aluno.Elasticidade</td>
         </tr>
     }

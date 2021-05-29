@@ -26,7 +26,7 @@ namespace N2_2BIM.Controllers
             return View(ViewParaListagem, lista);
         }
 
-        public virtual IActionResult Create()
+        public virtual IActionResult Create(int? id = null)
         {
             ViewBag.Operacao = "I";
             T model = Activator.CreateInstance(typeof(T)) as T;

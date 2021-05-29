@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using N2_2BIM.DAO;
 using N2_2BIM.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace N2_2BIM.Controllers
 {
@@ -17,6 +18,42 @@ namespace N2_2BIM.Controllers
             SugereProximoId = true;
         }
 
+        public override IActionResult Index(int? pagina = null)
+        {
+            var lista = DAO.Listagem();
+            lista = PreparaNomesParaLista(lista);
+            return View(ViewParaListagem, lista);
+        }
+
+        protected List<AulaViewModel> PreparaNomesParaLista(List<AulaViewModel> lista)
+        {
+            //Pesquisar pelo id para possui o nome
+            AlunoViewModel aluno = new AlunoViewModel();
+            ExercicioViewModel exercicio = new ExercicioViewModel();
+            AlunoDAO a = new AlunoDAO();
+            ExercicioDAO e = new ExercicioDAO();
+
+            foreach (AulaViewModel item in lista)
+            {
+                aluno = a.Consulta(item.IdAluno);
+                item.NomeAluno = aluno.Nome;
+
+                exercicio = e.Consulta(item.Ex1);
+                item.NomeExercicio1 = exercicio.Nome;
+
+                exercicio = e.Consulta(item.Ex2);
+                item.NomeExercicio2 = exercicio.Nome;
+
+                if (item.Ex3 != 0)
+                {
+                    exercicio = e.Consulta(item.Ex3);
+                    item.NomeExercicio3 = exercicio.Nome;
+                }
+
+            }
+            return lista;
+        }
+
         protected override void PreencheDadosParaView(string Operacao, AulaViewModel model)
         {
             base.PreencheDadosParaView(Operacao, model);
@@ -26,7 +63,7 @@ namespace N2_2BIM.Controllers
             //pegar o Id do instrutor que está logado
             if (Operacao == "I")
             {
-                model.IdInstrutor = 123;
+                model.IdInstrutor = (int)HttpContext.Session.GetInt32("IdUsuario");
             }
 
         }
@@ -45,7 +82,6 @@ namespace N2_2BIM.Controllers
             }
         }
 
-
         public void PreencheComboAlunos()
         {
             //Listar apenas os alunos daquele instrutor
@@ -57,7 +93,7 @@ namespace N2_2BIM.Controllers
             foreach (var ex in daoAlunos.Listagem())
             {
                 var elemento = new SelectListItem(ex.Nome, ex.Id.ToString());
-                ViewBag.Exercicios.Add(elemento);
+                ViewBag.Alunos.Add(elemento);
             }
         }
 
@@ -66,6 +102,8 @@ namespace N2_2BIM.Controllers
             base.ValidaDados(model, operacao);
             if (model.Ex1 <= 0)
                 ModelState.AddModelError("Ex1", "Preencha este campo");
+            if (model.Ex2 <= 0)
+                ModelState.AddModelError("Ex2", "Preencha este campo");
             if (model.dataAula < DateTime.Now || model.dataAula == null)
                 ModelState.AddModelError("dataAula", "Preencha este campo com uma data válida");
 

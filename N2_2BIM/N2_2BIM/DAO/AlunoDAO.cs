@@ -24,6 +24,7 @@ namespace N2_2BIM.DAO
 
             SqlParameter[] parametros =
             {
+                new SqlParameter("Id", model.Id),
                 new SqlParameter("CPF", model.CPF),
                 new SqlParameter("Nome", model.Nome),
                 new SqlParameter("Foto", imgByte),
@@ -39,9 +40,6 @@ namespace N2_2BIM.DAO
                 new SqlParameter("Senha", model.Senha)
                  
             };
-
-            if (operacao == "A")
-                parametros[13] = new SqlParameter("Id", model.Id);
 
             return parametros;
         }
@@ -59,13 +57,13 @@ namespace N2_2BIM.DAO
                 Bairro = registro["Bairro"].ToString(),
                 Telefone = registro["Telefone"].ToString(),
                 Sexo = Convert.ToChar(registro["Sexo"]),
-                IdInstrutor = Convert.ToInt32(registro["Instrutor"]),
+                IdInstrutor = Convert.ToInt32(registro["IdInstrutor"]),
                 Senha = registro["Senha"].ToString(),
                 Numero = Convert.ToInt32(registro["Numero"])
             };
 
             if (registro["Foto"] != DBNull.Value)
-                c.ImagemEmByte = registro["imagem"] as byte[];
+                c.ImagemEmByte = registro["Foto"] as byte[];
 
             if (registro["Complemento"] != DBNull.Value)
                 c.Complemento = registro["Complemento"].ToString();

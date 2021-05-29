@@ -13,7 +13,8 @@ namespace N2_2BIM.DAO
         protected override SqlParameter[] CriaParametros(RiscoCardiacoViewModel model, string operacao)
         {
             SqlParameter[] parametros =
-         {
+            {
+                new SqlParameter("Id", model.Id),
                 new SqlParameter("IdInstrutor", model.IdInstrutor),
                 new SqlParameter("IdAluno", model.IdAluno),
                 new SqlParameter("Peso", model.Peso),
@@ -25,9 +26,6 @@ namespace N2_2BIM.DAO
 
             };
 
-            if (operacao == "A")
-                parametros[8] = new SqlParameter("Id", model.Id);
-
             return parametros;
         }
 
@@ -35,6 +33,7 @@ namespace N2_2BIM.DAO
         {
             var c = new RiscoCardiacoViewModel()
             {
+                Id = Convert.ToInt32(registro["Id"]),
                 IdInstrutor = Convert.ToInt32(registro["IdInstrutor"]),
                 IdAluno = Convert.ToInt32(registro["IdAluno"]),
                 Peso = Convert.ToDouble(registro["Peso"]),
@@ -43,7 +42,6 @@ namespace N2_2BIM.DAO
                 Atividade = registro["Atividade"].ToString(),
                 Fumo = registro["Fumo"].ToString(),
                 DoencaFamilia = registro["DoencaFamilia"].ToString()
-
             };
 
             return c;

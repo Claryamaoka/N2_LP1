@@ -12,19 +12,14 @@ namespace N2_2BIM.DAO
     {
         protected override SqlParameter[] CriaParametros(ExercicioViewModel model, string operacao)
         {
-            SqlParameter[] parametros = new SqlParameter[3];
-            parametros[0] = new SqlParameter("Descricao", model.Descricao);
-            parametros[1] = new SqlParameter("Nome", model.Nome);
-            parametros[2] = new SqlParameter("Id", model.Id);
+            SqlParameter[] parametros =
+            {
+                new SqlParameter("Id", model.Id),
+                new SqlParameter("Nome", model.Nome),
+                new SqlParameter("Descricao", model.Descricao)
+            };
 
-            SqlParameter[] param = new SqlParameter[2];
-            param[0] = new SqlParameter("Descricao", model.Descricao);
-            param[1] = new SqlParameter("Nome", model.Nome);
-
-            if (operacao == "A")
-                return parametros;
-            else
-                return param;
+            return parametros;
         }
 
         protected override ExercicioViewModel MontaModel(DataRow registro)

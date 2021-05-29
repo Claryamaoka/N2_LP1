@@ -6,7 +6,7 @@
 
 <h1>Risco Cardiaco</h1>
 <hr />
-<form action="/Aula/Salvar" method="post">
+<form action="/RiscoCardiaco/Salvar" method="post">
 
     <div asp-validation-summary="All" class="text-danger"></div>
     <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
@@ -30,9 +30,13 @@
     <input asp-for="IdAluno" class="form-control" readonly />
 
     <br />
+    <label for="IdadeAluno" class="control-label">Idade do Aluno</label>
+    <input asp-for="IdadeAluno" class="form-control" readonly />
+
+    <br />
 
     <label for="Peso" class="control-label">Peso</label>
-    <input asp-for="Peso" class="form-control" />
+    <input asp-for="Peso" class="form-control" placeholder="KG"/>
     <span asp-validation-for="Peso" class="text-danger"></span>
 
     <br />
@@ -44,7 +48,7 @@
     <br />
 
     <label for="Pressao" class="control-label">Pressão</label>
-    <input asp-for="Pressao" class="form-control" />
+    <input asp-for="Pressao" class="form-control" placeholder="mmHg"/>
     <span asp-validation-for="Pressao" class="text-danger"></span>
 
     <br />

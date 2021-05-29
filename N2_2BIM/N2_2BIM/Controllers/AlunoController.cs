@@ -31,12 +31,13 @@ namespace N2_2BIM.Controllers
 
         }
 
-        public override IActionResult Index(int? pagina = null)
-        {
-            int id = (int)HttpContext.Session.GetInt32("IdUsuario");
-            var lista = DAO.Consulta(id);
-            return View(ViewParaListagem, lista);
-        }
+        //Consultar pelo Id do Instrutor para listar 
+        //public override IActionResult Index(int? pagina = null)
+        //{
+        //    int id = (int)HttpContext.Session.GetInt32("IdUsuario");
+        //    var lista = DAO.Consulta(id);
+        //    return View(ViewParaListagem, lista);
+        //}
 
         protected override void ValidaDados(AlunoViewModel model, string operacao)
         {
@@ -55,6 +56,16 @@ namespace N2_2BIM.Controllers
                 ModelState.AddModelError("dtNascimento", "Preencha este campo");
             if (char.IsWhiteSpace(model.Sexo))
                 ModelState.AddModelError("Sexo", "Preencha este campo");
+
+            if(string.IsNullOrEmpty(model.CEP))
+                ModelState.AddModelError("CEP", "Preencha este campo");
+            if (string.IsNullOrEmpty(model.Rua))
+                ModelState.AddModelError("Rua", "Preencha este campo");
+            if (string.IsNullOrEmpty(model.Bairro))
+                ModelState.AddModelError("Bairro", "Preencha este campo");
+            if (model.Numero <= 0)
+                ModelState.AddModelError("Numero", "Preencha este campo");
+
 
             //Imagem será obrigario apenas na inclusão.
             //Na alteração iremos considerar a que já estava salva.            
