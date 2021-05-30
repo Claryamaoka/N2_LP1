@@ -55,7 +55,7 @@ namespace N2_2BIM.Controllers
         public RiscoCardiacoViewModel PreencheAluno(RiscoCardiacoViewModel model)
         {
             AlunoDAO a = new AlunoDAO();
-            AlunoViewModel aluno = new AlunoViewModel();
+            AlunoViewModel aluno;
 
             aluno = a.Consulta(model.Id);
 
@@ -66,6 +66,10 @@ namespace N2_2BIM.Controllers
             }
 
             model.IdadeAluno = idade;
+            if (aluno.Sexo == 'F')
+                model.Sexo = "Feminino";
+            else
+                model.Sexo = "Masculino";
             return model;
         }
 
@@ -122,6 +126,11 @@ namespace N2_2BIM.Controllers
                 ModelState.AddModelError("Atividade", "Preencha este campo");
             if (string.IsNullOrEmpty(model.DoencaFamilia) || model.DoencaFamilia == "0")
                 ModelState.AddModelError("DoencaFamilia", "Preencha este campo");
+
+        }
+
+        public void CalculaRiscoCardiaco(RiscoCardiacoViewModel model)
+        {
 
         }
     }

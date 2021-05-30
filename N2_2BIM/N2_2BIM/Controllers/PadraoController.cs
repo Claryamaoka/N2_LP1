@@ -22,8 +22,18 @@ namespace N2_2BIM.Controllers
 
         public virtual IActionResult Index(int? pagina = null)
         {
-            var lista = DAO.Listagem();
-            return View(ViewParaListagem, lista);
+            try
+            {
+                const int itensPorPagina = 5;
+                int numeroPagina = (pagina ?? 1);
+
+                var lista = DAO.Listagem();
+                return View(ViewParaListagem, lista.ToPagedList(numeroPagina, itensPorPagina));
+            }
+            catch (Exception erro)
+            {
+                return View("Error", new ErrorViewModel(erro.ToString()));
+            }
         }
 
         public virtual IActionResult Create(int? id = null)

@@ -77,7 +77,6 @@ namespace N2_2BIM.DAO
             var p = new SqlParameter[]
             {
                 new SqlParameter("tabela", Tabela)
-                //new SqlParameter("Ordem", "id")
             };
             var tabela = HelperDAO.ExecutaProcSelect(NomeProcedureListagem, p);
             List<T> lista = new List<T>();
@@ -87,5 +86,23 @@ namespace N2_2BIM.DAO
             }
             return lista;
         }
+
+        public virtual List<T> ConsultaDiferenciada(int id, string nomeSp)
+        {
+            var p = new SqlParameter[]
+            {
+                new SqlParameter("id", id),
+                new SqlParameter("tabela", Tabela)
+            };
+            var tabela = HelperDAO.ExecutaProcSelect(nomeSp, p);
+            List<T> lista = new List<T>();
+            foreach (DataRow registro in tabela.Rows)
+            {
+                lista.Add(MontaModel(registro));
+            }
+            return lista;
+        }
+
+        
     }
 }

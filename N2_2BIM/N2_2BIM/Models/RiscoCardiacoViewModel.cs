@@ -16,6 +16,8 @@ namespace N2_2BIM.Models
         public int IdInstrutor { get; set; }
         public int IdAluno { get; set; }
         public int IdadeAluno { get; set; }
+        public string Sexo { get; set; }
+        public string Risco { get; set; }
     }
 }
 /*Id int NOT NULL primary key identity (1,1),

@@ -1,11 +1,11 @@
-﻿@model List<ExercicioViewModel>
+﻿@model X.PagedList.IPagedList<ExercicioViewModel>
+@using X.PagedList.Mvc.Core;
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@*@model X.PagedList.IPagedList<ExercicioViewModel>
-    @using X.PagedList.Mvc.Core;  TELA INICIAL DE EXERCICIOS - LISTAGEM DE TODOS OS EXERCICIOS EXISTENTES*@
+@*TELA INICIAL DE EXERCICIOS - LISTAGEM DE TODOS OS EXERCICIOS EXISTENTES*@
 
 <h1>Listagem de Exercicios</h1>
 
@@ -37,4 +37,6 @@
     }
 
 </table>
-@*@Html.PagedListPager(Model, pagina => Url.Action("Index", new { pagina }))*@
+
+@Html.PagedListPager(Model, pagina => Url.Action("Index", new { pagina }))
+

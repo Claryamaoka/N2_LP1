@@ -1,4 +1,5 @@
-﻿@model List<AnamneseViewModel>
+﻿@model X.PagedList.IPagedList<AnamneseViewModel>
+@using X.PagedList.Mvc.Core;
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -22,19 +23,22 @@
         <td>Elasticidade</td>
     </tr>
 
-    @foreach (var aluno in Model)
+    @foreach (AnamneseViewModel a in Model)
     {
         <tr>
             <td>
-                <a href="/Aluno/Edit?id=@aluno.Id">Imprimir</a> &nbsp;&nbsp;
+                <a href="/Anamnese/Print?id=@a.Id">Imprimir</a> &nbsp;&nbsp;
             </td>
-            <td>@aluno.Id</td>
-            <td>@aluno.IdAluno - @aluno.NomeAluno</td>
-            <td>@aluno.DataAvaliacao.ToShortDateString()</td>
-            <td>@aluno.Peso kg</td>
-            <td>@aluno.Altura m</td>
-            <td>@aluno.Elasticidade</td>
+            <td>@a.Id</td>
+            <td>@a.IdAluno - @a.NomeAluno</td>
+            <td>@a.DataAvaliacao.ToShortDateString()</td>
+            <td>@a.Peso kg</td>
+            <td>@a.Altura m</td>
+            <td>@a.Elasticidade</td>
         </tr>
     }
 </table>
+
+
+@Html.PagedListPager(Model, pagina => Url.Action("Index", new { pagina }))
 

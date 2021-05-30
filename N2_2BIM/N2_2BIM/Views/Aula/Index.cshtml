@@ -1,45 +1,49 @@
-﻿@model List<AulaViewModel>
-@{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-@*TELA DE LISTAGEM DE AULAS*@
-
-<h1>Listagem de Aulas</h1>
-
-<a href="/Aula/create">Nova Aula</a>
-<br />
-
-@*Opção de filtro de data e aluno *@
-
-<table class="table table-responsive table-striped">
-    <tr>
-        <td>Ações</td>
-        <td>Código</td>
-        <td>Data da Aula</td>
-        <td>Aluno</td>
-        <td>Exercício 1</td>
-        <td>Exercício 2</td>
-        <td>Exercício 3</td>
-
-    </tr>
-
-    @foreach (var ex in Model)
-    {
-        <tr>
-            <td>
-                <a href="/Aula/Edit?id=@ex.Id">Editar</a> &nbsp;&nbsp;
-                <a href="javascript:apagar(@ex.Id, 'Aula')">Apagar</a>
-            </td>
-            <td>@ex.Id</td>
-            <td>@ex.dataAula.ToShortDateString()</td>
-            <td>@ex.IdAluno - @ex.NomeAluno</td>
-            <td>@ex.Ex1 - @ex.NomeExercicio1</td>
-            <td>@ex.Ex2 - @ex.NomeExercicio2</td>
-            <td>@ex.Ex3 - @ex.NomeExercicio3</td>
-
-        </tr>
+﻿@model X.PagedList.IPagedList<AulaViewModel>
+    @using X.PagedList.Mvc.Core;
+    @{
+        ViewData["Title"] = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml";
     }
 
-</table>
+    @*TELA DE LISTAGEM DE AULAS*@
+
+    <h1>Listagem de Aulas</h1>
+
+    <a href="/Aula/create">Nova Aula</a>
+    <br />
+
+    @*Opção de filtro de data e aluno *@
+
+    <table class="table table-responsive table-striped">
+        <tr>
+            <td>Ações</td>
+            <td>Código</td>
+            <td>Data da Aula</td>
+            <td>Aluno</td>
+            <td>Exercício 1</td>
+            <td>Exercício 2</td>
+            <td>Exercício 3</td>
+
+        </tr>
+
+        @foreach (AulaViewModel ex in Model)
+        {
+            <tr>
+                <td>
+                    <a href="/Aula/Edit?id=@ex.Id">Editar</a> &nbsp;&nbsp;
+                    <a href="javascript:apagar(@ex.Id, 'Aula')">Apagar</a>
+                </td>
+                <td>@ex.Id</td>
+                <td>@ex.dataAula.ToShortDateString()</td>
+                <td>@ex.IdAluno - @ex.NomeAluno</td>
+                <td>@ex.Ex1 - @ex.NomeExercicio1</td>
+                <td>@ex.Ex2 - @ex.NomeExercicio2</td>
+                <td>@ex.Ex3 - @ex.NomeExercicio3</td>
+
+            </tr>
+        }
+
+    </table>
+
+
+    @Html.PagedListPager(Model, pagina => Url.Action("Index", new { pagina }))

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using N2_2BIM.DAO;
 using N2_2BIM.Models;
 using Microsoft.AspNetCore.Http;
+using X.PagedList;
 
 namespace N2_2BIM.Controllers
 {
@@ -20,11 +21,25 @@ namespace N2_2BIM.Controllers
 
         public override IActionResult Index(int? pagina = null)
         {
-            var lista = DAO.Listagem();
-            lista = PreparaNomeAlunoLista(lista);
-            return View(ViewParaListagem, lista);
+            int id = (int)HttpContext.Session.GetInt32("IdUsuario");
+            string procedure = "spConsultaAnamneseInstrutor";
+
+            try
+            {
+                const int itensPorPagina = 5;
+                int numeroPagina = (pagina ?? 1);
+
+                var lista = DAO.ConsultaDiferenciada(id, procedure);
+                lista = PreparaNomeAlunoLista(lista);
+                return View(ViewParaListagem, lista.ToPagedList(numeroPagina, itensPorPagina));
+            }
+            catch (Exception erro)
+            {
+                return View("Error", new ErrorViewModel(erro.ToString()));
+            }
         }
 
+        //Permite que o nome do usuário, sendo puxado por seu id, seja informado na listagem
         public List<AnamneseViewModel> PreparaNomeAlunoLista (List<AnamneseViewModel> lista)
         {
             AlunoDAO a = new AlunoDAO();
@@ -39,6 +54,7 @@ namespace N2_2BIM.Controllers
             return lista; 
         }
 
+        //Salva o id do aluno que foi selecionado para poder preencher o campo IdAluno
         public override IActionResult Create(int? id = null)
         {
             ViewBag.Operacao = "I";
@@ -51,7 +67,8 @@ namespace N2_2BIM.Controllers
         protected override void PreencheDadosParaView(string Operacao, AnamneseViewModel model)
         {
             base.PreencheDadosParaView(Operacao, model);
-            //pegar o Id do instrutor que está logado 
+
+            //pega o Id do instrutor que está logado 
             if (Operacao == "I")
             {
                 model.IdInstrutor = (int)HttpContext.Session.GetInt32("IdUsuario");

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using N2_2BIM.DAO;
 using N2_2BIM.Models;
 using Microsoft.AspNetCore.Http;
+using X.PagedList;
 
 namespace N2_2BIM.Controllers
 {
@@ -18,13 +19,34 @@ namespace N2_2BIM.Controllers
             SugereProximoId = true;
         }
 
+        //Listar apenas as aulas cadastradas pelo instrutor logado OU
+        //Listar apenas as aulas do usuário logado
         public override IActionResult Index(int? pagina = null)
         {
-            var lista = DAO.Listagem();
-            lista = PreparaNomesParaLista(lista);
-            return View(ViewParaListagem, lista);
+            int id = (int)HttpContext.Session.GetInt32("IdUsuario");
+            string procedure = "";
+            if (HttpContext.Session.GetString("TipoUsuario") == "I")
+                procedure = "spConsultaAulaInstrutor";
+            else
+                procedure = "spConsultaAulaAluno";
+
+            try
+            {
+                const int itensPorPagina = 5;
+                int numeroPagina = (pagina ?? 1);
+
+                var lista = DAO.ConsultaDiferenciada(id,procedure);
+                lista = PreparaNomesParaLista(lista);
+                return View(ViewParaListagem, lista.ToPagedList(numeroPagina, itensPorPagina));
+            }
+            catch (Exception erro)
+            {
+                return View("Error", new ErrorViewModel(erro.ToString()));
+            }
         }
 
+        //Permite que apareça o nome do aluno assim como o nome do exercicio na listagem de aulas
+        //puxando ambos por seus respectivos Ids
         protected List<AulaViewModel> PreparaNomesParaLista(List<AulaViewModel> lista)
         {
             //Pesquisar pelo id para possui o nome
@@ -60,7 +82,7 @@ namespace N2_2BIM.Controllers
             PreencheComboExercicios();
             PreencheComboAlunos();
 
-            //pegar o Id do instrutor que está logado
+            //pega o Id do instrutor que está logado
             if (Operacao == "I")
             {
                 model.IdInstrutor = (int)HttpContext.Session.GetInt32("IdUsuario");
@@ -68,6 +90,9 @@ namespace N2_2BIM.Controllers
 
         }
 
+        /// <summary>
+        /// Preenche a combo box de Exercicios com os Exercicios cadastrados
+        /// </summary>
         public void PreencheComboExercicios()
         {
             var daoExercicios = new ExercicioDAO();
@@ -82,15 +107,19 @@ namespace N2_2BIM.Controllers
             }
         }
 
+        /// <summary>
+        /// Preenche a combo box de Alunos com os Alunos cadastrados daquele instrutor
+        /// </summary>
         public void PreencheComboAlunos()
         {
             //Listar apenas os alunos daquele instrutor
             var daoAlunos = new AlunoDAO();
+            int id = (int)HttpContext.Session.GetInt32("IdUsuario");
 
             ViewBag.Alunos = new List<SelectListItem>();
             ViewBag.Alunos.Add(new SelectListItem("Selecione um aluno...", "0"));
 
-            foreach (var ex in daoAlunos.Listagem())
+            foreach (var ex in daoAlunos.ConsultaAlunoPorInstrutor(id))
             {
                 var elemento = new SelectListItem(ex.Nome, ex.Id.ToString());
                 ViewBag.Alunos.Add(elemento);

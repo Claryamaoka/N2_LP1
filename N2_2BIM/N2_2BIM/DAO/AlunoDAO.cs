@@ -73,6 +73,7 @@ namespace N2_2BIM.DAO
             return c;
         }
 
+
         protected override void SetTabela()
         {
             Tabela = "Alunos";

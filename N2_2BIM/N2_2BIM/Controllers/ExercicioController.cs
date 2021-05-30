@@ -27,21 +27,5 @@ namespace N2_2BIM.Controllers
                 ModelState.AddModelError("Descricao", "Preencha este campo");
         }
 
-        //public override IActionResult Index(int? pagina = null)
-        //{
-        //    try
-        //    {
-        //        const int itensPorPagina = 5;
-        //        int numeroPagina = (pagina ?? 1);
-
-        //        var lista = DAO.Listagem();
-        //        return View(ViewParaListagem, lista.ToPagedListAsync(numeroPagina, itensPorPagina));
-        //    }
-        //    catch (Exception erro)
-        //    {
-        //        return View("Error", new ErrorViewModel(erro.ToString()));
-        //    }
-
-        //}
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using N2_2BIM.DAO;
 using N2_2BIM.Models;
+using X.PagedList;
 
 namespace N2_2BIM.Controllers
 {
@@ -17,12 +18,39 @@ namespace N2_2BIM.Controllers
             SugereProximoId = true;
         }
 
+        //Método sobreescrito do método Edit
+        public override IActionResult Edit(int id)
+        {
+            try
+            {
+                //se a pessoa quem estiver editando for o próprio Aluno 
+                //seu id não será passado pela url, mas sim pela Session
+                if(HttpContext.Session.GetString("TipoUsuario") == "A")
+                    id = (int)HttpContext.Session.GetInt32("IdUsuario");
+
+                ViewBag.Operacao = "A";
+                var model = DAO.Consulta(id);
+                if (model == null)
+                    return RedirectToAction(ViewParaListagem);
+                else
+                {
+                    PreencheDadosParaView("A", model);
+                    return View(ViewParaCadastro, model);
+                }
+            }
+            catch
+            {
+                return RedirectToAction(ViewParaListagem);
+            }
+        }
+
         protected override void PreencheDadosParaView(string Operacao, AlunoViewModel model)
         {
             base.PreencheDadosParaView(Operacao, model);
             PreencheComboSexo();
-            //pegar o Id do instrutor que está logado e salvar na model do aluno
 
+            //pega o Id do instrutor que está logado e salva na model do aluno
+            //coloca senha default
             if (Operacao == "I")
             {
                 model.IdInstrutor = (int)HttpContext.Session.GetInt32("IdUsuario");
@@ -37,26 +65,40 @@ namespace N2_2BIM.Controllers
 
         }
 
-        //Consultar pelo Id do Instrutor para listar 
+        /// <summary>
+        /// Consultar pelo Id do Instrutor para listar os alunos na página
+        /// </summary>
+        /// <param name="pagina"></param>
+        /// <returns></returns>
         public override IActionResult Index(int? pagina = null)
         {
-            //int id = (int)HttpContext.Session.GetInt32("IdUsuario");
-            //var lista = DAO.Consulta(id);
-            var lista = DAO.Listagem();
+            try
+            {
+                int id = (int)HttpContext.Session.GetInt32("IdUsuario");
+                const int itensPorPagina = 5;
+                int numeroPagina = (pagina ?? 1);
 
-            if (HttpContext.Session.GetString("TipoUsuario") == "I")
-                return View(ViewParaListagem, lista);
-            else
-                return RedirectToAction("Index", "Home");
+                //Responsável por listar apenas os alunos daquele instrutor
+                if (HttpContext.Session.GetString("TipoUsuario") == "I")
+                {
+                    var lista = DAO.ConsultaDiferenciada(id,"spConsultaAluno");
+                    return View(ViewParaListagem, lista.ToPagedList(numeroPagina, itensPorPagina));
+                }
+                else
+                    return RedirectToAction("Index", "Home");
+            }
+            catch (Exception erro)
+            {
+                return View("Error", new ErrorViewModel(erro.ToString()));
+            }
         }
 
+        //verifica os dados informados para salvar o aluno
         protected override void ValidaDados(AlunoViewModel model, string operacao)
         {
             base.ValidaDados(model, operacao);
             if (!ValidaCPF(model.CPF))
                 ModelState.AddModelError("CPF", "Preencha este campo com um valor válido");
-
-            //fazer consulta para ver se o CPF já foi cadastrado
 
             if (string.IsNullOrEmpty(model.Nome))
                 ModelState.AddModelError("Nome", "Preencha este campo");

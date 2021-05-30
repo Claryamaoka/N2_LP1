@@ -1,4 +1,5 @@
-﻿@model List<AlunoViewModel>
+﻿@model X.PagedList.IPagedList<AlunoViewModel>
+@using X.PagedList.Mvc.Core;
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -20,7 +21,7 @@
         <td>Data de nascimento</td>
     </tr>
 
-    @foreach (var aluno in Model)
+    @foreach (AlunoViewModel aluno in Model)
     {
         <tr>
             <td>
@@ -38,3 +39,4 @@
 </table>
 
 
+@Html.PagedListPager(Model, pagina => Url.Action("Index", new { pagina }))

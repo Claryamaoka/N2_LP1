@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using N2_2BIM.DAO;
 using N2_2BIM.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace N2_2BIM.Controllers
 {
@@ -16,6 +17,30 @@ namespace N2_2BIM.Controllers
             DAO = new InstrutorDAO();
             SugereProximoId = true;
             
+        }
+
+        public override IActionResult Edit(int id)
+        {
+            try
+            {
+                //Como é o instrutor qm está editando seu usuário o 
+                //id não é passado por URL mas sim pela Session
+                id = (int)HttpContext.Session.GetInt32("IdUsuario");
+
+                ViewBag.Operacao = "A";
+                var model = DAO.Consulta(id);
+                if (model == null)
+                    return RedirectToAction(ViewParaListagem);
+                else
+                {
+                    PreencheDadosParaView("A", model);
+                    return View(ViewParaCadastro, model);
+                }
+            }
+            catch
+            {
+                return RedirectToAction(ViewParaListagem);
+            }
         }
 
         //SOBREESCREVER - Não pode validar o login se a pessoa estiver apenas cadastrando 

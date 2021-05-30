@@ -34,9 +34,13 @@
     <input asp-for="IdadeAluno" class="form-control" readonly />
 
     <br />
+    <label for="Sexo" class="control-label">Sexo do Aluno</label>
+    <input asp-for="Sexo" class="form-control" readonly />
+
+    <br />
 
     <label for="Peso" class="control-label">Peso</label>
-    <input asp-for="Peso" class="form-control" placeholder="KG"/>
+    <input asp-for="Peso" class="form-control" placeholder="KG" />
     <span asp-validation-for="Peso" class="text-danger"></span>
 
     <br />
@@ -48,7 +52,7 @@
     <br />
 
     <label for="Pressao" class="control-label">Pressão</label>
-    <input asp-for="Pressao" class="form-control" placeholder="mmHg"/>
+    <input asp-for="Pressao" class="form-control" placeholder="mmHg" />
     <span asp-validation-for="Pressao" class="text-danger"></span>
 
     <br />
@@ -65,6 +69,12 @@
     <label for="DoencaFamilia" class="control-label">Doenças na Família</label>
     <select asp-for="DoencaFamilia" asp-items="@ViewBag.DoencaFamilia" class="form-control"></select>
     <span asp-validation-for="DoencaFamilia" class="text-danger"></span>
+
+    <br />
+    <label for="Risco" class="control-label">Risco Cardíaco</label>
+    <input asp-for="Risco" class="form-control" readonly />
+
+
 
     <br />
     <br />
