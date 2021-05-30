@@ -32,10 +32,10 @@ namespace N2_2BIM.Controllers
 
             try
             {
-                const int itensPorPagina = 5;
                 int numeroPagina = (pagina ?? 1);
 
-                var lista = DAO.ConsultaDiferenciada(id,procedure);
+                //var lista = DAO.ConsultaDiferenciada(id,procedure);
+                var lista = DAO.Listagem();
                 lista = PreparaNomesParaLista(lista);
                 return View(ViewParaListagem, lista.ToPagedList(numeroPagina, itensPorPagina));
             }
@@ -119,7 +119,8 @@ namespace N2_2BIM.Controllers
             ViewBag.Alunos = new List<SelectListItem>();
             ViewBag.Alunos.Add(new SelectListItem("Selecione um aluno...", "0"));
 
-            foreach (var ex in daoAlunos.ConsultaAlunoPorInstrutor(id))
+            //foreach (var ex in daoAlunos.ConsultaDiferenciada(id, "spConsultaAluno")
+            foreach (var ex in daoAlunos.Listagem())
             {
                 var elemento = new SelectListItem(ex.Nome, ex.Id.ToString());
                 ViewBag.Alunos.Add(elemento);

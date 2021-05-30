@@ -5,38 +5,65 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Listagem de alunos</h1>
+<h1>Alunos Cadastrados</h1>
+
+<div class="filtro">
+    Filtro <br />
+    <br />
+
+    <div class="row">
+        <div class="col-2">
+            Nome do aluno <br />
+            <input type="text" id="nomeAluno" class="form-control" />
+        </div>
+
+        <div class="col-2">
+            RA do aluno <br />
+            <input type="text" id="raAluno" class="form-control" />
+        </div>
+
+        <div class="col-2">
+            <br />
+            <input type="button" onclick="efetuaFiltroAluno()" class="btn btn-success" value="Aplicar" />
+            &nbsp;
+            <img src="~/images/wait.gif" width="50" id="imgWait" style="display:none" />
+        </div>
+    </div>
+</div>
+
+@*------------------------------------------------------------------------------------------------------------------*@
 
 <a href="/aluno/create">Novo Registro</a>
 <br />
 
-<table class="table table-responsive table-striped">
-    <tr>
-        <td>Ações</td>
-        <td>Anamnese</td>
-        <td>Risco Cardiaco</td>
-        <td>Código</td>
-        <td>Nome</td>
-        <td>Telefone</td>
-        <td>Data de nascimento</td>
-    </tr>
-
-    @foreach (AlunoViewModel aluno in Model)
-    {
+<div id="conteudoGrid">
+    <table class="table table-responsive table-striped">
         <tr>
-            <td>
-                <a href="/Aluno/Edit?id=@aluno.Id">Editar</a> &nbsp;&nbsp;
-                <a href="javascript:apagar(@aluno.Id, 'Aluno')">Apagar</a>
-            </td>
-            <td><a href="/Anamnese/Create?id=@aluno.Id">Avaliar</a> &nbsp;&nbsp;</td>
-            <td><a href="/RiscoCardiaco/Create?id=@aluno.Id">Avaliar</a></td>
-            <td>@aluno.Id</td>
-            <td>@aluno.Nome</td>
-            <td>@aluno.Telefone </td>
-            <td>@aluno.dtNascimento.ToShortDateString()</td>
+            <td>Ações</td>
+            <td>Anamnese</td>
+            <td>Risco Cardiaco</td>
+            <td>Código</td>
+            <td>Nome</td>
+            <td>Telefone</td>
+            <td>Data de nascimento</td>
         </tr>
-    }
-</table>
 
+        @foreach (AlunoViewModel aluno in Model)
+        {
+            <tr>
+                <td>
+                    <a href="/Aluno/Edit?id=@aluno.Id">Editar</a> &nbsp;&nbsp;
+                    <a href="javascript:apagar(@aluno.Id, 'Aluno')">Apagar</a>
+                </td>
+                <td><a href="/Anamnese/Create?id=@aluno.Id">Avaliar</a> &nbsp;&nbsp;</td>
+                <td><a href="/RiscoCardiaco/Create?id=@aluno.Id">Avaliar</a></td>
+                <td>@aluno.Id</td>
+                <td>@aluno.Nome</td>
+                <td>@aluno.Telefone </td>
+                <td>@aluno.dtNascimento.ToShortDateString()</td>
+            </tr>
+        }
+    </table>
 
-@Html.PagedListPager(Model, pagina => Url.Action("Index", new { pagina }))
+    @Html.PagedListPager(Model, pagina => Url.Action("Index", new { pagina }))
+</div>

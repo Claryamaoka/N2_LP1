@@ -26,3 +26,30 @@ function apagar(id,controller) {
     if (confirm('Confirma a exclusão do registro?'))
         location.href = '/' + controller + '/Delete?id=' + id;
 }
+
+
+function efetuaFiltroAluno() {
+	var nomeAluno = $("#nomeAluno").val();
+	var raAluno = $("#raAluno").val();
+
+	$.ajax({
+		url: "/aluno/FazConsultaAjax?nomeAluno=" + nomeAluno +
+			"&raAluno=" + raAluno,
+
+		cache: false,
+		beforeSend: function () {
+			$("#imgWait").show();
+		},
+		success: function (dados) {
+			$("#imgWait").hide();
+			if (dados.erro != undefined)  // quando o CEP não existe...
+			{
+				alert('Ocorreu um erro ao processar a sua requisição. Tente novamente mais tarde..');
+			}
+			else // quando o CEP existe			   
+			{
+				$("#conteudoGrid").html(dados);
+			}
+		}
+	});
+}

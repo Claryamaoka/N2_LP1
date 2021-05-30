@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using N2_2BIM.DAO;
 using N2_2BIM.Models;
 using X.PagedList;
+using System.Threading;
 
 namespace N2_2BIM.Controllers
 {
@@ -75,13 +76,13 @@ namespace N2_2BIM.Controllers
             try
             {
                 int id = (int)HttpContext.Session.GetInt32("IdUsuario");
-                const int itensPorPagina = 5;
                 int numeroPagina = (pagina ?? 1);
 
                 //Responsável por listar apenas os alunos daquele instrutor
                 if (HttpContext.Session.GetString("TipoUsuario") == "I")
                 {
-                    var lista = DAO.ConsultaDiferenciada(id,"spConsultaAluno");
+                    //var lista = DAO.ConsultaDiferenciada(id,"spConsultaAluno");
+                    var lista = DAO.Listagem();
                     return View(ViewParaListagem, lista.ToPagedList(numeroPagina, itensPorPagina));
                 }
                 else
@@ -143,5 +144,21 @@ namespace N2_2BIM.Controllers
             if(operacao == "A" && string.IsNullOrEmpty(model.Senha))
                 ModelState.AddModelError("Senha", "Preencha este campo");
         }
+
+        //public IActionResult FazConsultaAjax(string nomeAluno,int raAluno)
+        //{
+        //    try
+        //    {
+        //        Thread.Sleep(1000); // para dar tempo de ver o gif na tela..rs
+        //        if (nomeAluno == null)
+        //            nomeAluno = "";
+        //        var lista = (DAO as AlunoDAO).ListagemComFiltro(nomeAluno, raAluno); // retorna todos os registro
+        //        return PartialView("pvGrid", lista.ToPagedList(1, itensPorPagina));
+        //    }
+        //    catch
+        //    {
+        //        return Json(new { erro = true });
+        //    }
+        //}
     }
 }

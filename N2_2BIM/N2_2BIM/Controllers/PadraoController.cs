@@ -17,6 +17,8 @@ namespace N2_2BIM.Controllers
         protected PadraoDAO<T> DAO { get; set; }
         protected bool SugereProximoId { get; set; }
 
+        public const int itensPorPagina = 5;
+
         protected string ViewParaListagem { get; set; } = "Index";
         protected string ViewParaCadastro { get; set; } = "Form";
 
@@ -24,7 +26,6 @@ namespace N2_2BIM.Controllers
         {
             try
             {
-                const int itensPorPagina = 5;
                 int numeroPagina = (pagina ?? 1);
 
                 var lista = DAO.Listagem();

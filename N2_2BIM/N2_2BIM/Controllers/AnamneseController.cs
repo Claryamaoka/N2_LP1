@@ -26,10 +26,10 @@ namespace N2_2BIM.Controllers
 
             try
             {
-                const int itensPorPagina = 5;
                 int numeroPagina = (pagina ?? 1);
 
-                var lista = DAO.ConsultaDiferenciada(id, procedure);
+                //var lista = DAO.ConsultaDiferenciada(id, procedure);
+                var lista = DAO.Listagem();
                 lista = PreparaNomeAlunoLista(lista);
                 return View(ViewParaListagem, lista.ToPagedList(numeroPagina, itensPorPagina));
             }
@@ -89,6 +89,11 @@ namespace N2_2BIM.Controllers
             if (string.IsNullOrEmpty(model.Elasticidade))
                 ModelState.AddModelError("Elasticidade", "Preencha este campo");
 
+        }
+
+        public IActionResult Print(int id)
+        {
+            return View("Print", id);
         }
     }
 }
