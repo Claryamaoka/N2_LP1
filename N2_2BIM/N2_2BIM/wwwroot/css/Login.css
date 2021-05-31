@@ -1,22 +1,18 @@
 ﻿:root{
-    --colorBG : grey;
+    --colorBG : black;
 }
 
 body {
-    background-color: var(--colorBG);
     background-image: url(/images/academia.jpg);
     background-repeat:no-repeat;
     background-position:center center;
-    background-size: auto;
-   
+    background-size: cover;
 }
 
 #login {
     width: 40%;
-    margin-top: 18%;
-    margin-bottom: 15%;
-    margin-left: 40%;
-    float:right;
+    margin: auto;
+    margin-top: 7%;
     border: 7px solid white;
     border-radius: 30px;
     background-color:white;
@@ -27,14 +23,17 @@ body {
     margin-left: 80px;
     font-size: 20px;
     font-weight: 300;
-    color: black;
+}
+
+#btnLogin{
+    color:white;
 }
 
 h2{
     margin:20px;
     font-size:50px;
     font-weight:300;
-    margin-left:140px;
+    margin-left:150px;
 
 }
 
@@ -50,3 +49,5 @@ a {
     border-radius: 10px;
     border-color: transparent;
 }
+
+

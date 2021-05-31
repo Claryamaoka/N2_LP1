@@ -4,143 +4,174 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Cadastro de Instrutor</h1>
-<hr />
+<head>
+    <link rel="stylesheet"  href="~/css/CadastroInstrutores.css"/>
+</head>
+
+<body>
+
+    <div id="cadastro">
+
+        <h1>Cadastro de Instrutor</h1>
+
+        <form action="/Instrutor/Salvar" method="post" enctype="multipart/form-data">
+
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
+
+            <div class="divCenter">
+                <label for="Nome" class="control-label">Nome</label>
+                @if (ViewBag.Operacao == "I")
+                {
+                    <input asp-for="Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                }
+                else
+                {
+                    <input asp-for="Nome" readonly class="form-control desabilitado" />
+                }
+            </div>
+
+            <div class="divLeft">
+                <label for="Id" class="control-label">RA</label>
+                @if (ViewBag.Operacao == "I")
+                {
+                    <input asp-for="Id" class="form-control" />
+                    <span asp-validation-for="Id" class="text-danger"></span>
+                }
+                else
+                {
+                    <input asp-for="Id" readonly class="form-control desabilitado" />
+                }
+            </div>
+
+            <div class="divRight">
+                <label for="CPF" class="control-label">CPF</label>
+                @if (ViewBag.Operacao == "I")
+                {
+                    <input asp-for="CPF" class="form-control" />
+                    <span asp-validation-for="CPF" class="text-danger"></span>
+                }
+                else
+                {
+                    <input asp-for="CPF" readonly class="form-control desabilitado" />
+                }
+            </div>
+
+            <br />
+            <div class="divLeft">
+                <label for="dtNascimento" class="control-label">Data de Nascimento</label>
+                @if (ViewBag.Operacao == "I")
+                {
+                    <input asp-for="dtNascimento" class="form-control" type="date" />
+                    <span asp-validation-for="dtNascimento" class="text-danger"></span>
+                }
+                else
+                {
+                    <input asp-for="dtNascimento" class="form-control" type="date" readonly />
+                }
+            </div>
+
+            <br />
+            <div class="divRight">
+                <label for="Sexo" class="control-label">Sexo</label>
+                @if (ViewBag.Operacao == "I")
+                {
+                    <select asp-for="Sexo" asp-items="@ViewBag.Sexo" class="form-control"></select>
+                    <span asp-validation-for="Sexo" class="text-danger"></span>
+                }
+                else
+                {
+                    <select asp-for="Sexo" asp-items="@ViewBag.Sexo" class="form-control" readonly></select>
+                }
+            </div>
+
+
+            <br />
+            <div class="divLeft">
+                <label for="Telefone" class="control-label">Telefone para contato</label>
+                <input asp-for="Telefone" class="form-control" />
+                <span asp-validation-for="Telefone" class="text-danger"></span>
+            </div>
+
+            <br />
+            <div class="divRight">
+                <label for="CEP" class="control-label">CEP</label>
+                <input id="CEP" asp-for="CEP" class="form-control" />
+                <span asp-validation-for="CEP" class="text-danger"></span>
+            </div>
+
+            <br />
+            <div class="divLeft">
+                <label for="Bairro" class="control-label">Bairro</label>
+                <input id="Bairro" asp-for="Bairro" class="form-control" />
+                <span asp-validation-for="Bairro" class="text-danger"></span>
+            </div>
+
+            <br />
+            <div class="divRight">
+                <label for="Rua" class="control-label">Rua</label>
+                <input id="Rua" asp-for="Rua" class="form-control" />
+                <span asp-validation-for="Rua" class="text-danger"></span>
+            </div>
+
+            <br />
+            <div class="divLeft">
+                <label for="Numero" class="control-label">Número</label>
+                <input id="Numero" asp-for="Numero" class="form-control" />
+                <span asp-validation-for="Numero" class="text-danger"></span>
+            </div>
+
+            <br />
+            <label for="Estado" class="control-label">Estado</label>
+            <input id="Estado" asp-for="Estado" class="form-control" />
+            <span asp-validation-for="Estado" class="text-danger"></span>
+
+            <br />
+            <label for="Cidade" class="control-label">Cidade</label>
+            <input id="Cidade" asp-for="Cidade" class="form-control" />
+            <span asp-validation-for="Cidade" class="text-danger"></span>
+
+            <br />
+            <div class="divRight">
+                <label for="Complemento" class="control-label">Complemento</label>
+                <input id="Complemento" asp-for="Complemento" class="form-control" />
+                <span asp-validation-for="Complemento" class="text-danger"></span>
+            </div>
+
+            <div id="divImg" class="form-group">
+                <br />
+                <input type="file" name="Imagem" id="Imagem" onchange="exibirImagem()" class="btn btn-secondary">
+                <img id="imgPreview" src="data:image/jpeg;base64,@Model.ImagemEmBase64" class="img-responsive"
+                     width="200">
+                <span asp-validation-for="Imagem" class="text-danger"></span>
+            </div>
 
 
 
-<form action="/Instrutor/Salvar" method="post" enctype="multipart/form-data">
+            <div class="divCenter">
+                <label for="Senha" class="control-label">Senha</label>
+                <input asp-for="Senha" class="form-control" type="password" />
+                <span asp-validation-for="Senha" class="text-danger"></span>
+            </div>
 
-    <div asp-validation-summary="All" class="text-danger"></div>
-    <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
-
-    <label for="Id" class="control-label">RA</label>
-    @if (ViewBag.Operacao == "I")
-    {
-        <input asp-for="Id" class="form-control" />
-        <span asp-validation-for="Id" class="text-danger"></span>
-    }
-    else
-    {
-        <input asp-for="Id" readonly class="form-control desabilitado" />
-    }
-
-    <br />
-    <label for="Nome" class="control-label">Nome</label>
-    @if (ViewBag.Operacao == "I")
-    {
-        <input asp-for="Nome" class="form-control" />
-        <span asp-validation-for="Nome" class="text-danger"></span>
-    }
-    else
-    {
-        <input asp-for="Nome" readonly class="form-control desabilitado" />
-    }
-
-    <br />
-    <label for="CPF" class="control-label">CPF</label>
-    @if (ViewBag.Operacao == "I")
-    {
-        <input asp-for="CPF" class="form-control" />
-        <span asp-validation-for="CPF" class="text-danger"></span>
-    }
-    else
-    {
-        <input asp-for="CPF" readonly class="form-control desabilitado" />
-    }
-
-    <br />
-    <label for="dtNascimento" class="control-label">Data de Nascimento</label>
-    @if (ViewBag.Operacao == "I")
-    {
-        <input asp-for="dtNascimento" class="form-control" type="date" />
-        <span asp-validation-for="dtNascimento" class="text-danger"></span>
-    }
-    else
-    {
-        <input asp-for="dtNascimento" class="form-control" type="date" readonly />
-    }
-
-    <br />
-    <label for="Sexo" class="control-label">Sexo</label>
-    @if (ViewBag.Operacao == "I")
-    {
-        <select asp-for="Sexo" asp-items="@ViewBag.Sexo" class="form-control"></select>
-        <span asp-validation-for="Sexo" class="text-danger"></span>
-    }
-    else
-    {
-        <select asp-for="Sexo" asp-items="@ViewBag.Sexo" class="form-control" readonly></select>
-    }
+            <br />
+            <input type="submit" value="Salvar dados" class="btn btn-success" id="btnSalvar" />
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="/Login/Index" class="btn btn-secondary" id="btnVoltar">Voltar</a>
 
 
-    <br />
-    <label for="Telefone" class="control-label">Telefone para contato</label>
-    <input asp-for="Telefone" class="form-control" />
-    <span asp-validation-for="Telefone" class="text-danger"></span>
+            <br />
 
-    <br />
-    <label for="CEP" class="control-label">CEP</label>
-    <input id="CEP" asp-for="CEP" class="form-control" />
-    <span asp-validation-for="CEP" class="text-danger"></span>
+            <span class="text-danger">@ViewBag.Erro</span>
 
-    <br />
-    <label for="Bairro" class="control-label">Bairro</label>
-    <input id="Bairro" asp-for="Bairro" class="form-control" />
-    <span asp-validation-for="Bairro" class="text-danger"></span>
 
-    <br />
-    <label for="Rua" class="control-label">Rua</label>
-    <input id="Rua" asp-for="Rua" class="form-control" />
-    <span asp-validation-for="Rua" class="text-danger"></span>
 
-    <br />
-    <label for="Numero" class="control-label">Número</label>
-    <input id="Numero" asp-for="Numero" class="form-control" />
-    <span asp-validation-for="Numero" class="text-danger"></span>
+        </form>
 
-    <br />
-    <label for="Estado" class="control-label">Estado</label>
-    <input id="Estado" asp-for="Estado" class="form-control" />
-    <span asp-validation-for="Estado" class="text-danger"></span>
-
-    <br />
-    <label for="Cidade" class="control-label">Cidade</label>
-    <input id="Cidade" asp-for="Cidade" class="form-control" />
-    <span asp-validation-for="Cidade" class="text-danger"></span>
-
-    <br />
-    <label for="Complemento" class="control-label">Complemento</label>
-    <input id="Complemento" asp-for="Complemento" class="form-control" />
-    <span asp-validation-for="Complemento" class="text-danger"></span>
-
-    <div class="form-group">
-        <br />
-        <input type="file" name="Imagem" id="Imagem" onchange="exibirImagem()" class="btn btn-secondary">
-        <img id="imgPreview" src="data:image/jpeg;base64,@Model.ImagemEmBase64" class="img-responsive"
-             width="200">
-        <span asp-validation-for="Imagem" class="text-danger"></span>
     </div>
-
-    <br />
-    <label for="Senha" class="control-label">Senha</label>
-    <input asp-for="Senha" class="form-control" type="password" />
-    <span asp-validation-for="Senha" class="text-danger"></span>
-
-    <br />
-    <br />
-    <input type="submit" value="Salvar dados" class="btn btn-success" />
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="/Login/Index" class="btn btn-secondary">Voltar</a>
-
-
-    <br />
-
-    <span class="text-danger">@ViewBag.Erro</span>
-
-
-
-</form>
+</body>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
