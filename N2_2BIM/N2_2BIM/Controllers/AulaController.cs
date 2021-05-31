@@ -28,7 +28,7 @@ namespace N2_2BIM.Controllers
             string procedure = "spListaAulas";
             string aux;
             if (HttpContext.Session.GetString("TipoUsuario") == "I")
-                aux = "1";
+                aux = null;
             else
                 aux = "0";
 
