@@ -8,6 +8,7 @@ using N2_2BIM.DAO;
 using N2_2BIM.Models;
 using Microsoft.AspNetCore.Http;
 using X.PagedList;
+using System.Threading;
 
 namespace N2_2BIM.Controllers
 {
@@ -24,18 +25,18 @@ namespace N2_2BIM.Controllers
         public override IActionResult Index(int? pagina = null)
         {
             int id = (int)HttpContext.Session.GetInt32("IdUsuario");
-            string procedure = "";
+            string procedure = "spListaAulas";
+            string aux;
             if (HttpContext.Session.GetString("TipoUsuario") == "I")
-                procedure = "spConsultaAulaInstrutor";
+                aux = "1";
             else
-                procedure = "spConsultaAulaAluno";
+                aux = "0";
 
             try
             {
                 int numeroPagina = (pagina ?? 1);
 
-                //var lista = DAO.ConsultaDiferenciada(id,procedure);
-                var lista = DAO.Listagem();
+                var lista = DAO.ConsultaDiferenciada(id,aux,null,procedure);
                 lista = PreparaNomesParaLista(lista);
                 return View(ViewParaListagem, lista.ToPagedList(numeroPagina, itensPorPagina));
             }
@@ -137,6 +138,40 @@ namespace N2_2BIM.Controllers
             if (model.dataAula < DateTime.Now || model.dataAula == null)
                 ModelState.AddModelError("dataAula", "Preencha este campo com uma data válida");
 
+        }
+
+        public IActionResult FazConsultaAjax(string nomeAlunoAula, DateTime dataAula)
+        {
+            try
+            {
+                Thread.Sleep(1000); // para dar tempo de ver o gif na tela..rs
+                if (nomeAlunoAula == null)
+                    nomeAlunoAula = "";
+
+                int id = (int)HttpContext.Session.GetInt32("IdUsuario");
+
+                string aux;
+                if (HttpContext.Session.GetString("TipoUsuario") == "I")
+                    aux = "nomeAlunoAula";
+                else
+                    aux = "0";
+
+                string obj;
+                if (dataAula.ToShortDateString() == "01/01/0001")
+                    obj = null;
+                else
+                    obj = dataAula.ToShortDateString();
+
+
+                string procedure = "spListaAulas";
+
+                var lista = (DAO as AulaDAO).ConsultaDiferenciada(id, aux, obj, procedure); // retorna todos os registro
+                return PartialView("pvGrid", lista.ToPagedList(1, itensPorPagina));
+            }
+            catch
+            {
+                return Json(new { erro = true });
+            }
         }
     }
 }

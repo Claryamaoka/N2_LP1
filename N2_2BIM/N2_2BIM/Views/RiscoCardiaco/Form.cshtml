@@ -45,6 +45,12 @@
 
     <br />
 
+    <label for="Altura" class="control-label">Altura</label>
+    <input asp-for="Altura" class="form-control" placeholder="M" />
+    <span asp-validation-for="Altura" class="text-danger"></span>
+
+    <br />
+
     <label for="Colesterol" class="control-label">Colesterol</label>
     <input asp-for="Colesterol" class="form-control" />
     <span asp-validation-for="Colesterol" class="text-danger"></span>
@@ -74,7 +80,9 @@
     <label for="Risco" class="control-label">Risco Cardíaco</label>
     <input asp-for="Risco" class="form-control" readonly />
 
-
+    <br />
+    <label for="IMC" class="control-label">IMC</label>
+    <input asp-for="IMC" class="form-control" readonly />
 
     <br />
     <br />

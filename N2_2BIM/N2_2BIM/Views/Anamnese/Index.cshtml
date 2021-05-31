@@ -10,35 +10,35 @@
 <a href="/Home/Index">Voltar</a>
 <br />
 
-@*Colocar Filtro RA aluno e Data*@
+<div class="filtro">
+    Filtro <br />
+    <br />
 
-<table class="table table-responsive table-striped">
-    <tr>
-        <td>Ações</td>
-        <td>Código</td>
-        <td>Aluno</td>
-        <td>Data</td>
-        <td>Peso</td>
-        <td>Altura</td>
-        <td>Elasticidade</td>
-    </tr>
+    <div class="row">
+        <div class="col-2">
+            Id do aluno <br />
+            <input type="text" id="idAluno" class="form-control" />
+        </div>
 
-    @foreach (AnamneseViewModel a in Model)
-    {
-        <tr>
-            <td>
-                <a href="/Anamnese/Print?id=@a.Id">Imprimir</a> &nbsp;&nbsp;
-            </td>
-            <td>@a.Id</td>
-            <td>@a.IdAluno - @a.NomeAluno</td>
-            <td>@a.DataAvaliacao.ToShortDateString()</td>
-            <td>@a.Peso kg</td>
-            <td>@a.Altura m</td>
-            <td>@a.Elasticidade</td>
-        </tr>
+        <div class="col-2">
+            Data da Avaliação <br />
+            <input type="date" id="dataAvaliacao" class="form-control" />
+        </div>
+
+        <div class="col-2">
+            <br />
+            <input type="button" onclick="efetuaFiltroAnamnese()" class="btn btn-success" value="Aplicar" />
+            &nbsp;
+            <img src="~/images/wait.gif" width="50" id="imgWait" style="display:none" />
+        </div>
+    </div>
+</div>
+
+@*-------------------------------------------------------------------------------------------------*@
+
+<div id="conteudoGrid">
+    @{
+        Html.RenderPartial("pvGrid", Model);
     }
-</table>
-
-
-@Html.PagedListPager(Model, pagina => Url.Action("Index", new { pagina }))
+</div>
 

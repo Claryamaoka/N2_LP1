@@ -1,49 +1,49 @@
 ﻿@model X.PagedList.IPagedList<AulaViewModel>
-    @using X.PagedList.Mvc.Core;
-    @{
-        ViewData["Title"] = "Index";
-        Layout = "~/Views/Shared/_Layout.cshtml";
-    }
+@using X.PagedList.Mvc.Core;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-    @*TELA DE LISTAGEM DE AULAS*@
+@*TELA DE LISTAGEM DE AULAS*@
 
-    <h1>Listagem de Aulas</h1>
+<h1>Listagem de Aulas</h1>
 
-    <a href="/Aula/create">Nova Aula</a>
+<a href="/Home/Index">Voltar</a>
+<br />
+
+<div class="filtro">
+    Filtro <br />
     <br />
 
-    @*Opção de filtro de data e aluno *@
+    <div class="row">
+        <div class="col-2">
+            Nome do aluno <br />
+            <input type="text" id="nomeAlunoAula" class="form-control" />
+        </div>
 
-    <table class="table table-responsive table-striped">
-        <tr>
-            <td>Ações</td>
-            <td>Código</td>
-            <td>Data da Aula</td>
-            <td>Aluno</td>
-            <td>Exercício 1</td>
-            <td>Exercício 2</td>
-            <td>Exercício 3</td>
+        <div class="col-2">
+            Data da Aula <br />
+            <input type="date" id="dataAula" class="form-control" />
+        </div>
 
-        </tr>
+        <div class="col-2">
+            <br />
+            <input type="button" onclick="efetuaFiltroAula()" class="btn btn-success" value="Aplicar" />
+            &nbsp;
+            <img src="~/images/wait.gif" width="50" id="imgWait" style="display:none" />
+        </div>
+    </div>
+</div>
 
-        @foreach (AulaViewModel ex in Model)
-        {
-            <tr>
-                <td>
-                    <a href="/Aula/Edit?id=@ex.Id">Editar</a> &nbsp;&nbsp;
-                    <a href="javascript:apagar(@ex.Id, 'Aula')">Apagar</a>
-                </td>
-                <td>@ex.Id</td>
-                <td>@ex.dataAula.ToShortDateString()</td>
-                <td>@ex.IdAluno - @ex.NomeAluno</td>
-                <td>@ex.Ex1 - @ex.NomeExercicio1</td>
-                <td>@ex.Ex2 - @ex.NomeExercicio2</td>
-                <td>@ex.Ex3 - @ex.NomeExercicio3</td>
+@*----------------------------------------------------------------------------------------------------------------------*@
 
-            </tr>
-        }
-
-    </table>
+<a href="/Aula/create">Nova Aula</a>
+<br />
 
 
-    @Html.PagedListPager(Model, pagina => Url.Action("Index", new { pagina }))
+<div id="conteudoGrid">
+    @{
+        Html.RenderPartial("pvGrid", Model);
+    }
+</div>

@@ -1,0 +1,32 @@
+﻿@model X.PagedList.IPagedList<AnamneseViewModel>
+@using X.PagedList.Mvc.Core;
+
+<table class="table table-responsive table-striped">
+    <tr>
+        <td>Ações</td>
+        <td>Código</td>
+        <td>Aluno</td>
+        <td>Data</td>
+        <td>Peso</td>
+        <td>Altura</td>
+        <td>Elasticidade</td>
+    </tr>
+
+    @foreach (AnamneseViewModel a in Model)
+    {
+        <tr>
+            <td>
+                <a href="/Anamnese/Print?id=@a.Id">Imprimir</a> &nbsp;&nbsp;
+            </td>
+            <td>@a.Id</td>
+            <td>@a.IdAluno - @a.NomeAluno</td>
+            <td>@a.DataAvaliacao.ToShortDateString()</td>
+            <td>@a.Peso kg</td>
+            <td>@a.Altura m</td>
+            <td>@a.Elasticidade</td>
+        </tr>
+    }
+</table>
+
+
+@Html.PagedListPager(Model, pagina => Url.Action("Index", new { pagina }))
