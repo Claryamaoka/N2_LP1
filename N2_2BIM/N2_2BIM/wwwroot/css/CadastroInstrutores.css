@@ -1,0 +1,70 @@
+﻿body {
+    background-image: url(/images/academia.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    font-weight:300;
+    font-size:20px;
+}
+
+h1 {
+    font-weight: 300;
+    font-size: 60px;
+    margin: auto;
+    width: 55%;
+    padding-bottom: 2%;
+}
+
+#cadastro {
+    width: 100%;
+    margin: auto;
+    margin-top: 5%;
+    border: 7px solid white;
+    border-radius: 30px;
+    background-color: white;
+    padding:5%;
+}
+
+.divLeft{
+    float:left;
+}
+
+.divRight{
+    float:right;
+}
+
+.divCenter{
+    margin:2%;
+}
+
+.divLeft, .divRight {
+    width: 45%;
+    margin: 2%;
+}
+
+#Imagem {
+    margin-top: 4%;
+    margin-bottom: 4%;
+    margin-left: 2%;
+    background-color: black;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+#btnVoltar {
+    background-color: white;
+    color: black;
+    float: right;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+#btnSalvar {
+    background-color: black;
+    float: right;
+    border-color: black;
+    margin-left: 2%;
+    margin-right:2%;
+    font-size: 20px;
+    font-weight: 300;
+}
