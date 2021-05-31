@@ -132,24 +132,31 @@ namespace N2_2BIM.Controllers
 
         public IActionResult CalculaRiscoCardiaco(RiscoCardiacoViewModel model)
         {
-            model.IMC = CalculaIMC(model.Peso, model.Altura).ToString();
-            int soma = 0;
-            soma += VerificaIdade(model.IdadeAluno);
-            soma += somaPeso;
-            soma += CalculaPressao(model.Pressao);
-            soma += CalculaColesterol(model.Colesterol);
-            soma += CalculaAtividade(model.Atividade);
-            soma += CalculaFumo(model.Fumo);
-            soma += CalculaDoenca(model.DoencaFamilia);
-            soma += CalculaSexo(model.Sexo, model.IdadeAluno);
+            ValidaDados(model, "I");
+            if (ModelState.IsValid == false)
+            {
+                return View(ViewParaCadastro, model);
+            }
+            else
+            {
+                model.IMC = CalculaIMC(model.Peso, model.Altura).ToString();
+                int soma = 0;
+                soma += VerificaIdade(model.IdadeAluno);
+                soma += somaPeso;
+                soma += CalculaPressao(model.Pressao);
+                soma += CalculaColesterol(model.Colesterol);
+                soma += CalculaAtividade(model.Atividade);
+                soma += CalculaFumo(model.Fumo);
+                soma += CalculaDoenca(model.DoencaFamilia);
+                soma += CalculaSexo(model.Sexo, model.IdadeAluno);
 
-            model.Resultado = CalculaResultado(soma);
+                model.Resultado = CalculaResultado(soma);
 
-            PreparaComboFumo();
-            PreparaComboAtividade();
-            PreparaComboDoencaFamilia();
-            return View(ViewParaCadastro, model);
-
+                PreparaComboFumo();
+                PreparaComboAtividade();
+                PreparaComboDoencaFamilia();
+                return View(ViewParaCadastro, model);
+            }
         }
 
         public int VerificaIdade(int idade)
