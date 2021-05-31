@@ -159,8 +159,18 @@ namespace N2_2BIM.Controllers
                 PreparaComboAtividade();
                 PreparaComboDoencaFamilia();
 
-                return View(ViewParaCadastro, m);
+                //return View(ViewParaCadastro, model);
+
+                return RedirectToAction("RetornaTela", model);
             }
+        }
+
+        public IActionResult RetornaTela(RiscoCardiacoViewModel model)
+        {
+            ViewBag.Operacao = "I";
+            _alunoId = model.IdAluno;
+            PreencheDadosParaView("I", model);
+            return View(ViewParaCadastro, model);
         }
 
         public int VerificaIdade(int idade)
@@ -196,6 +206,8 @@ namespace N2_2BIM.Controllers
         public string CalculaIMC(double peso, double altura)
         {
             double imc = peso / (altura * altura);
+
+            imc = Math.Round(imc, 2);
 
             if (imc <= 16.9)
             {
