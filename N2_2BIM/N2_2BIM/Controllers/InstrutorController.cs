@@ -78,7 +78,7 @@ namespace N2_2BIM.Controllers
                 ModelState.AddModelError("Telefone", "Preencha este campo");
 
             if (model.dtNascimento > DateTime.Now || model.dtNascimento.Year == DateTime.Now.Year)
-                ModelState.AddModelError("dtNascimento", "Preencha este campo");
+                ModelState.AddModelError("dtNascimento", "Preencha este campo corretamente");
             if (char.IsWhiteSpace(model.Sexo) || model.Sexo == '0')
                 ModelState.AddModelError("Sexo", "Preencha este campo");
 
