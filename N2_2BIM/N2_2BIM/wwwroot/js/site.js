@@ -80,6 +80,36 @@ function efetuaFiltroAula() {
 	});
 }
 
+
+function calculoRiscoCardiaco() {
+	var nomeAluno = $("#nomeAlunoAula").val();
+	var dataAula = $("#dataAula").val();
+
+	$.ajax({
+		url: "/RiscoCardiaco/CalculaCardiaco?nomeAlunoAula=" + nomeAluno +
+			"&dataNascimento=" + dataAula,
+
+		cache: false,
+		beforeSend: function () {
+			$("#imgWait").show();
+		},
+		success: function (dados) {
+			$("#imgWait").hide();
+			if (dados.erro != undefined)  // quando o CEP não existe...
+			{
+				alert('Ocorreu um erro ao processar a sua requisição. Tente novamente mais tarde..');
+			}
+			else // quando o CEP existe			   
+			{
+				$("#conteudoGrid").html(dados);
+			}
+		}
+	});
+}
+
+
+
+
 function efetuaFiltroAnamnese() {
 	var idAluno = $("#idAluno").val();
 	var dataAvaliacao = $("#dataAvaliacao").val();
