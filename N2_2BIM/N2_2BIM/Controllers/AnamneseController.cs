@@ -7,6 +7,7 @@ using N2_2BIM.DAO;
 using N2_2BIM.Models;
 using Microsoft.AspNetCore.Http;
 using X.PagedList;
+using System.Threading;
 
 namespace N2_2BIM.Controllers
 {
@@ -22,14 +23,14 @@ namespace N2_2BIM.Controllers
         public override IActionResult Index(int? pagina = null)
         {
             int id = (int)HttpContext.Session.GetInt32("IdUsuario");
-            string procedure = "spConsultaAnamneseInstrutor";
+            string procedure = "spListarAnamnese";
 
             try
             {
                 int numeroPagina = (pagina ?? 1);
 
-                //var lista = DAO.ConsultaDiferenciada(id, procedure);
-                var lista = DAO.Listagem();
+                var lista = DAO.ConsultaDiferenciada(id,null,null, procedure);
+
                 lista = PreparaNomeAlunoLista(lista);
                 return View(ViewParaListagem, lista.ToPagedList(numeroPagina, itensPorPagina));
             }
@@ -93,7 +94,35 @@ namespace N2_2BIM.Controllers
 
         public IActionResult Print(int id)
         {
-            return View("Print", id);
+            AnamneseViewModel model = DAO.Consulta(id);
+            return View("Print", model);
+        }
+
+        public IActionResult FazConsultaAjax(string idAluno, DateTime dataAvaliacao)
+        {
+            try
+            {
+                Thread.Sleep(1000); // para dar tempo de ver o gif na tela..rs
+                if (idAluno == null)
+                    idAluno = "";
+
+                int id = (int)HttpContext.Session.GetInt32("IdUsuario");
+
+                string obj;
+                if (dataAvaliacao.ToShortDateString() == "01/01/0001")
+                    obj = null;
+                else
+                    obj = dataAvaliacao.ToShortDateString();
+
+                string procedure = "spListarAnamnese";
+
+                var lista = (DAO as AnamneseDAO).ConsultaDiferenciada(id, idAluno, obj, procedure); // retorna todos os registro
+                return PartialView("pvGrid", lista.ToPagedList(1, itensPorPagina));
+            }
+            catch
+            {
+                return Json(new { erro = true });
+            }
         }
     }
 }

@@ -81,8 +81,7 @@ namespace N2_2BIM.Controllers
                 //Responsável por listar apenas os alunos daquele instrutor
                 if (HttpContext.Session.GetString("TipoUsuario") == "I")
                 {
-                    //var lista = DAO.ConsultaDiferenciada(id,"spConsultaAluno");
-                    var lista = DAO.Listagem();
+                    var lista = DAO.ConsultaDiferenciada(id,null,null, "spListaAlunosInstrutor");
                     return View(ViewParaListagem, lista.ToPagedList(numeroPagina, itensPorPagina));
                 }
                 else
@@ -145,20 +144,28 @@ namespace N2_2BIM.Controllers
                 ModelState.AddModelError("Senha", "Preencha este campo");
         }
 
-        //public IActionResult FazConsultaAjax(string nomeAluno,int raAluno)
-        //{
-        //    try
-        //    {
-        //        Thread.Sleep(1000); // para dar tempo de ver o gif na tela..rs
-        //        if (nomeAluno == null)
-        //            nomeAluno = "";
-        //        var lista = (DAO as AlunoDAO).ListagemComFiltro(nomeAluno, raAluno); // retorna todos os registro
-        //        return PartialView("pvGrid", lista.ToPagedList(1, itensPorPagina));
-        //    }
-        //    catch
-        //    {
-        //        return Json(new { erro = true });
-        //    }
-        //}
+        public IActionResult FazConsultaAjax(string nomeAluno, DateTime dataNascimento)
+        {
+            try
+            {
+                Thread.Sleep(1000); // para dar tempo de ver o gif na tela..rs
+                string aux;
+                if (dataNascimento.ToShortDateString() == "01/01/0001")
+                    aux = null;
+                else
+                    aux = dataNascimento.ToShortDateString();
+
+                int id = (int)HttpContext.Session.GetInt32("IdUsuario");
+
+                string procedure = "spListaAlunosInstrutor";
+
+                var lista = (DAO as AlunoDAO).ConsultaDiferenciada(id, nomeAluno, aux ,procedure); // retorna todos os registro
+                return PartialView("pvGrid", lista.ToPagedList(1, itensPorPagina));
+            }
+            catch
+            {
+                return Json(new { erro = true });
+            }
+        }
     }
 }

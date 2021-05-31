@@ -87,12 +87,24 @@ namespace N2_2BIM.DAO
             return lista;
         }
 
-        public virtual List<T> ConsultaDiferenciada(int id, string filtro1,string filtro2,string nomeSp)
+        public virtual List<T> ConsultaDiferenciada(int id,string filtro1,string filtro2,string nomeSp)
         {
+            object f1, f2;
+            if (filtro1 == null)
+                f1 = DBNull.Value;
+            else
+                f1 = filtro1;
+
+            if (filtro2 == null)
+                f2 = DBNull.Value;
+            else
+                f2 = filtro2;
+
             var p = new SqlParameter[]
             {
                 new SqlParameter("Id", id),
-                new SqlParameter("Filtro1", filtro1)
+                new SqlParameter("Filtro1", f1),
+                new SqlParameter("Filtro2", f2)
             };
             var tabela = HelperDAO.ExecutaProcSelect(nomeSp, p);
             List<T> lista = new List<T>();

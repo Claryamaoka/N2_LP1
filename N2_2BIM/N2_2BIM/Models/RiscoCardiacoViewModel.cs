@@ -7,6 +7,7 @@ namespace N2_2BIM.Models
 {
     public class RiscoCardiacoViewModel: PadraoViewModel
     {
+        public double Altura { get; set; }
         public double Peso { get; set; }
         public double Pressao { get; set; }
         public double Colesterol { get; set; }
@@ -17,6 +18,7 @@ namespace N2_2BIM.Models
         public int IdAluno { get; set; }
         public int IdadeAluno { get; set; }
         public string Sexo { get; set; }
+        public string IMC { get; set; }
         public string Risco { get; set; }
         public string Resultado { get; set; }
     }

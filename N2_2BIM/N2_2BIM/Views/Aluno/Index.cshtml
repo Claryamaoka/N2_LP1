@@ -18,8 +18,8 @@
         </div>
 
         <div class="col-2">
-            RA do aluno <br />
-            <input type="text" id="raAluno" class="form-control" />
+            Data de Nascimento <br />
+            <input type="date" id="dataNascimento" class="form-control" />
         </div>
 
         <div class="col-2">
@@ -37,33 +37,8 @@
 <br />
 
 <div id="conteudoGrid">
-    <table class="table table-responsive table-striped">
-        <tr>
-            <td>Ações</td>
-            <td>Anamnese</td>
-            <td>Risco Cardiaco</td>
-            <td>Código</td>
-            <td>Nome</td>
-            <td>Telefone</td>
-            <td>Data de nascimento</td>
-        </tr>
-
-        @foreach (AlunoViewModel aluno in Model)
-        {
-            <tr>
-                <td>
-                    <a href="/Aluno/Edit?id=@aluno.Id">Editar</a> &nbsp;&nbsp;
-                    <a href="javascript:apagar(@aluno.Id, 'Aluno')">Apagar</a>
-                </td>
-                <td><a href="/Anamnese/Create?id=@aluno.Id">Avaliar</a> &nbsp;&nbsp;</td>
-                <td><a href="/RiscoCardiaco/Create?id=@aluno.Id">Avaliar</a></td>
-                <td>@aluno.Id</td>
-                <td>@aluno.Nome</td>
-                <td>@aluno.Telefone </td>
-                <td>@aluno.dtNascimento.ToShortDateString()</td>
-            </tr>
-        }
-    </table>
-
-    @Html.PagedListPager(Model, pagina => Url.Action("Index", new { pagina }))
+    @{
+        Html.RenderPartial("pvGrid", Model);
+    }
 </div>
+
