@@ -95,6 +95,11 @@ namespace N2_2BIM.Controllers
         public IActionResult Print(int id)
         {
             AnamneseViewModel model = DAO.Consulta(id);
+            AlunoDAO a = new AlunoDAO();
+            AlunoViewModel aluno = new AlunoViewModel();
+            aluno = a.Consulta(model.IdAluno);
+            model.NomeAluno = aluno.Nome;
+            
             return View("Print", model);
         }
 
