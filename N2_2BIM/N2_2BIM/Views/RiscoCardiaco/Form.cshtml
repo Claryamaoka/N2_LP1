@@ -6,6 +6,7 @@
 
 <h1>Risco Cardiaco</h1>
 <hr />
+<body onload="validaResultados()">
 <form action="/RiscoCardiaco/Salvar" method="post">
 
     <div asp-validation-summary="All" class="text-danger"></div>
@@ -78,15 +79,15 @@
 
     <br />
     <label for="Resultado" class="control-label">Risco Cardíaco</label>
-    <input asp-for="Resultado" class="form-control" readonly />
+    <input id="Resultado" asp-for="Resultado" class="form-control" readonly />
 
     <br />
     <label for="IMC" class="control-label">IMC</label>
-    <input asp-for="IMC" class="form-control" readonly />
+    <input id="IMC" asp-for="IMC" class="form-control" readonly />
 
     <br />
     <br />
-    <input type="submit" value="Salvar dados" class="btn btn-success" />
+    <input id="btnSalvar" type="submit" value="Salvar dados" class="btn btn-success" disabled="true"/>
 
     <input asp-action="CalculaRiscoCardiaco" type="submit" value="Calcula Risco Cardiaco" class="btn btn-success" />
 
@@ -96,3 +97,4 @@
     <span class="text-danger">@ViewBag.Erro</span>
 
 </form>
+</body>

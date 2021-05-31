@@ -107,9 +107,6 @@ function calculoRiscoCardiaco() {
 	});
 }
 
-
-
-
 function efetuaFiltroAnamnese() {
 	var idAluno = $("#idAluno").val();
 	var dataAvaliacao = $("#dataAvaliacao").val();
@@ -134,4 +131,12 @@ function efetuaFiltroAnamnese() {
 			}
 		}
 	});
+}
+
+function validaResultados() {
+	if (document.getElementById('IMC').value != null && document.getElementById('Resultado').value != "") {
+		{
+			document.getElementById('btnSalvar').disabled = false;
+		}
+    }
 }
