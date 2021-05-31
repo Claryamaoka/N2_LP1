@@ -130,7 +130,7 @@ namespace N2_2BIM.Controllers
 
         }
 
-        public void CalculaRiscoCardiaco(RiscoCardiacoViewModel model)
+        public IActionResult CalculaRiscoCardiaco(RiscoCardiacoViewModel model)
         {
             model.IMC = CalculaIMC(model.Peso, model.Altura).ToString();
             int soma = 0;
@@ -143,7 +143,12 @@ namespace N2_2BIM.Controllers
             soma += CalculaDoenca(model.DoencaFamilia);
             soma += CalculaSexo(model.Sexo, model.IdadeAluno);
 
-            string resultado = CalculaResultado(soma);
+            model.Resultado = CalculaResultado(soma);
+
+            PreparaComboFumo();
+            PreparaComboAtividade();
+            PreparaComboDoencaFamilia();
+            return RedirectToAction(ViewParaCadastro, model);
 
         }
 

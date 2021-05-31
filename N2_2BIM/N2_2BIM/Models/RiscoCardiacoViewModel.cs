@@ -19,7 +19,6 @@ namespace N2_2BIM.Models
         public int IdadeAluno { get; set; }
         public string Sexo { get; set; }
         public string IMC { get; set; }
-        public string Risco { get; set; }
         public string Resultado { get; set; }
     }
 }
