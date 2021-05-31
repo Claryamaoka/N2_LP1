@@ -152,7 +152,7 @@ namespace N2_2BIM.Controllers
 
                 string aux;
                 if (HttpContext.Session.GetString("TipoUsuario") == "I")
-                    aux = "nomeAlunoAula";
+                    aux = nomeAlunoAula;
                 else
                     aux = "0";
 
