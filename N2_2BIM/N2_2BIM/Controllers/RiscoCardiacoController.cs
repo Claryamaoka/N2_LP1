@@ -148,7 +148,7 @@ namespace N2_2BIM.Controllers
             PreparaComboFumo();
             PreparaComboAtividade();
             PreparaComboDoencaFamilia();
-            return RedirectToAction(ViewParaCadastro, model);
+            return View(ViewParaCadastro, model);
 
         }
 
