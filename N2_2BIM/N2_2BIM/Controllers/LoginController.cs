@@ -36,6 +36,7 @@ namespace N2_2BIM.Controllers
             VerificaLogin(l);
             if (ModelState.IsValid == false)//caso exista algum erro no preenchimento 
             {
+                PreencheComboAlunoInstrutor();
                 return RedirectToAction("Index", l);
             }
             else
@@ -55,6 +56,7 @@ namespace N2_2BIM.Controllers
 
                     if (login == null)
                     {
+                        PreencheComboAlunoInstrutor();
                         ViewBag.Erro = "Usuário ou senha inválidos!";
                         return View("Index");
                     }
