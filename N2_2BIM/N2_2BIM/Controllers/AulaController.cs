@@ -166,6 +166,7 @@ namespace N2_2BIM.Controllers
                 string procedure = "spListaAulas";
 
                 var lista = (DAO as AulaDAO).ConsultaDiferenciada(id, aux, obj, procedure); // retorna todos os registro
+                lista = PreparaNomesParaLista(lista);
                 return PartialView("pvGrid", lista.ToPagedList(1, itensPorPagina));
             }
             catch

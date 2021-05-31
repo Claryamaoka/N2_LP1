@@ -117,6 +117,7 @@ namespace N2_2BIM.Controllers
                 string procedure = "spListarAnamnese";
 
                 var lista = (DAO as AnamneseDAO).ConsultaDiferenciada(id, idAluno, obj, procedure); // retorna todos os registro
+                lista = PreparaNomeAlunoLista(lista);
                 return PartialView("pvGrid", lista.ToPagedList(1, itensPorPagina));
             }
             catch
