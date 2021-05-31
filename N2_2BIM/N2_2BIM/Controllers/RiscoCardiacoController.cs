@@ -135,6 +135,9 @@ namespace N2_2BIM.Controllers
             ValidaDados(model, "I");
             if (ModelState.IsValid == false)
             {
+                PreparaComboFumo();
+                PreparaComboAtividade();
+                PreparaComboDoencaFamilia();
                 return View(ViewParaCadastro, model);
             }
             else
@@ -155,7 +158,8 @@ namespace N2_2BIM.Controllers
                 PreparaComboFumo();
                 PreparaComboAtividade();
                 PreparaComboDoencaFamilia();
-                return View(ViewParaCadastro, model);
+
+                return View(ViewParaCadastro, m);
             }
         }
 
