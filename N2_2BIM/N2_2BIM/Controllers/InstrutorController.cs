@@ -86,6 +86,10 @@ namespace N2_2BIM.Controllers
                 ModelState.AddModelError("Rua", "Preencha este campo");
             if (string.IsNullOrEmpty(model.Bairro))
                 ModelState.AddModelError("Bairro", "Preencha este campo");
+            if (string.IsNullOrEmpty(model.Cidade))
+                ModelState.AddModelError("Cidade", "Preencha este campo");
+            if (string.IsNullOrEmpty(model.Estado))
+                ModelState.AddModelError("Estado", "Preencha este campo");
             if (model.Numero <= 0)
                 ModelState.AddModelError("CEP", "Preencha este campo");
 

@@ -119,6 +119,11 @@ namespace N2_2BIM.Controllers
             if (model.Numero <= 0)
                 ModelState.AddModelError("Numero", "Preencha este campo");
 
+            if (string.IsNullOrEmpty(model.Cidade))
+                ModelState.AddModelError("Cidade", "Preencha este campo");
+            if (string.IsNullOrEmpty(model.Estado))
+                ModelState.AddModelError("Estado", "Preencha este campo");
+
 
             //Imagem será obrigario apenas na inclusão.
             //Na alteração iremos considerar a que já estava salva.            

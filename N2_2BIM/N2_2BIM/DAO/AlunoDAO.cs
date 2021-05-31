@@ -37,8 +37,10 @@ namespace N2_2BIM.DAO
                 new SqlParameter("Telefone", model.Telefone),
                 new SqlParameter("Sexo", model.Sexo),
                 new SqlParameter("Instrutor", model.IdInstrutor),
-                new SqlParameter("Senha", model.Senha)
-                 
+                new SqlParameter("Senha", model.Senha),
+                new SqlParameter("Cidade", model.Cidade),
+                new SqlParameter("Estado", model.Estado)
+
             };
 
             return parametros;
@@ -59,6 +61,8 @@ namespace N2_2BIM.DAO
                 Sexo = Convert.ToChar(registro["Sexo"]),
                 IdInstrutor = Convert.ToInt32(registro["IdInstrutor"]),
                 Senha = registro["Senha"].ToString(),
+                Cidade = registro["Cidade"].ToString(),
+                Estado = registro["Estado"].ToString(),
                 Numero = Convert.ToInt32(registro["Numero"])
             };
 

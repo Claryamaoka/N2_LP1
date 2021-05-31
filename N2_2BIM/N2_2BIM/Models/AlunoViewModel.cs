@@ -20,6 +20,8 @@ namespace N2_2BIM.Models
         public char Sexo { get; set; }
         public int IdInstrutor { get; set; }
         public string Senha { get; set; }
+        public string Estado { get; set; }
+        public string Cidade { get; set; }
 
         /// <summary>
         /// Imagem recebida do form pelo controller
