@@ -67,7 +67,9 @@ namespace N2_2BIM.Controllers
         {
             base.ValidaDados(model, operacao);
             //fazer consulta para ver se o CPF já foi cadastrado
-            if (!ValidaCPF(model.CPF))
+            if (string.IsNullOrEmpty(model.CPF))
+                ModelState.AddModelError("CPF", "Preencha este campo");
+            else if (!ValidaCPF(model.CPF))
                 ModelState.AddModelError("CPF", "Preencha este campo com um valor válido");
 
             if (string.IsNullOrEmpty(model.Nome))
