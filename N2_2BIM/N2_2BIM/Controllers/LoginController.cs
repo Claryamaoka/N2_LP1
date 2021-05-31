@@ -58,7 +58,7 @@ namespace N2_2BIM.Controllers
                     {
                         PreencheComboAlunoInstrutor();
                         ViewBag.Erro = "Usuário ou senha inválidos!";
-                        return View("Index");
+                        return View("Index",l);
                     }
                 }
 
