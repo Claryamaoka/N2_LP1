@@ -26,6 +26,11 @@ namespace N2_2BIM.Controllers
         {
             try
             {
+                if (HttpContext.Session.GetString("TipoUsuario") == "I")
+                    ViewBag.AlunoInstrutor = "I";
+                else
+                    ViewBag.AlunoInstrutor = "A";
+
                 int numeroPagina = (pagina ?? 1);
 
                 var lista = DAO.Listagem();
