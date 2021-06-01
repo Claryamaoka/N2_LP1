@@ -36,8 +36,12 @@
             {
                 <tr>
                     <td>
-                        <a href="/Exercicio/Edit?id=@ex.Id">Editar</a> &nbsp;&nbsp;
-                        <a href="javascript:apagar(@ex.Id, 'Exercicio')">Apagar</a>
+                        @if (ViewBag.AlunoInstrutor == "I")
+                        {
+                            <a href="/Exercicio/Edit?id=@ex.Id">Editar</a> <br />
+                            <a href="javascript:apagar(@ex.Id, 'Exercicio')">Apagar</a>
+                        }
+
                     </td>
                     <td>@ex.Id</td>
                     <td>@ex.Nome</td>

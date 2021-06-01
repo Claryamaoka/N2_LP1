@@ -5,6 +5,7 @@
     background-size: cover;
     font-weight: 300;
     font-size: 20px;
+    color:black;
 }
 
 h1 {
@@ -64,11 +65,11 @@ h4 {
     border-color: black;
 }
 
-#conteudoGrid{
-    margin:3%;
+#conteudoGrid {
+    margin: 3%;
 }
 
-tr{
-    margin:40%;
+tr {
+    margin: 40%;
 }
 

@@ -28,9 +28,16 @@ namespace N2_2BIM.Controllers
             string procedure = "spListaAulas";
             string aux;
             if (HttpContext.Session.GetString("TipoUsuario") == "I")
+            {
                 aux = null;
+                
+            }
             else
+            {
                 aux = "0";
+                ViewBag.AlunoInstrutor = "A";
+            }
+                
 
             try
             {

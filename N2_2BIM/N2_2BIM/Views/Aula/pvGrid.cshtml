@@ -17,8 +17,12 @@
     {
         <tr>
             <td>
-                <a href="/Aula/Edit?id=@ex.Id">Editar</a> &nbsp;&nbsp;
-                <a href="javascript:apagar(@ex.Id, 'Aula')">Apagar</a>
+                @if (ViewBag.AlunoInstrutor == "I")
+                {
+                    <a href="/Aula/Edit?id=@ex.Id">Editar</a> <br />
+                    <a href="javascript:apagar(@ex.Id, 'Aula')">Apagar</a>
+                }
+
             </td>
             <td>@ex.Id</td>
             <td>@ex.dataAula.ToShortDateString()</td>
