@@ -20,6 +20,7 @@ namespace N2_2BIM.Models
         public string Sexo { get; set; }
         public string IMC { get; set; }
         public string Resultado { get; set; }
+        public string NomeAluno { get; set; }
     }
 }
 /*Id int NOT NULL primary key identity (1,1),

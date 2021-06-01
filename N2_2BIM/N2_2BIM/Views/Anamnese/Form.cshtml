@@ -15,7 +15,7 @@
 
     @if (ViewBag.Operacao == "I")
     {
-        <input asp-for="Id" class="form-control" readonly/>
+        <input asp-for="Id" class="form-control" readonly />
         <span asp-validation-for="Id" class="text-danger"></span>
     }
     else
@@ -32,22 +32,26 @@
     <input asp-for="IdAluno" class="form-control" readonly />
 
     <br />
+    <label for="NomeAluno" class="control-label">Nome do aluno</label>
+    <input asp-for="NomeAluno" class="form-control" readonly />
+
+    <br />
     <label for="DataAvaliacao" class="control-label">Data da Avaliação</label>
     <input asp-for="DataAvaliacao" class="form-control" type="date" required />
     <span asp-validation-for="DataAvaliacao" class="text-danger"></span>
     <br />
     <label for="Peso" class="control-label">Peso</label>
-    <input asp-for="Peso" class="form-control" required placeholder="KG"/>
+    <input asp-for="Peso" class="form-control" required placeholder="KG" />
     <span asp-validation-for="Peso" class="text-danger"></span>
     <br />
     <label for="Altura" class="control-label">Altura</label>
-    <input asp-for="Altura" class="form-control" required placeholder="m"/>
+    <input asp-for="Altura" class="form-control" required placeholder="m" />
     <span asp-validation-for="Altura" class="text-danger"></span>
 
     <br />
 
     <label for="Elasticidade" class="control-label">Elasticidade</label>
-    <input asp-for="Elasticidade" class="form-control" required/>
+    <input asp-for="Elasticidade" class="form-control" required />
     <span asp-validation-for="Elasticidade" class="text-danger"></span>
 
     <br />

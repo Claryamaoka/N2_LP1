@@ -60,6 +60,8 @@ namespace N2_2BIM.Controllers
 
             aluno = a.Consulta(_alunoId);
 
+            model.NomeAluno = aluno.Nome;
+
             int idade = DateTime.Now.Year - aluno.dtNascimento.Year;
             if(DateTime.Now.DayOfYear < aluno.dtNascimento.DayOfYear)
             {

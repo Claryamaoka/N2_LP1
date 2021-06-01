@@ -58,6 +58,9 @@ namespace N2_2BIM.Controllers
         //Salva o id do aluno que foi selecionado para poder preencher o campo IdAluno
         public override IActionResult Create(int? id = null)
         {
+            AlunoDAO a = new AlunoDAO();
+            AlunoViewModel aluno = new AlunoViewModel();
+
             ViewBag.Operacao = "I";
             AnamneseViewModel model = Activator.CreateInstance(typeof(AnamneseViewModel)) as AnamneseViewModel;
             _alunoId = (int)id;
@@ -69,11 +72,17 @@ namespace N2_2BIM.Controllers
         {
             base.PreencheDadosParaView(Operacao, model);
 
+
             //pega o Id do instrutor que está logado 
             if (Operacao == "I")
             {
                 model.IdInstrutor = (int)HttpContext.Session.GetInt32("IdUsuario");
                 model.IdAluno = _alunoId;
+                AlunoDAO a = new AlunoDAO();
+                AlunoViewModel aluno = new AlunoViewModel();
+
+                aluno = a.Consulta(model.IdAluno);
+                model.NomeAluno = aluno.Nome;
                 model.DataAvaliacao = DateTime.Now;
             }
 
@@ -97,6 +106,7 @@ namespace N2_2BIM.Controllers
             AnamneseViewModel model = DAO.Consulta(id);
             AlunoDAO a = new AlunoDAO();
             AlunoViewModel aluno = new AlunoViewModel();
+
             aluno = a.Consulta(model.IdAluno);
             model.NomeAluno = aluno.Nome;
             
