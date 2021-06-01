@@ -23,6 +23,14 @@ h3 {
     padding-bottom: 5%;
 }
 
+h4 {
+    font-weight: 300;
+    font-size: 50px;
+    margin: auto;
+    width: 50%;
+    padding-bottom: 5%;
+}
+
 #listagem {
     width: 100%;
     margin: auto;
@@ -58,5 +66,9 @@ h3 {
 
 #conteudoGrid{
     margin:3%;
+}
+
+tr{
+    margin:40%;
 }
 
