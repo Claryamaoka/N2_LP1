@@ -6,61 +6,82 @@
 
 @*TELA DE CADASTRO DE AULAS*@
 
-<h1>Cadastro de Aulas</h1>
-<hr />
-<form action="/Aula/Salvar" method="post">
+<head>
+    <link rel="stylesheet" href="~/css/CadastroAulas.css"/>
+</head>
 
-    <div asp-validation-summary="All" class="text-danger"></div>
-    <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
+<body>
 
-    <label for="Id" class="control-label">Id</label>
+    <div id="cadastro">
 
-    @if (ViewBag.Operacao == "I")
-    {
-        <input asp-for="Id" class="form-control" readonly/>
-        <span asp-validation-for="Id" class="text-danger"></span>
-    }
-    else
-    {
-        <input asp-for="Id" readonly class="form-control desabilitado" />
-    }
+        <h1>Cadastro de Treinos</h1>
 
-    <br />
-    <label for="IdInstrutor" class="control-label">Id do Instrutor</label>
-    <input asp-for="IdInstrutor" class="form-control" readonly />
+        <form action="/Aula/Salvar" method="post">
 
-    <br />
-    <label for="IdAluno" class="control-label">Id do Aluno</label>
-    <select asp-for="IdAluno" asp-items="@ViewBag.Alunos" class="form-control"></select>
-    <span asp-validation-for="IdAluno" class="text-danger"></span>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
 
-    <br />
+            <div class="divLeft">
+                <label for="Id" class="control-label">Id</label>
 
-    <label for="dataAula" class="control-label">Data da Aula</label>
-    <input asp-for="dataAula" class="form-control" type="date"/>
-    <span asp-validation-for="dataAula" class="text-danger"></span>
+                @if (ViewBag.Operacao == "I")
+                {
+                    <input asp-for="Id" class="form-control" readonly />
+                    <span asp-validation-for="Id" class="text-danger"></span>
+                }
+                else
+                {
+                    <input asp-for="Id" readonly class="form-control desabilitado" />
+                }
+            </div>
 
-    <br />
-    <label for="Ex1" class="control-label">Exercício 1</label>
-    <select asp-for="Ex1" asp-items="@ViewBag.Exercicios" class="form-control"></select>
-    <span asp-validation-for="Ex1" class="text-danger"></span>
+            <div class="divRight">
+                <label for="IdInstrutor" class="control-label">Id do Instrutor</label>
+                <input asp-for="IdInstrutor" class="form-control" readonly />
+            </div>
 
-    <br />
-    <label for="Ex2" class="control-label">Exercicio 2</label>
-    <select asp-for="Ex2" asp-items="@ViewBag.Exercicios" class="form-control"></select>
-    <span asp-validation-for="Ex2" class="text-danger"></span>
+            <br />
+            <div class="divLeft">
+                <label for="IdAluno" class="control-label">Id do Aluno</label>
+                <select asp-for="IdAluno" asp-items="@ViewBag.Alunos" class="form-control"></select>
+                <span asp-validation-for="IdAluno" class="text-danger"></span>
+            </div>
+            
+            <div class="divRight">
+                <label for="dataAula" class="control-label">Data do Treino</label>
+                <input asp-for="dataAula" class="form-control" type="date" />
+                <span asp-validation-for="dataAula" class="text-danger"></span>
+            </div>
 
-    <br />
-    <label for="Ex3" class="control-label">Exercicio 3</label>
-    <select asp-for="Ex3" asp-items="@ViewBag.Exercicios" class="form-control"></select>
-    <span asp-validation-for="Ex3" class="text-danger"></span>
 
-    <br />
-    <br />
-    <input type="submit" value="Salvar dados" class="btn btn-success" />
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="/Aula/Index" class="btn btn-secondary">Voltar</a>
-    <br />
-    <span class="text-danger">@ViewBag.Erro</span>
+            <div class="divCenter">
+                <label for="Ex1" class="control-label">Exercício 1</label>
+                <select asp-for="Ex1" asp-items="@ViewBag.Exercicios" class="form-control"></select>
+                <span asp-validation-for="Ex1" class="text-danger"></span>
+            </div>
 
-</form>
+            <div class="divCenter">
+                <label for="Ex2" class="control-label">Exercicio 2</label>
+                <select asp-for="Ex2" asp-items="@ViewBag.Exercicios" class="form-control"></select>
+                <span asp-validation-for="Ex2" class="text-danger"></span>
+            </div>
+
+            <div class="divCenter">
+                <label for="Ex3" class="control-label">Exercicio 3</label>
+                <select asp-for="Ex3" asp-items="@ViewBag.Exercicios" class="form-control"></select>
+                <span asp-validation-for="Ex3" class="text-danger"></span>
+            </div>
+
+            <br />
+            <br />
+            <input type="submit" value="Salvar dados" class="btn btn-success" id="btnSalvar"/>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="/Aula/Index" class="btn btn-secondary" id="btnVoltar">Voltar</a>
+            <br />
+            <span class="text-danger">@ViewBag.Erro</span>
+
+        </form>
+
+    </div>
+
+</body>

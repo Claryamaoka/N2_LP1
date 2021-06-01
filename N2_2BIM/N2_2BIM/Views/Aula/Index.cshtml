@@ -7,43 +7,53 @@
 
 @*TELA DE LISTAGEM DE AULAS*@
 
-<h1>Listagem de Aulas</h1>
+<head>
+    <link rel="stylesheet" href="~/css/ListagemDeAlunos.css">
+</head>
 
-<a href="/Home/Index">Voltar</a>
-<br />
+<body>
 
-<div class="filtro">
-    Filtro <br />
-    <br />
+    <div id="listagem">
 
-    <div class="row">
-        <div class="col-2">
-            Nome do aluno <br />
-            <input type="text" id="nomeAlunoAula" class="form-control" />
+        <h1>Listagem de Treinos</h1>
+
+        <br />
+
+        <div class="row">
+            <div class="div">
+                <label>Nome do Aluno</label>
+                <input type="text" id="nomeAlunoAula" class="form-control" />
+            </div>
+
+            <div class="div">
+                <label>Data do Treino </label>
+                <input type="date" id="dataAula" class="form-control" />
+            </div>
+
+            <div class="div">
+                <br />
+                <input type="button" onclick="efetuaFiltroAula()" class="btn btn-success" value="Aplicar" id="btnAplicar" />
+                &nbsp;
+                <img src="~/images/wait.gif" width="50" id="imgWait" style="display:none" />
+
+            </div>
+
+            <a href="/Aula/create">Novo Treino</a>
+
         </div>
 
-        <div class="col-2">
-            Data da Aula <br />
-            <input type="date" id="dataAula" class="form-control" />
+ 
+
+        @*----------------------------------------------------------------------------------------------------------------------*@
+
+
+
+        <div id="conteudoGrid">
+            @{
+                Html.RenderPartial("pvGrid", Model);
+            }
         </div>
 
-        <div class="col-2">
-            <br />
-            <input type="button" onclick="efetuaFiltroAula()" class="btn btn-success" value="Aplicar" />
-            &nbsp;
-            <img src="~/images/wait.gif" width="50" id="imgWait" style="display:none" />
-        </div>
     </div>
-</div>
 
-@*----------------------------------------------------------------------------------------------------------------------*@
-
-<a href="/Aula/create">Nova Aula</a>
-<br />
-
-
-<div id="conteudoGrid">
-    @{
-        Html.RenderPartial("pvGrid", Model);
-    }
-</div>
+</body>

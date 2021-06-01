@@ -5,47 +5,58 @@
 }
 @*TELA DE CADASTRO DE EXERCICIO*@
 
-<h1>Cadastro de Exercicios</h1>
-<hr />
+<head>
+    <link rel="stylesheet" href="~/css/CadastroExercicio.css"/>
+</head>
 
-<form action="/Exercicio/Salvar" method="post">
+<body>
 
-    <div asp-validation-summary="All" class="text-danger"></div>
-    <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
+    <div id="cadastro"> 
 
-    <label for="Id" class="control-label">Id</label>
+        <h1>Cadastro de Exercicios</h1>
 
-    @if (ViewBag.Operacao == "I")
-    {
-        <input asp-for="Id" class="form-control" readonly/>
-        <span asp-validation-for="Id" class="text-danger"></span>
-    }
-    else
-    {
-        <input asp-for="Id" readonly class="form-control desabilitado" />
-    }
+        <form action="/Exercicio/Salvar" method="post">
 
-    <br />
-    <label for="Nome" class="control-label">Nome do exercício</label>
-    <input asp-for="Nome" class="form-control" />
-    <span asp-validation-for="Nome" class="text-danger"></span>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
 
-    <br />
+            <label for="Id" class="control-label">Id</label>
 
-    <label for="Descricao" class="control-label">Descrição do Exercício</label>
-    <input asp-for="Descricao" class="form-control" />
-    <span asp-validation-for="Descricao" class="text-danger"></span>
+            @if (ViewBag.Operacao == "I")
+            {
+                <input asp-for="Id" class="form-control" readonly/>
+                <span asp-validation-for="Id" class="text-danger"></span>
+            }
+            else
+            {
+                <input asp-for="Id" readonly class="form-control desabilitado" />
+            }
+
+            <br />
+            <label for="Nome" class="control-label">Nome do exercício</label>
+            <input asp-for="Nome" class="form-control" />
+            <span asp-validation-for="Nome" class="text-danger"></span>
+
+            <br />
+
+            <label for="Descricao" class="control-label">Descrição do Exercício</label>
+            <input asp-for="Descricao" class="form-control" />
+            <span asp-validation-for="Descricao" class="text-danger"></span>
 
 
-    <br />
-    <br />
-    <input type="submit" value="Salvar dados" class="btn btn-success" />
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="/Exercicio/Index" class="btn btn-secondary">Voltar</a>
+            <br />
+            <br />
+            <input type="submit" value="Salvar dados" class="btn btn-success" id="btnSalvar" />
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="/Exercicio/Index" class="btn btn-secondary" id="btnVoltar">Voltar</a>
 
 
-    <br />
+            <br />
 
-    <span class="text-danger">@ViewBag.Erro</span>
+            <span class="text-danger">@ViewBag.Erro</span>
 
-</form>
+        </form>
+
+    </div>
+
+</body>

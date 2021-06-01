@@ -1,0 +1,62 @@
+﻿body {
+    background-image: url(/images/academia.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    font-weight: 300;
+    font-size: 20px;
+}
+
+h1 {
+    font-weight: 300;
+    font-size: 60px;
+    margin: auto;
+    width: 55%;
+    padding-bottom: 5%;
+}
+
+h3 {
+    font-weight: 300;
+    font-size: 50px;
+    margin: auto;
+    width: 80%;
+    padding-bottom: 5%;
+}
+
+#listagem {
+    width: 100%;
+    margin: auto;
+    margin-top: 5%;
+    border: 7px solid white;
+    border-radius: 30px;
+    background-color: white;
+    padding: 5%;
+    color:black;
+}
+
+.div {
+    width: 30%;
+    margin-right: 3%;
+}
+
+#btnAplicar {
+    background-color: black;
+    float: right;
+    border-color: black;
+    margin-left: 2%;
+    margin-right: 2%;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+#btnAplicar:hover {
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    border-color: black;
+}
+
+#conteudoGrid{
+    margin:3%;
+}
+

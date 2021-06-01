@@ -5,40 +5,49 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Alunos Cadastrados</h1>
+<head>
+    <link rel="stylesheet" href="~/css/ListagemDeAlunos.css"/>
+</head>
 
-<div class="filtro">
-    Filtro <br />
-    <br />
+<body>
 
-    <div class="row">
-        <div class="col-2">
-            Nome do aluno <br />
-            <input type="text" id="nomeAluno" class="form-control" />
+    <div id="listagem">
+
+        <h1>Alunos Cadastrados</h1>
+
+
+        <div class="row">
+            <div class="div">
+                <label>Nome do aluno</label>
+                <input type="text" id="nomeAluno" class="form-control" />
+            </div>
+
+            <div class="div">
+                <label>Data de Nascimento</label>
+                <input type="date" id="dataNascimento" class="form-control" />
+            </div>
+
+            <div class="div">
+                <br />
+                <input type="button" onclick="efetuaFiltroAluno()" class="btn btn-success" value="Aplicar" id="btnAplicar" />
+                &nbsp;
+                <img src="~/images/wait.gif" width="50" id="imgWait" style="display:none" />
+            </div>
+
+            <a href="/aluno/create">Novo Registro</a>
         </div>
 
-        <div class="col-2">
-            Data de Nascimento <br />
-            <input type="date" id="dataNascimento" class="form-control" />
+        @*------------------------------------------------------------------------------------------------------------------*@
+
+        <br />
+
+        <div id="conteudoGrid">
+            @{
+                Html.RenderPartial("pvGrid", Model);
+            }
         </div>
 
-        <div class="col-2">
-            <br />
-            <input type="button" onclick="efetuaFiltroAluno()" class="btn btn-success" value="Aplicar" />
-            &nbsp;
-            <img src="~/images/wait.gif" width="50" id="imgWait" style="display:none" />
-        </div>
     </div>
-</div>
 
-@*------------------------------------------------------------------------------------------------------------------*@
-
-<a href="/aluno/create">Novo Registro</a>
-<br />
-
-<div id="conteudoGrid">
-    @{
-        Html.RenderPartial("pvGrid", Model);
-    }
-</div>
+</body>
 

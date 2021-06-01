@@ -5,40 +5,45 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Listagem de Avaliações - Anamnese</h1>
+<head>
+    <link rel="stylesheet" href="~/css/ListagemDeAlunos.css"/>
+</head>
 
-<a href="/Home/Index">Voltar</a>
-<br />
+<body>
 
-<div class="filtro">
-    Filtro <br />
-    <br />
+    <div id="listagem">
 
-    <div class="row">
-        <div class="col-2">
-            Id do aluno <br />
-            <input type="text" id="idAluno" class="form-control" />
+        <h3>Listagem de Avaliações - Anamnese</h3>
+
+        <div class="row">
+            <div class="div">
+                Id do aluno <br />
+                <input type="text" id="idAluno" class="form-control" />
+            </div>
+
+            <div class="div">
+                Data da Avaliação <br />
+                <input type="date" id="dataAvaliacao" class="form-control" />
+            </div>
+
+            <div class="div">
+                <br />
+                <input type="button" onclick="efetuaFiltroAnamnese()" class="btn btn-success" value="Aplicar" id="btnAplicar" />
+                &nbsp;
+                <img src="~/images/wait.gif" width="50" id="imgWait" style="display:none" />
+            </div>
         </div>
 
-        <div class="col-2">
-            Data da Avaliação <br />
-            <input type="date" id="dataAvaliacao" class="form-control" />
+
+        @*-------------------------------------------------------------------------------------------------*@
+
+        <div id="conteudoGrid">
+            @{
+                Html.RenderPartial("pvGrid", Model);
+            }
         </div>
 
-        <div class="col-2">
-            <br />
-            <input type="button" onclick="efetuaFiltroAnamnese()" class="btn btn-success" value="Aplicar" />
-            &nbsp;
-            <img src="~/images/wait.gif" width="50" id="imgWait" style="display:none" />
-        </div>
     </div>
-</div>
 
-@*-------------------------------------------------------------------------------------------------*@
-
-<div id="conteudoGrid">
-    @{
-        Html.RenderPartial("pvGrid", Model);
-    }
-</div>
+</body>
 
