@@ -4,101 +4,107 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Risco Cardiaco</h1>
-<hr />
-<body onload="validaResultados()">
-    <form action="/RiscoCardiaco/Salvar" method="post">
+<head>
+    <link rel="stylesheet" href="~/css/RiscoCardiaco.css"/>
+</head>
 
-        <div asp-validation-summary="All" class="text-danger"></div>
-        <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
-        <label for="Id" class="control-label">Id</label>
-        @if (ViewBag.Operacao == "I")
-        {
-            <input asp-for="Id" class="form-control" readonly />
-            <span asp-validation-for="Id" class="text-danger"></span>
-        }
-        else
-        {
-            <input asp-for="Id" readonly class="form-control desabilitado" />
-        }
+    <body onload="validaResultados()">
+        <form action="/RiscoCardiaco/Salvar" method="post">
 
-        <br />
-        <label for="IdInstrutor" class="control-label">Id do Instrutor</label>
-        <input asp-for="IdInstrutor" class="form-control" readonly />
+            <div id="cadastro">
+                <h1>Risco Cardiaco</h1>
 
-        <br />
-        <label for="IdAluno" class="control-label">Id do Aluno</label>
-        <input asp-for="IdAluno" class="form-control" readonly />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
+                <label for="Id" class="control-label">Id</label>
+                @if (ViewBag.Operacao == "I")
+                {
+                    <input asp-for="Id" class="form-control" readonly />
+                    <span asp-validation-for="Id" class="text-danger"></span>
+                }
+                else
+                {
+                    <input asp-for="Id" readonly class="form-control desabilitado" />
+                }
 
-        <br />
-        <label for="NomeAluno" class="control-label">Nome do Aluno</label>
-        <input asp-for="NomeAluno" class="form-control" readonly />
+                <br />
+                <label for="IdInstrutor" class="control-label">Id do Instrutor</label>
+                <input asp-for="IdInstrutor" class="form-control" readonly />
 
-        <br />
-        <label for="IdadeAluno" class="control-label">Idade do Aluno</label>
-        <input asp-for="IdadeAluno" class="form-control" readonly />
+                <br />
+                <label for="IdAluno" class="control-label">Id do Aluno</label>
+                <input asp-for="IdAluno" class="form-control" readonly />
 
-        <br />
-        <label for="Sexo" class="control-label">Sexo do Aluno</label>
-        <input asp-for="Sexo" class="form-control" readonly />
+                <br />
+                <label for="NomeAluno" class="control-label">Nome do Aluno</label>
+                <input asp-for="NomeAluno" class="form-control" readonly />
 
-        <br />
+                <br />
+                <label for="IdadeAluno" class="control-label">Idade do Aluno</label>
+                <input asp-for="IdadeAluno" class="form-control" readonly />
 
-        <label for="Peso" class="control-label">Peso</label>
-        <input asp-for="Peso" class="form-control" placeholder="KG" />
-        <span asp-validation-for="Peso" class="text-danger"></span>
+                <br />
+                <label for="Sexo" class="control-label">Sexo do Aluno</label>
+                <input asp-for="Sexo" class="form-control" readonly />
 
-        <br />
+                <br />
 
-        <label for="Altura" class="control-label">Altura</label>
-        <input asp-for="Altura" class="form-control" placeholder="M" />
-        <span asp-validation-for="Altura" class="text-danger"></span>
+                <label for="Peso" class="control-label">Peso</label>
+                <input asp-for="Peso" class="form-control" placeholder="KG" />
+                <span asp-validation-for="Peso" class="text-danger"></span>
 
-        <br />
+                <br />
 
-        <label for="Colesterol" class="control-label">Colesterol</label>
-        <input asp-for="Colesterol" class="form-control" />
-        <span asp-validation-for="Colesterol" class="text-danger"></span>
+                <label for="Altura" class="control-label">Altura</label>
+                <input asp-for="Altura" class="form-control" placeholder="M" />
+                <span asp-validation-for="Altura" class="text-danger"></span>
 
-        <br />
+                <br />
 
-        <label for="Pressao" class="control-label">Pressão</label>
-        <input asp-for="Pressao" class="form-control" placeholder="mmHg" />
-        <span asp-validation-for="Pressao" class="text-danger"></span>
+                <label for="Colesterol" class="control-label">Colesterol</label>
+                <input asp-for="Colesterol" class="form-control" />
+                <span asp-validation-for="Colesterol" class="text-danger"></span>
 
-        <br />
-        <label for="Atividade" class="control-label">Frequência de Atividade Física</label>
-        <select asp-for="Atividade" asp-items="@ViewBag.Atividade" class="form-control"></select>
-        <span asp-validation-for="Atividade" class="text-danger"></span>
+                <br />
 
-        <br />
-        <label for="Fumo" class="control-label">Fumo</label>
-        <select asp-for="Fumo" asp-items="@ViewBag.Fumo" class="form-control"></select>
-        <span asp-validation-for="Fumo" class="text-danger"></span>
+                <label for="Pressao" class="control-label">Pressão</label>
+                <input asp-for="Pressao" class="form-control" placeholder="mmHg" />
+                <span asp-validation-for="Pressao" class="text-danger"></span>
 
-        <br />
-        <label for="DoencaFamilia" class="control-label">Doenças na Família</label>
-        <select asp-for="DoencaFamilia" asp-items="@ViewBag.DoencaFamilia" class="form-control"></select>
-        <span asp-validation-for="DoencaFamilia" class="text-danger"></span>
+                <br />
+                <label for="Atividade" class="control-label">Frequência de Atividade Física</label>
+                <select asp-for="Atividade" asp-items="@ViewBag.Atividade" class="form-control"></select>
+                <span asp-validation-for="Atividade" class="text-danger"></span>
 
-        <br />
-        <label for="Resultado" class="control-label">Risco Cardíaco</label>
-        <input id="Resultado" asp-for="Resultado" class="form-control" readonly />
+                <br />
+                <label for="Fumo" class="control-label">Fumo</label>
+                <select asp-for="Fumo" asp-items="@ViewBag.Fumo" class="form-control"></select>
+                <span asp-validation-for="Fumo" class="text-danger"></span>
 
-        <br />
-        <label for="IMC" class="control-label">IMC</label>
-        <input id="IMC" asp-for="IMC" class="form-control" readonly />
+                <br />
+                <label for="DoencaFamilia" class="control-label">Doenças na Família</label>
+                <select asp-for="DoencaFamilia" asp-items="@ViewBag.DoencaFamilia" class="form-control"></select>
+                <span asp-validation-for="DoencaFamilia" class="text-danger"></span>
 
-        <br />
-        <br />
-        <input id="btnSalvar" type="submit" value="Salvar dados" class="btn btn-success" disabled="true" />
+                <br />
+                <label for="Resultado" class="control-label">Risco Cardíaco</label>
+                <input id="Resultado" asp-for="Resultado" class="form-control" readonly />
 
-        <input asp-action="CalculaRiscoCardiaco" type="submit" value="Calcula Risco Cardiaco" class="btn btn-success" />
+                <br />
+                <label for="IMC" class="control-label">IMC</label>
+                <input id="IMC" asp-for="IMC" class="form-control" readonly />
 
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="/Aluno/Index" class="btn btn-secondary">Voltar</a>
-        <br />
-        <span class="text-danger">@ViewBag.Erro</span>
+                <br />
+                <br />
+                <input id="btnSalvar" type="submit" value="Salvar dados" class="btn btn-success" disabled="true" />
 
-    </form>
-</body>
+                <input asp-action="CalculaRiscoCardiaco" type="submit" value="Calcula Risco Cardiaco" class="btn btn-success" id="btnAplicar" />
+
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/Aluno/Index" class="btn btn-secondary" id="btnVoltar">Voltar</a>
+                <br />
+                <span class="text-danger">@ViewBag.Erro</span>
+            </div>
+
+        </form>
+    </body>
