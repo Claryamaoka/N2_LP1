@@ -120,9 +120,12 @@ namespace N2_2BIM.Controllers
                 DAO.Delete(id);
                 return RedirectToAction(ViewParaListagem);
             }
-            catch
+            catch(Exception erro)
             {
+                string errosdfd = erro.Message;
                 return RedirectToAction(ViewParaListagem);
+                
+                
             }
         }
 
