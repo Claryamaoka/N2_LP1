@@ -140,3 +140,10 @@ function validaResultados() {
 		}
     }
 }
+
+function imprimeAnamnese() {
+	document.getElementById('btnPrint').hidden = true;
+	document.getElementById('cabecalhoLayout').hidden = true;
+	window.print();
+
+}
