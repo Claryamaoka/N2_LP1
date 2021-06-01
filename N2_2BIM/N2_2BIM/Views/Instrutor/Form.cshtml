@@ -12,7 +12,14 @@
 
     <div id="cadastro">
 
-        <h1>Cadastro do Instrutor</h1>
+        @if (ViewBag.Operacao == "I")
+        {
+            <h1>Cadastro de Instrutor</h1>
+        }
+        else
+        {
+            <h1>Editar Instrutor</h1>
+        }
 
         <form action="/Instrutor/Salvar" method="post" enctype="multipart/form-data">
 

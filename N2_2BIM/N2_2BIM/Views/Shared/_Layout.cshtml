@@ -18,27 +18,37 @@
 
             @if (ViewBag.Logado == true)
             {
-                <li>
-                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Sobre">Sobre</a>
-                </li>
-                <li>
-                    <a class="nav-link" asp-area="" asp-controller="Login" asp-action="LogOff">Logoff</a>
-                </li>
-                <li>
-                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                </li>
-                @if (ViewBag.AlunoInstrutor == "I")
+                @if (ViewBag.Cadastro == true)
                 {
-                    <li>
-                        <a class="nav-link" asp-area="" asp-controller="Instrutor" asp-action="Edit">Editar Usuário</a>
-                    </li>
+
                 }
                 else
                 {
                     <li>
-                        <a class="nav-link" asp-area="" asp-controller="Aluno" asp-action="Edit">Editar Usuário</a>
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Sobre">Sobre</a>
                     </li>
+                    <li>
+                        <a class="nav-link" asp-area="" asp-controller="Login" asp-action="LogOff">Logoff</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+
+                    @if (ViewBag.AlunoInstrutor == "I")
+                    {
+                        <li>
+                            <a class="nav-link" asp-area="" asp-controller="Instrutor" asp-action="Edit">Editar Usuário</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a class="nav-link" asp-area="" asp-controller="Aluno" asp-action="Edit">Editar Usuário</a>
+                        </li>
+                    }
                 }
+
+
 
             }
 

@@ -14,7 +14,15 @@
 
     <div id="cadastro">
 
-        <h1>Cadastro de Treinos</h1>
+        
+        @if (ViewBag.Operacao == "I")
+        {
+            <h1>Cadastro de Treinos</h1>
+        }
+        else
+        {
+            <h1>Editar Treino</h1>
+        }
 
         <form action="/Aula/Salvar" method="post">
 
@@ -46,7 +54,7 @@
                 <select asp-for="IdAluno" asp-items="@ViewBag.Alunos" class="form-control"></select>
                 <span asp-validation-for="IdAluno" class="text-danger"></span>
             </div>
-            
+
             <div class="divRight">
                 <label for="dataAula" class="control-label">Data do Treino</label>
                 <input asp-for="dataAula" class="form-control" type="date" />
@@ -74,7 +82,7 @@
 
             <br />
             <br />
-            <input type="submit" value="Salvar dados" class="btn btn-success" id="btnSalvar"/>
+            <input type="submit" value="Salvar dados" class="btn btn-success" id="btnSalvar" />
             &nbsp;&nbsp;&nbsp;&nbsp;
             <a href="/Aula/Index" class="btn btn-secondary" id="btnVoltar">Voltar</a>
             <br />

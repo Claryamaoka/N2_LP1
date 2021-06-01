@@ -23,6 +23,7 @@ namespace N2_2BIM.Controllers
         {
             try
             {
+                ViewBag.Cadastro = false;
                 //Como é o instrutor qm está editando seu usuário o 
                 //id não é passado por URL mas sim pela Session
                 id = (int)HttpContext.Session.GetInt32("IdUsuario");
@@ -47,6 +48,7 @@ namespace N2_2BIM.Controllers
         public override void OnActionExecuting(ActionExecutingContext context)
         {   
             ViewBag.Logado = true;
+            ViewBag.Cadastro = true;
         }
 
         public override IActionResult Index(int? pagina)

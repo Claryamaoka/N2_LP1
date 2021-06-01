@@ -11,9 +11,16 @@
 
 <body>
 
-    <div id="cadastro"> 
+    <div id="cadastro">
 
-        <h1>Cadastro de Exercicios</h1>
+        @if (ViewBag.Operacao == "I")
+        {
+            <h1>Cadastro de Exercicios</h1>
+        }
+        else
+        {
+            <h1>Editar Exercicio</h1>
+        }
 
         <form action="/Exercicio/Salvar" method="post">
 
@@ -24,7 +31,7 @@
 
             @if (ViewBag.Operacao == "I")
             {
-                <input asp-for="Id" class="form-control" readonly/>
+                <input asp-for="Id" class="form-control" readonly />
                 <span asp-validation-for="Id" class="text-danger"></span>
             }
             else
